@@ -1,4 +1,4 @@
-top_bar.php                <!-- Top Bar Start -->
+       <!-- Top Bar Start -->
                 <div class="topbar">
 
                     <nav class="navbar-custom">

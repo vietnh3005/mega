@@ -36,7 +36,7 @@
 
                         <div class="card-box p-5">
                             <h2 class="text-uppercase text-center pb-4">
-                                <a href="index.html" class="text-success">
+                                <a href="admin_login.php" class="text-success">
                                     <span><img src="assets/images/logo.png" alt="" height="26"></span>
                                 </a>
                             </h2>
