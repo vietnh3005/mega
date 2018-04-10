@@ -1,4 +1,10 @@
 <?php session_start();
+  include '../business/userBusiness.php';
+  if(!isset($_SESSION['admin'])){
+    header('Location: ../admin/admin_login.php');
+  }
+  
+  load_admin();
 ?>
 
 <!DOCTYPE html>

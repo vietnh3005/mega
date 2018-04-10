@@ -1,40 +1,97 @@
 <?php
-session_start();
-if (isset($_SESSION['username'])) {
- header('Location: ../index.php');
-}
- else
-	{
+	if($_POST)
+	{	
 		require_once '../configs/connect.php';
-
-		// Kiểm tra nếu người dùng đã ân nút đăng nhập thì mới xử lý
-		if (isset($_POST["btn_submit"])) {
-			// lấy thông tin người dùng
-			$username = $_POST["username"];
-			$password = $_POST["password"];
-			//làm sạch thông tin, xóa bỏ các tag html, ký tự đặc biệt 
-			//mà người dùng cố tình thêm vào để tấn công theo phương thức sql injection
-			$username = strip_tags($username);
-			$username = addslashes($username);
-			$password = strip_tags($password);
-			$password = addslashes($password);
-			$sql = "select * from users where username = '$username' and password = '$password' ";
-			$query = mysqli_query($conn,$sql);
-			$num_rows = mysqli_num_rows($query);
-			if ($num_rows==0) {
-				echo "<div class='alert alert-block alert-danger'> 
-					<button type='button' class='close' data-dismiss='alert'>
-							<i class='ace-icon fa fa-times'></i>
-					</button>
-					Wrong username or password 
-				</div>";
-			}else{
-				//tiến hành lưu tên đăng nhập vào session để tiện xử lý sau này
-				$_SESSION['username'] = $username;
-	            // Thực thi hành động sau khi lưu thông tin vào session
-	            // ở đây mình tiến hành chuyển hướng trang web tới một trang gọi là index.php
-	            header('Location: ../index.php');
-			}
+		session_start();
+		$username = $_POST["username"];
+		$password = $_POST["password"];
+		$username = strip_tags($username);
+		$username = addslashes($username);
+		$password = strip_tags($password);
+		$password = addslashes($password);
+		if(isset($_POST['admin_login'])){
+			admin_login($username, $password);
+		} 
+		if(isset($_POST['user_login'])){
+			user_login($username, $password);
 		}
+	}
+
+	if($_GET)
+	{	
+		session_start();
+		if($_GET['key'] == 'admin_logout'){
+			admin_logout();
+		}
+		if($_GET['key'] == 'user_logout'){
+			user_logout();
+		}
+	}
+
+	function admin_login($username, $password){
+			global $conn;
+			$sql = "select * from users where username= '$username' and password = '$password' and status_id ='4'";
+				$query = mysqli_query($conn, $sql);
+				$num_rows = mysqli_num_rows($query);
+					if($num_rows == 0){
+						
+						header('Location: ../admin/admin_login.php');
+						} else {
+							$_SESSION['admin'] = $username;
+							header('Location: ../admin/index.php');
+			}
+	}
+
+	function admin_logout()
+	{	
+		if(isset($_SESSION['admin']))
+		{	
+			session_destroy();
+			header('Location:../admin/admin_login.php');
+		}
+	}
+
+	function user_login($username, $password){
+			global $conn;
+			$sql = "select * from users where username= '$username' and password = '$password'";
+				$query = mysqli_query($conn, $sql);
+				$num_rows = mysqli_num_rows($query);
+					if($num_rows == 0){
+						
+						header('Location: ../login.php');
+						} else {
+							$_SESSION['user'] = $username;
+							header('Location: ../index.php');
+			}
+	}
+
+	function user_logout()
+	{	
+		if(isset($_SESSION['user']))
+		{	
+			session_destroy();
+			header('Location: ../index.php');
+		}
+	}
+
+	function load_user(){
+	  require_once 'configs/connect.php';
+	  global $conn;
+	  if (isset($_SESSION['user'])){
+      $sql = "select * from users where username = '".$_SESSION['user']."' ";
+      $query = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_assoc($query);
+      $_SESSION['name'] = $row['name'];
+    	}
+	}
+
+	function load_admin(){
+	  require_once '../configs/connect.php';
+	  if (isset($_SESSION['admin'])){
+      $sql = "select * from users where username = '".$_SESSION['admin']."' ";
+      $query = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_assoc($query);
+      $_SESSION['name'] = $row['name'];
+    	}
 	}
 ?>

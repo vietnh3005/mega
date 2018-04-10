@@ -1,3 +1,9 @@
+<?php
+	session_start(); 
+	if(isset($_SESSION['admin'])){
+		header('Location: ../admin/index.php');
+	}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,7 +33,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w" action ='../business/login.php' method="post">
+				<form class="login100-form validate-form flex-sb flex-w" action ='../business/userBusiness.php' method="post">
 					<span class="login100-form-title p-b-32">
 						Account Login
 					</span>
@@ -67,7 +73,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" name="login" value="login">
+						<button class="login100-form-btn" name="admin_login" value="admin_login">
 							Login
 						</button>
 					</div>

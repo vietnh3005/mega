@@ -13,9 +13,8 @@
     session_start();
     require_once 'configs/connect.php';
     include 'views/assets/styles.php';
-    if (isset($_SESSION['username'])) {
-    header('Location: index.php');
-}
+    if (isset($_SESSION['user'])) {
+    header('Location: index.php');}
   ?>
 </head>
 
@@ -56,17 +55,17 @@
                 <li>
                   <label for="email">Username <span class="required">*</span></label>
                   <br>
-                  <input type="text" title="Username" class="input-text required-entry" id="email" value="" name="username">
+                  <input type="text" title="Username" class="input-text required-entry" id="username" value="" name="username">
                 </li>
                 <li>
                   <label for="pass">Password <span class="required">*</span></label>
                   <br>
-                  <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="password">
+                  <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="password" value="">
                 </li>
               </ul>
               <p class="required">* Required Fields</p>
               <div class="buttons-set">
-                <button id="send2" name="btn_submit" type="submit" class="button login"><span>Login</span></button>
+                <button id="send2" name="user_login" type="submit" class="button login"><span>Login</span></button>
                 <a class="forgot-word" href="http://demo.magentomagik.com/computerstore/customer/account/forgotpassword/">Forgot Your Password?</a> </div>
               </form>  
             </div>

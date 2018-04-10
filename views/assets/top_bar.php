@@ -1,10 +1,7 @@
-    <?php
-    if (isset($_SESSION['username'])){
-      $sql1 = "select * from users where username = '".$_SESSION['username']."' ";
-      $query1 = mysqli_query($conn,$sql1);
-      $row1 = mysqli_fetch_assoc($query1);
-    }
-    ?>
+<?php
+  include 'business/userBusiness.php';
+  load_user();
+?>
 
 <header class="header-container">
     <div class="header-top">
@@ -32,8 +29,8 @@
             </div>
             
             <!-- End Header Currency -->
-            <?php if(ISSET($_SESSION['username'])) {
-              echo "<div class='welcome-msg hidden-xs'> Chào, ".$row1['name']." !</div> 
+            <?php if(ISSET($_SESSION['user'])) {
+              echo "<div class='welcome-msg hidden-xs'> Chào, ".$_SESSION['name']." !</div> 
               </div>
               <div class='col-xs-6'>
               <div class='toplinks'>
@@ -41,7 +38,7 @@
                 <div class='myaccount'><a title='My Account' href='login.php'><span class='hidden-xs'>Tài khoản</span></a></div>
                 <div class='wishlist'><a title='My Wishlist'  href='wishlist.php'><span class='hidden-xs'>Danh sách</span></a></div>
                 <div class='check'><a title='Checkout' href='checkout.php'><span class='hidden-xs'>Thanh toán</span></a></div>
-                <div class='login'><a title='Logout' href='logout.php' onClick='logout()'><span  class='hidden-xs'>Đăng xuất</span></a></div>
+                <div class='login'><a title='Logout' href='business/userBusiness.php?key=user_logout'><span  class='hidden-xs'>Đăng xuất</span></a></div>
               </div>
             </div>";
             }
