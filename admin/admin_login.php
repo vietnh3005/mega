@@ -2,114 +2,95 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Highdmin - Responsive Bootstrap 4 Admin Dashboard</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="icon" type="image/png" href="assets/images/icons/favicon.ico">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
-
-        <script src="assets/js/modernizr.min.js"></script>
-
+        <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/vendor/animate/animate.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendor/css-hamburgers/hamburgers.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendor/animsition/css/animsition.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendor/select2/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendor/daterangepicker/daterangepicker.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/util.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
     </head>
 
 
-    <body class="account-pages">
+   <body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+				<form class="login100-form validate-form flex-sb flex-w" action ='../business/login.php' method="post">
+					<span class="login100-form-title p-b-32">
+						Account Login
+					</span>
 
-        <!-- Begin page -->
-        <div class="accountbg" style="background: url('assets/images/bg-3.jpg');background-size: cover;"></div>
+					<span class="txt1 p-b-11">
+						Username
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
+						<input class="input100" type="text" name="username" id='username' >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<span class="txt1 p-b-11">
+						Password
+					</span>
+					<div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
+						<span class="btn-show-pass">
+							<i class="fa fa-eye"></i>
+						</span>
+						<input class="input100" type="password" name="password" id='password' >
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="flex-sb-m w-full p-b-48">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
 
-        <div class="wrapper-page account-page-full">
+						<div>
+							<a href="#" class="txt3">
+								Forgot Password?
+							</a>
+						</div>
+					</div>
 
-            <div class="card">
-                <div class="card-block">
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" name="login" value="login">
+							Login
+						</button>
+					</div>
 
-                    <div class="account-box">
+				</form>
+			</div>
+		</div>
+	</div>
+	
 
-                        <div class="card-box p-5">
-                            <h2 class="text-uppercase text-center pb-4">
-                                <a href="admin_login.php" class="text-success">
-                                    <span><img src="assets/images/logo.png" alt="" height="26"></span>
-                                </a>
-                            </h2>
-
-                            <form class="" action="#">
-
-                                <div class="form-group m-b-20 row">
-                                    <div class="col-12">
-                                        <label for="emailaddress">Email address</label>
-                                        <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row m-b-20">
-                                    <div class="col-12">
-                                        <a href="page-recoverpw.html" class="text-muted pull-right"><small>Forgot your password?</small></a>
-                                        <label for="password">Password</label>
-                                        <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row m-b-20">
-                                    <div class="col-12">
-
-                                        <div class="checkbox checkbox-custom">
-                                            <input id="remember" type="checkbox" checked="">
-                                            <label for="remember">
-                                                Remember me
-                                            </label>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="form-group row text-center m-t-10">
-                                    <div class="col-12">
-                                        <button class="btn btn-block btn-custom waves-effect waves-light" type="submit">Sign In</button>
-                                    </div>
-                                </div>
-
-                            </form>
-
-                            <div class="row m-t-50">
-                                <div class="col-sm-12 text-center">
-                                    <p class="text-muted">Don't have an account? <a href="page-register.html" class="text-dark m-l-5"><b>Sign Up</b></a></p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="m-t-40 text-center">
-                <p class="account-copyright">2018 © Highdmin. - Coderthemes.com</p>
-            </div>
-
-        </div>
-
+	<div id="dropDownSelect1"></div>
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/metisMenu.min.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-
-        <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <script src="assets/vendor/animsition/js/animsition.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/popper.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/vendor/select2/select2.min.js"></script>
+        <script src="assets/vendor/daterangepicker/moment.min.js"></script>
+        <script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+        <script src="assets/vendor/countdowntime/countdowntime.js"></script>
+        <script src="assets/js/main.js"></script>
 
     </body>
 </html>

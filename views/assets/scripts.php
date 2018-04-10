@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/owl.carousel.min.js"></script> 
 <script type="text/javascript" src="js/toggle.js"></script>
 <script type="text/javascript" src="js/jquery.fancybox.js"></script> 
+
 <script type='text/javascript'>
         jQuery(document).ready(function(){
             jQuery('#rev_slider_4').show().revolution({
@@ -80,3 +81,4 @@
             });
         });
         </script>
+
