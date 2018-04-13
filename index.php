@@ -1,7 +1,7 @@
-﻿<?php 
+﻿<?php
   session_start();
   require_once 'configs/connect.php';
-?>
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

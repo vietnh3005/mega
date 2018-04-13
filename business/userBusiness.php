@@ -47,13 +47,13 @@
 		if(isset($_SESSION['admin']))
 		{	
 			session_destroy();
-			header('Location:../admin/admin_login.php');
+			header('Location:../admin/login.php');
 		}
 	}
 
 	function user_login($username, $password){
 			global $conn;
-			$sql = "select * from users where username= '$username' and password = '$password'";
+			$sql = "select * from users where username= '$username' and password = '$password' and status_id <>'4'";
 				$query = mysqli_query($conn, $sql);
 				$num_rows = mysqli_num_rows($query);
 					if($num_rows == 0){
@@ -75,13 +75,13 @@
 	}
 
 	function load_user(){
-	  require_once 'configs/connect.php';
 	  global $conn;
 	  if (isset($_SESSION['user'])){
       $sql = "select * from users where username = '".$_SESSION['user']."' ";
       $query = mysqli_query($conn,$sql);
       $row = mysqli_fetch_assoc($query);
       $_SESSION['name'] = $row['name'];
+      $_SESSION['email'] = $row['email'];
     	}
 	}
 

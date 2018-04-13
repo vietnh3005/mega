@@ -35,7 +35,7 @@
               <div class='col-xs-6'>
               <div class='toplinks'>
               <div class='links'>
-                <div class='myaccount'><a title='My Account' href='login.php'><span class='hidden-xs'>Tài khoản</span></a></div>
+                <div class='myaccount'><a title='My Account' href='account.php'><span class='hidden-xs'>Tài khoản</span></a></div>
                 <div class='wishlist'><a title='My Wishlist'  href='wishlist.php'><span class='hidden-xs'>Danh sách</span></a></div>
                 <div class='check'><a title='Checkout' href='checkout.php'><span class='hidden-xs'>Thanh toán</span></a></div>
                 <div class='login'><a title='Logout' href='business/userBusiness.php?key=user_logout'><span  class='hidden-xs'>Đăng xuất</span></a></div>
