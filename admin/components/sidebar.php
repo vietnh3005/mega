@@ -3,7 +3,74 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
                   <li>
-                      <a class="active" href="index.html">
+                      <a href="index.php">
+                          <i class="icon-dashboard"></i>
+                          <span>Thống kê</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="users_management.php">
+                          <i class="icon-group"></i>
+                          <span>Quản lí người dùng</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="index.php">
+                          <i class="icon-tags"></i>
+                          <span>Quản lí danh mục</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="index.php">
+                          <i class=" icon-desktop"></i>
+                          <span>Quản lí sản phẩm</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="index.php">
+                          <i class="icon-gift"></i>
+                          <span>Quản lí khuyến mại</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="index.php">
+                          <i class="icon-shopping-cart"></i>
+                          <span>Quản lí đơn hàng</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="index.php">
+                          <i class="icon-truck"></i>
+                          <span>Quản lí hãng</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="index.php">
+                          <i class="icon-comments-alt"></i>
+                          <span>Quản lí bình luận</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="index.php">
+                          <i class="icon-gears (alias)"></i>
+                          <span>Quản lí thiết lập</span>
+                      </a>
+                  </li>
+
+
+
+                  <!-- Component go here will remove later-->
+
+                  <li>
+                      <a class="sub-menu" href="index.php">
                           <i class="icon-dashboard"></i>
                           <span>Dashboard</span>
                       </a>

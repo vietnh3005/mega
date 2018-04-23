@@ -82,16 +82,16 @@
       $row = mysqli_fetch_assoc($query);
       $_SESSION['name'] = $row['name'];
       $_SESSION['email'] = $row['email'];
-    	}
+      }
 	}
 
 	function load_admin(){
-	  require_once '../configs/connect.php';
+	  global $conn;
 	  if (isset($_SESSION['admin'])){
       $sql = "select * from users where username = '".$_SESSION['admin']."' ";
       $query = mysqli_query($conn,$sql);
       $row = mysqli_fetch_assoc($query);
-      $_SESSION['name'] = $row['name'];
+      $_SESSION['admin_name'] = $row['name'];
     	}
 	}
 ?>

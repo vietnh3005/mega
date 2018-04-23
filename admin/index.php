@@ -1,4 +1,5 @@
 <?php session_start();
+  require '../configs/connect.php';
   include '../business/userBusiness.php';
   if(!isset($_SESSION['admin'])){
     header('Location: login.php');
