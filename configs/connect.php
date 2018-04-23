@@ -1,9 +1,9 @@
  <?php
 //Require
 //Thông tin website
-define('SITE_URL', 'http://localhost/');
+define('SITE_URL', 'http://localhost:8080/');
 //Thông tin cấu hình DB
-define('DB_SERVER', 'localhost:3360');
+define('DB_SERVER', 'localhost:3306');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'mega');

@@ -56,19 +56,21 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              Quản lí người dùng
+                              Quản lí người dùng <div class="pull-right"> 
+                              <a class="btn btn-success btn-sm" data-toggle="modal" href="components/user_form.php" data-target="#myModal" ><i class="icon-plus"></i> Thêm mới</a> 
+                              </div>
                           </header>
                           <table class="table table-striped table-advance table-hover">
                               <thead>
                               <tr>
-                                  <th><i class="icon-bullhorn"></i> Tên đăng nhập</th>
-                                  <th class="hidden-phone"><i class="icon-question-sign"></i> Tên</th>
-                                  <th><i class="icon-bookmark"></i> Email</th>
-                                  <th><i class=" icon-edit"></i> Số điện thoại</th>
-                                  <th><i class=" icon-edit"></i> Địa chỉ</th>
-                                  <th><i class=" icon-edit"></i> Điểm</th>
-                                  <th><i class=" icon-edit"></i> Loại thành viên</th>
-                                  <th><i class=" icon-edit"></i> Trạng thái</th>
+                                  <th><i class=""></i> Tên đăng nhập</th>
+                                  <th class="hidden-phone"><i class=""></i> Tên</th>
+                                  <th><i class=""></i> Email</th>
+                                  <th><i class=""></i> Số điện thoại</th>
+                                  <th><i class=""></i> Địa chỉ</th>
+                                  <th><i class=""></i> Điểm</th>
+                                  <th><i class=""></i> Loại thành viên</th>
+                                  <th><i class=""></i> Trạng thái</th>
                                   <th><?php $nbsp ?></th>
                               </tr>
                               </thead>
@@ -86,7 +88,7 @@
 	                                  <td>".$row['membership_title']."</td>
 	                                  <td><span class='label label-info label-mini'>".$row['status']."</span></td>
 	                                  <td>
-	                                      <button class='btn btn-success btn-xs'><i class='icon-ok'></i></button>
+	                                      <button class='btn btn-success btn-xs'><i class='icon-eye-open'></i></button>
 	                                      <button class='btn btn-primary btn-xs'><i class='icon-pencil'></i></button>
 	                                      <button class='btn btn-danger btn-xs'><i class='icon-trash'></i></button>
 	                                  </td>
@@ -113,7 +115,6 @@
       </footer>
       <!--footer end-->
   </section>
-
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>

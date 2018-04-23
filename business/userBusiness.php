@@ -35,7 +35,7 @@
 				$num_rows = mysqli_num_rows($query);
 					if($num_rows == 0){
 						
-						header('Location: ../admin/admin_login.php');
+						header('Location: ../admin/login.php');
 						} else {
 							$_SESSION['admin'] = $username;
 							header('Location: ../admin/index.php');
