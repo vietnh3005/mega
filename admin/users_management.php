@@ -77,24 +77,25 @@ $row = mysqli_fetch_assoc($query);
                 <tbody>
 
                   <?php while($row = mysqli_fetch_assoc($query)) 
-                  {
-                    echo "<tr>
-                    <td><a href='#'>".$row['username']."</a></td>
-                    <td class='hidden-phone'>".$row['name']."</td>
-                    <td>".$row['email']."</td>
-                    <td>".$row['phone']."</td>
-                    <td>".$row['address']."</td>
-                    <td>".$row['point']."</td>
-                    <td>".$row['membership_title']."</td>
-                    <td><span class='label label-info label-mini'>".$row['status']."</span></td>
-                    <td>
-                    <button class='btn btn-success btn-xs'><i class='icon-eye-open' data-toggle='modal' data-target='#detailsModal'></i></button>
+                    { 
+                  ?>
+                    <tr>
+                    <td><a href="#"><?php echo $row['username']?></a></td>
+                    <td class='hidden-phone'><?php echo $row['name']?></td>
+                    <td><?php echo $row['email']?></td>
+                    <td><?php echo $row['phone']?></td>
+                    <td><?php echo $row['address']?></td>
+                    <td><?php echo $row['point']?></td>
+                    <td><?php echo $row['membership_title']?></td>
+                    <td><span class='label label-info label-mini'><?php echo $row['status']?></span></td>
+                    <td> 
+                    <button class='btn btn-success btn-xs'><i class='icon-eye-open' data-toggle='modal' 
+                      data-target='#<?php echo $row['username']?>'></i></button>
                     <button class='btn btn-primary btn-xs'><i class='icon-pencil'></i></button>
                     <button class='btn btn-danger btn-xs'><i class='icon-trash'></i></button>
                     </td>
-                    </tr> ";
-                  }
-                  ?>
+                    </tr>
+                    <?php } ?>
                 </tbody>
               </table>
             </section>
@@ -158,12 +159,12 @@ $row = mysqli_fetch_assoc($query);
 
 
 <!-- User Details Modal -->
-<div class="modal" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal" id="<?php echo $row['usser_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="text-danger fa fa-times"></i></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="text-muted fa fa-shopping-cart"></i> <strong>Tài khoản</strong> - <?php echo $row['name']; ?> </h4>
+        <h4 class="modal-title" id="myModalLabel"><i class="text-muted fa fa-shopping-cart"></i> <strong>Tài khoản</strong> - <?php echo $row['user_id']; ?> </h4>
       </div>
       <div class="modal-body">
 
