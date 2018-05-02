@@ -35,18 +35,21 @@ if($_GET)
 		session_start();
 		user_logout();
 	}
-	if($_GET['key']=='success')
-	{
-		echo "<div class='alert alert-success fade in'>
-		Đã thêm vào 1 người dung mới!!!
-		</div>";
-	} 
-	if($_GET['key']=='fail')
-	{
-		echo "<div class='alert alert-danger fade in'>
-		Thêm thất bại!!!
-		</div>";
-	} 
+	// if($_GET['key']=='success')
+	// {
+	// 	echo "<div class='alert alert-success fade in'>
+	// 	Đã thêm vào 1 người dung mới!!!
+	// 	</div>";
+	// } 
+	// if($_GET['key']=='fail')
+	// {
+	// 	echo "<div class='alert alert-danger fade in'>
+	// 	Thêm thất bại!!!
+	// 	</div>";
+	// } 
+	if(isset($_GET['del'])){
+		del_user();
+	}
 }
 
 function admin_login($username, $password){
@@ -121,13 +124,26 @@ function admin_create_user($name, $username, $email, $password, $phone, $address
 	$sql = "insert into users ( avatar, username, password, name, email, phone, address, point, membership_id, status_id )
 	values ('', '$username', '$password', '$name', '$email', '$phone', '$address', '0', '1', '5') ";
 	if(mysqli_query($conn, $sql)){
-		header('Location: ../admin/users_management.php?key=success');
+		header('Location: ../admin/users_management.php');
+		$_SESSION['message'] = "success";
 	}
 	else {
-		header('Location: ../admin/users_management.php?key=fail');
+		header('Location: ../admin/users_management.php');
+		$_SESSION['message'] = "fail";
 	}
 }
 
+function del_user(){
+	global $conn;
+	$user_id = $_GET['del'];
+	$sql = "delete from users where user_id = '$user_id' ";
+	if(mysqli_query($conn, $sql)){
+		echo "done";
+	}
+	else {
+		echo 'fail';
+	}
+}
 // function get_user($user_id){
 // 	global $conn;
 // 	$sql = "select * from users as a, memberships as b, user_statuses as c 
