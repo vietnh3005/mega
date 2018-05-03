@@ -45,18 +45,6 @@ if($_GET)
 		session_start();
 		user_logout();
 	}
-	// if($_GET['key']=='success')
-	// {
-	// 	echo "<div class='alert alert-success fade in'>
-	// 	Đã thêm vào 1 người dung mới!!!
-	// 	</div>";
-	// } 
-	// if($_GET['key']=='fail')
-	// {
-	// 	echo "<div class='alert alert-danger fade in'>
-	// 	Thêm thất bại!!!
-	// 	</div>";
-	// } 
 	if(isset($_GET['del'])){
 		require_once '../configs/connect.php';
 		$user_id = $_GET['del'];
@@ -128,11 +116,13 @@ function load_admin(){
 		$query = mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($query);
 		$_SESSION['admin_name'] = $row['name'];
+		$_SESSION['admin_avatar'] = $row['avatar'];
 	}
 }
 
 function admin_create_user($name, $username, $email, $password, $phone, $address){
 	global $conn;
+	session_start();
 	$sql = "insert into users ( avatar, username, password, name, email, phone, address, point, membership_id, status_id )
 	values ('', '$username', '$password', '$name', '$email', '$phone', '$address', '0', '1', '5')";
 	if(mysqli_query($conn, $sql)){
@@ -147,10 +137,10 @@ function admin_create_user($name, $username, $email, $password, $phone, $address
 
 function del_user($user_id){
 	global $conn;
+	session_start();
 	$sql = "delete from users where user_id = '$user_id' ";
 	if(mysqli_query($conn, $sql)){
-		session_start();
-		header('Location: ../admin/users_management.php?message=success');
+		header('Location: ../admin/users_management.php');
 		$_SESSION['success'] = "success";
 	}
 	else {
@@ -161,6 +151,7 @@ function del_user($user_id){
 
 function admin_update_user($user_id, $name, $username, $email, $password, $phone, $address){
 	global $conn;
+	session_start();
 	$sql = "update users
 			set username ='$username',
 				name = '$name',
@@ -169,7 +160,7 @@ function admin_update_user($user_id, $name, $username, $email, $password, $phone
 				phone= '$phone',
 				address ='$address'
 			where user_id='$user_id'";
-	if(mysqli_query($conn, $sql)){
+	if(mysqli_query($conn, $sql)){	
 		header('Location: ../admin/users_management.php');
 		$_SESSION['success'] = "success";
 	}

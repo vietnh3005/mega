@@ -3,29 +3,8 @@ require '../configs/connect.php';
 include '../business/userBusiness.php';
 if(!isset($_SESSION['admin'])){
   header('Location: login.php');
-} 
-if($_GET['message'] == "success"){
-  echo '<link href="css/sweet-alert.css" rel="stylesheet">';
-    echo '<script src="js/jquery.js"></script>';
-    echo '<script src="js/sweet-alert.js"></script>';
-    echo '<script>';
-    echo 'swal("success")';
-    echo '</script>';
-}
-    
+}   
 load_admin();
-// if(isset($_SESSION['message'])){
-//   if($_SESSION['message']=="success"){
-//      echo "<script>
-//              sweetAlert('Congratulations!', 'Action success!!', 'success');
-//          </script>";
-//     }    
-//   if($_SESSION['message']=="fail"){
-//     echo "<script>
-//             sweetAlert('Congratulations!', 'Action fail!!', 'error');
-//         </script>";
-//   }
-// }
 $sql = "select * from users as a, memberships as b, user_statuses as c 
 where a.membership_id = b.membership_id
 and a.status_id = c.status_id";
@@ -60,6 +39,7 @@ $row = mysqli_fetch_assoc($query);
   <link href="css/sweet-alert.css" rel="stylesheet">
   <script src="js/jquery.js"></script>
   <script src="js/sweet-alert.js"></script>
+
   <body>
 
     <section id="container" class="">
@@ -163,6 +143,20 @@ $row = mysqli_fetch_assoc($query);
     <script src="js/jquery.scrollTo.min.js"></script>
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="js/respond.min.js" ></script>
+
+
+    <!-- Hiển thị thông báo -->
+    <script>
+      <?php
+      if(isset($_SESSION['success'])){
+        echo "swal('Success!', 'Thao tác thành công!', 'success');";
+        unset($_SESSION['success']);
+      }
+      if(isset($_SESSION['fails'])){
+        unset($_SESSION['fails']);
+      }
+      ?>
+    </script>
 
     <!--common script for all pages-->
     <script src="js/common-scripts.js"></script>
