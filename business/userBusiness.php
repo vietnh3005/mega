@@ -23,6 +23,16 @@ if($_POST)
 		$address = mysqli_real_escape_string($conn, htmlspecialchars($_POST["address"]));
 		admin_create_user($name, $username, $email, $password, $phone, $address);
 	}
+	if(isset($_POST['admin_update_user'])){
+		$user_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_user_id"]));
+		$name = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_name"]));
+		$username = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_username"]));
+		$email = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_email"]));
+		$password = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_password"]));
+		$phone = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_phone"]));
+		$address = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_address"]));
+		admin_update_user($user_id, $name, $username, $email, $password, $phone, $address);
+	}
 }
 
 if($_GET)
@@ -35,20 +45,10 @@ if($_GET)
 		session_start();
 		user_logout();
 	}
-	// if($_GET['key']=='success')
-	// {
-	// 	echo "<div class='alert alert-success fade in'>
-	// 	Đã thêm vào 1 người dung mới!!!
-	// 	</div>";
-	// } 
-	// if($_GET['key']=='fail')
-	// {
-	// 	echo "<div class='alert alert-danger fade in'>
-	// 	Thêm thất bại!!!
-	// 	</div>";
-	// } 
 	if(isset($_GET['del'])){
-		del_user();
+		require_once '../configs/connect.php';
+		$user_id = $_GET['del'];
+		del_user($user_id);
 	}
 }
 
@@ -116,39 +116,57 @@ function load_admin(){
 		$query = mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($query);
 		$_SESSION['admin_name'] = $row['name'];
+		$_SESSION['admin_avatar'] = $row['avatar'];
 	}
 }
 
 function admin_create_user($name, $username, $email, $password, $phone, $address){
 	global $conn;
+	session_start();
 	$sql = "insert into users ( avatar, username, password, name, email, phone, address, point, membership_id, status_id )
-	values ('', '$username', '$password', '$name', '$email', '$phone', '$address', '0', '1', '5') ";
+	values ('', '$username', '$password', '$name', '$email', '$phone', '$address', '0', '1', '5')";
 	if(mysqli_query($conn, $sql)){
 		header('Location: ../admin/users_management.php');
-		$_SESSION['message'] = "success";
+		$_SESSION['success'] = "success";
 	}
 	else {
 		header('Location: ../admin/users_management.php');
-		$_SESSION['message'] = "fail";
+		$_SESSION['fails'] = "fail";
 	}
 }
 
-function del_user(){
+function del_user($user_id){
 	global $conn;
-	$user_id = $_GET['del'];
+	session_start();
 	$sql = "delete from users where user_id = '$user_id' ";
 	if(mysqli_query($conn, $sql)){
-		echo "done";
+		header('Location: ../admin/users_management.php');
+		$_SESSION['success'] = "success";
 	}
 	else {
-		echo 'fail';
+		header('Location: ../admin/users_management.php');
+		$_SESSION['fails'] = "fail";
 	}
 }
-// function get_user($user_id){
-// 	global $conn;
-// 	$sql = "select * from users as a, memberships as b, user_statuses as c 
-// 			where a.membership_id = b.membership_id
-// 			and a.status_id = c.status_id and user_id = $user_id "
-// 	$query = mysqli_query($conn,$sql);
-// }
+
+function admin_update_user($user_id, $name, $username, $email, $password, $phone, $address){
+	global $conn;
+	session_start();
+	$sql = "update users
+			set username ='$username',
+				name = '$name',
+				password='$password',
+				email='$email',
+				phone= '$phone',
+				address ='$address'
+			where user_id='$user_id'";
+	if(mysqli_query($conn, $sql)){	
+		header('Location: ../admin/users_management.php');
+		$_SESSION['success'] = "success";
+	}
+	else {
+		header('Location: ../admin/users_management.php');
+		$_SESSION['fails'] = "fail";
+	}
+}
 ?>

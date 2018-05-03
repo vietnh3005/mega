@@ -45,7 +45,7 @@
             </li>
 
             <li>
-              <a href="index.php">
+              <a href="manufactures_management.php">
                 <i class="icon-truck"></i>
                 <span>Quản lí hãng</span>
               </a>

@@ -3,22 +3,8 @@ require '../configs/connect.php';
 include '../business/userBusiness.php';
 if(!isset($_SESSION['admin'])){
   header('Location: login.php');
-} 
+}   
 load_admin();
-
-// if(isset($_SESSION['message'])){
-//   if($_SESSION['message']=="success"){
-//      echo "<script>
-//              sweetAlert('Congratulations!', 'Action success!!', 'success');
-//          </script>";
-//     }    
-//   if($_SESSION['message']=="fail"){
-//     echo "<script>
-//             sweetAlert('Congratulations!', 'Action fail!!', 'error');
-//         </script>";
-//   }
-// }
-
 $sql = "select * from users as a, memberships as b, user_statuses as c 
 where a.membership_id = b.membership_id
 and a.status_id = c.status_id";
@@ -50,7 +36,10 @@ $row = mysqli_fetch_assoc($query);
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet" />
-  <?php  include'components/style.php'; ?>
+  <link href="css/sweet-alert.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/sweet-alert.js"></script>
+
   <body>
 
     <section id="container" class="">
@@ -101,230 +90,345 @@ $row = mysqli_fetch_assoc($query);
                       <td><?php echo $row['membership_title']?></td>
                       <td><span class='label label-info label-mini'><?php echo $row['status']?></span></td>
                       <td> 
-                        <button class='btn btn-success btn-xs'><i class='icon-eye-open open_detail_modal' data-target="#details_modal" data-toggle='modal' 
-                          data-id="<?php echo $row['user_id']?>"
-                          data-username="<?php echo $row['username']?>"
-                          data-name="<?php echo $row['name']?>"
-                          data-avatar="<?php echo $row['avatar']?>"
-                          data-email="<?php echo $row['email']?>"
-                          data-address="<?php echo $row['address']?>"
-                          data-phone="<?php echo $row['phone']?>"
-                          data-point="<?php echo $row['point']?>"
-                          data-status="<?php echo $row['status']?>"
-                          data-membership="<?php echo $row['membership_title']?>"></i></button>
-                          <button class='btn btn-primary btn-xs' href=""><i class='icon-pencil'></i></button>
-                          <a href="../business/userBusiness.php?del=<?php echo $row['user_id'];?>"><button class='btn btn-danger btn-xs'><i class='icon-trash'></i></button></a>
-                        </td>
-                      </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
-                </section>
-              </div>
+                        <button class='btn btn-success btn-xs open_detail_modal' 
+                        data-id="<?php echo $row['user_id']?>"
+                        data-username="<?php echo $row['username']?>"
+                        data-name="<?php echo $row['name']?>"
+                        data-avatar="<?php echo $row['avatar']?>"
+                        data-email="<?php echo $row['email']?>"
+                        data-address="<?php echo $row['address']?>"
+                        data-phone="<?php echo $row['phone']?>"
+                        data-point="<?php echo $row['point']?>"
+                        data-status="<?php echo $row['status']?>"
+                        data-membership="<?php echo $row['membership_title']?>" ><i class='icon-eye-open '  
+                        ></i></button>
+
+                        <button class='btn btn-primary btn-xs open_update_modal' 
+                        data-id="<?php echo $row['user_id']?>"
+                        data-username="<?php echo $row['username']?>"
+                        data-name="<?php echo $row['name']?>"
+                        data-email="<?php echo $row['email']?>"
+                        data-password="<?php echo $row['password']?>"
+                        data-address="<?php echo $row['address']?>"
+                        data-phone="<?php echo $row['phone']?>"><i class='icon-pencil '></i></button>
+
+                        <a href="../business/userBusiness.php?del=<?php echo $row['user_id'];?>"><button class='btn btn-danger btn-xs'><i class='icon-trash'></i></button></a>
+                      </td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </section>
             </div>
-            <!-- page end-->
-          </section>
+          </div>
+          <!-- page end-->
         </section>
-        <!--main content end-->
-        <!--footer start-->
-        <footer class="site-footer">
-          <div class="text-center">
-            2013 &copy; FlatLab by VectorLab.
-            <a href="#" class="go-top">
-              <i class="icon-angle-up"></i>
-            </a>
-          </div>
-        </footer>
-        <!--footer end-->
       </section>
-      <!-- The scripts file will be put here -->
-      <!-- js placed at the end of the document so the pages load faster -->
-      <script src="js/jquery.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
-      <script src="js/jquery.scrollTo.min.js"></script>
-      <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-      <script src="js/respond.min.js" ></script>
-
-      <!--common script for all pages-->
-      <script src="js/common-scripts.js"></script>
-      <?php  include'components/scripts.php'; ?>
-
-
-    </body>
-    </html>
-    <!-- Adding Modal -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Thêm mới người dùng</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <section class="panel">
-                  <div class="panel-body">
-                    <div class="form">
-                      <?php  include'components/user_form.php'; ?>
-                    </div>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+        <div class="text-center">
+          2013 &copy; FlatLab by VectorLab.
+          <a href="#" class="go-top">
+            <i class="icon-angle-up"></i>
+          </a>
         </div>
-      </div>
-    </div>
-  </form>
-  <!-- modal --> 
+      </footer>
+      <!--footer end-->
+    </section>
+    <!-- The scripts file will be put here -->
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="js/respond.min.js" ></script>
 
-  
-  <!-- User Details Modal -->
-  <div class="modal fade" id="details_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <!-- Hiển thị thông báo -->
+    <script>
+      <?php
+      if(isset($_SESSION['success'])){
+        echo "swal('Success!', 'Thao tác thành công!', 'success');";
+        unset($_SESSION['success']);
+      }
+      if(isset($_SESSION['fails'])){
+        unset($_SESSION['fails']);
+      }
+      ?>
+    </script>
+
+    <!--common script for all pages-->
+    <script src="js/common-scripts.js"></script>
+  </body>
+  </html>
+
+  <!-- Adding/Updating Modal -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="text-danger fa fa-times"></i></button>
-          <h4 class="modal-title" id="myModalLabel"><i class="text-muted fa fa-shopping-cart"></i> 
-            <strong>Tài khoản</strong> - </h4>
-          </div>
-
-          <div class="modal-body">
-            <table class="pull-left col-md-8 ">
-             <tbody>
-               <tr>
-                 <td class="h6"><strong>ID</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_id"></td>
-               </tr>
-
-               <tr>
-                 <td class="h6"><strong>Tên đăng nhập</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_username"></td>
-               </tr>
-
-               <tr>
-                 <td class="h6"><strong>Tên</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_name"></td>
-               </tr>
-
-               <tr>
-                 <td class="h6"><strong>Email</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_email"></td>
-               </tr>
-
-               <tr>
-                 <td class="h6"><strong>Địa chỉ</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_address"></td>
-               </tr>
-
-               <tr>
-                 <td class="h6"><strong>Số điện thoại</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_phone"></td>
-               </tr>  
-
-               <tr>
-                 <td class="h6"><strong>Điểm</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_point"></td>
-               </tr>                            
-
-               <tr>
-                 <td class="h6"><strong>Thành viên</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_membership"></td>
-               </tr>
-
-               <tr>
-                 <td class="h6"><strong>Trạng thái</strong></td>
-                 <td> </td>
-                 <td class="h5" id="row_user_status"></td>
-               </tr> 
-
-               <tr>
-                 <td class="btn-mais-info text-primary">
-                   <i class="open_info fa fa-plus-square-o"></i>
-                   <i class="open_info hide fa fa-minus-square-o"></i> informações
-                 </td>
-                 <td> </td>
-                 <td class="h5"></td>
-               </tr> 
-
-             </tbody>
-           </table>
-
-
-           <div class="col-md-4"> 
-            <img src="#" alt="teste" class="img-thumbnail">  
-          </div>
-
-          <div class="clearfix"></div>
-          <p class="open_info hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Thêm mới người dùng</h4>
         </div>
-
-        <div class="modal-footer">       
-
-          <div class="text-right pull-right col-md-3">
-            Varejo: <br/> 
-            <span class="h3 text-muted"><strong> R$50,00 </strong></span></span> 
-          </div> 
-
-          <div class="text-right pull-right col-md-3">
-            Atacado: <br/> 
-            <span class="h3 text-muted"><strong>R$35,00</strong></span>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <section class="panel">
+                <div class="panel-body">
+                  <div class="form">
+                    <?php  include'components/user_form.php'; ?>
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
-  <!-- End-->   
+</form>
+<!-- modal --> 
 
 
+<!-- User Details Modal -->
+<div class="modal fade" id="details_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="text-danger fa fa-times"></i></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="text-muted fa fa-shopping-cart"></i> 
+          <strong>Tài khoản</strong> - </h4>
+        </div>
 
-  <!-- Auto dismiss alert-->
-  <script type="text/javascript">
-    window.setTimeout(function() {
-      $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove(); 
-      });
-    }, 2000);
-  </script>
+        <div class="modal-body">
+          <table class="pull-left col-md-8 ">
+           <tbody>
+             <tr>
+               <td class="h6"><strong>ID</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_id"></td>
+             </tr>
 
-  <!-- Passing Data -->
-  <script type="text/javascript">
-    $(function () {
-      $(".open_detail_modal").click(function () {
+             <tr>
+               <td class="h6"><strong>Tên đăng nhập</strong></td>
+               <td> </td>
+               <td class="h5" id="row_username"></td>
+             </tr>
 
-       var $user_id = $(this).data('id');
-       var $username =$(this).data('username');
-       var $name = $(this).data('name');
-       var $email = $(this).data('email');
-       var $address = $(this).data('address');
-       var $phone = $(this).data('phone');
-       var $point = $(this).data('point');
-       var $membership = $(this).data('membership');
-       var $status =$(this).data('status');
-       var $avatar = $(this).data('avatar');
+             <tr>
+               <td class="h6"><strong>Tên</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_name"></td>
+             </tr>
 
-       $("#row_user_id").html($user_id);
-       $("#row_username").html($username);
-       $("#row_user_name").html($name);
-       $("#row_user_email").html($email);
-       $("#row_user_address").html($address);
-       $("#row_user_phone").html($phone);
-       $("#row_user_point").html($point);
-       $("#row_user_membership").html($membership);
-       $("#row_user_status").html($status);
-       $("#row_user_avatar").html($avatar);
-       $("#details_modal").modal("show");
-     })
+             <tr>
+               <td class="h6"><strong>Email</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_email"></td>
+             </tr>
+
+             <tr>
+               <td class="h6"><strong>Địa chỉ</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_address"></td>
+             </tr>
+
+             <tr>
+               <td class="h6"><strong>Số điện thoại</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_phone"></td>
+             </tr>  
+
+             <tr>
+               <td class="h6"><strong>Điểm</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_point"></td>
+             </tr>                            
+
+             <tr>
+               <td class="h6"><strong>Thành viên</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_membership"></td>
+             </tr>
+
+             <tr>
+               <td class="h6"><strong>Trạng thái</strong></td>
+               <td> </td>
+               <td class="h5" id="row_user_status"></td>
+             </tr> 
+
+             <tr>
+               <td class="btn-mais-info text-primary">
+                 <i class="open_info fa fa-plus-square-o"></i>
+                 <i class="open_info hide fa fa-minus-square-o"></i> Thông tin chi tiết
+               </td>
+               <td> </td>
+               <td class="h5"></td>
+             </tr> 
+
+           </tbody>
+         </table>
+
+
+         <div class="col-md-4"> 
+          <img src="#" alt="teste" class="img-thumbnail">  
+        </div>
+
+        <div class="clearfix"></div>
+        <p class="open_info hide">Thông tin chi tiết của người dùng thôi mà. Hiện tại chưa có gì đâu.</p>
+      </div>
+
+      <div class="modal-footer">       
+
+        <div class="text-right pull-right col-md-3">
+          Varejo: <br/> 
+          <span class="h3 text-muted"><strong> R$50,00 </strong></span></span> 
+        </div> 
+
+        <div class="text-right pull-right col-md-3">
+          Atacado: <br/> 
+          <span class="h3 text-muted"><strong>R$35,00</strong></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End-->   
+
+
+<!-- Updating Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="updateModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Cập nhật thông tin người dùng</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <div class="panel-body">
+                <div class="form">
+                  <form class="cmxform form-horizontal tasi-form" method="post" action='../business/userBusiness.php'>
+                    <div class="form-group ">
+                      <label for="firstname" class="control-label col-lg-3">Tên</label>
+                      <div class="col-sm-9">
+                        <input class=" form-control" id="user_upd_name" name="user_upd_name" type="text" />
+                      </div>
+                    </div>
+                    <input id="user_upd_user_id" name="user_upd_user_id" type="hidden" />
+                    <div class="form-group ">
+                      <label for="lastname" class="control-label col-lg-3">Tên đăng nhập</label>
+                      <div class="col-lg-9">
+                        <input class=" form-control" id="user_upd_username" name="user_upd_username" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="username" class="control-label col-lg-3">Email</label>
+                      <div class="col-lg-9">
+                        <input class="form-control " id="user_upd_email" name="user_upd_email" type="email" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="password" class="control-label col-lg-3">Password</label>
+                      <div class="col-lg-9">
+                        <input class="form-control " id="user_upd_password" name="user_upd_password" type="password" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="confirm_password" class="control-label col-lg-3">Số điện thoại</label>
+                      <div class="col-lg-9">
+                        <input class="form-control " id="user_upd_phone" name="user_upd_phone" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="email" class="control-label col-lg-3">Địa chỉ</label>
+                      <div class="col-lg-9">
+                        <input class="form-control " id="user_upd_address" name="user_upd_address" type="text" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-offset-2 col-lg-10">
+                        <button class="btn btn-danger pull-right" type="submit" name="admin_update_user" value="admin_update_user" >Lưu</button>
+                        <button class="btn btn-default pull-right" data-dismiss="modal" type="button">Hủy</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<!-- modal --> 
+
+<!-- Auto dismiss alert-->
+<script type="text/javascript">
+  window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove(); 
     });
-  </script>
+  }, 2000);
+</script>
+
+<!-- Passing Data to User Details Modal -->
+<script type="text/javascript">
+  $(function () {
+    $(".open_detail_modal").click(function () {
+     var $user_id = $(this).data('id');
+     var $username =$(this).data('username');
+     var $name = $(this).data('name');
+     var $email = $(this).data('email');
+     var $address = $(this).data('address');
+     var $phone = $(this).data('phone');
+     var $point = $(this).data('point');
+     var $membership = $(this).data('membership');
+     var $status =$(this).data('status');
+     var $avatar = $(this).data('avatar');
+     $("#row_user_id").html($user_id);
+     $("#row_username").html($username);
+     $("#row_user_name").html($name);
+     $("#row_user_email").html($email);
+     $("#row_user_address").html($address);
+     $("#row_user_phone").html($phone);
+     $("#row_user_point").html($point);
+     $("#row_user_membership").html($membership);
+     $("#row_user_status").html($status);
+     $("#row_user_avatar").html($avatar);
+     $("#details_modal").modal("show");
+   })
+  });
+</script>
+
+
+<!-- Passing Data to Edits Modal -->
+<script type="text/javascript">
+  $(function () {
+    $(".open_update_modal").click(function () {
+     var $user_id = $(this).data('id');
+     var $name = $(this).data('name');
+     var $username =$(this).data('username');
+     var $email = $(this).data('email');
+     var $password = $(this).data('email');
+     var $address = $(this).data('address');
+     var $phone = $(this).data('phone');
+
+     $("#user_upd_user_id").val($user_id);
+     $("#user_upd_name").val($name);
+     $("#user_upd_username").val($username);
+     $("#user_upd_email").val($email);
+     $("#user_upd_password").val($password);
+     $("#user_upd_address").val($address);
+     $("#user_upd_phone").val($phone);
+
+     $("#updateModal").modal("show");
+   })
+  });
+</script>

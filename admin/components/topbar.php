@@ -221,7 +221,7 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="img/avatar1_small.jpg">
+                            <img alt="" src="<?php echo $_SESSION['admin_avatar']; ?>">
                             <span class="username"><?php echo $_SESSION['admin_name']; ?></span>
                             <b class="caret"></b>
                         </a>
