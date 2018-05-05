@@ -17,7 +17,7 @@
             </li>
 
             <li>
-              <a href="index.php">
+              <a href="categories_management.php">
                 <i class="icon-tags"></i>
                 <span>Quản lí danh mục</span>
               </a>

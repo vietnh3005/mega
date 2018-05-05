@@ -58,10 +58,11 @@ function admin_login($username, $password){
 	$query = mysqli_query($conn, $sql);
 	$num_rows = mysqli_num_rows($query);
 	if($num_rows == 0){
-
+		$_SESSION['fails'] = "fails";
 		header('Location: ../admin/login.php');
 	} else {
 		$_SESSION['admin'] = $username;
+		$_SESSION['success'] = "success";
 		header('Location: ../admin/index.php');
 	}
 }

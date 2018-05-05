@@ -18,15 +18,18 @@ load_admin();
 
   <title>Trang chủ</title>
   <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap-reset.css" rel="stylesheet">
+  <!--external css-->
+  <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+  <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet" />
+  <link href="css/sweet-alert.css" rel="stylesheet">
+  <script src="js/jquery.js"></script>
+  <script src="js/sweet-alert.js"></script>
   <?php  include'components/style.php'; ?>
 </head>
 
@@ -733,8 +736,6 @@ load_admin();
 </section>
 
 <!-- js placed at the end of the document so the pages load faster -->
-<script src="js/jquery.js"></script>
-<script src="js/jquery-1.8.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="js/jquery.scrollTo.min.js"></script>
@@ -774,6 +775,15 @@ load_admin();
         $('select.styled').customSelect();
       });
 
+    </script>
+
+    <script>
+      <?php
+      if(isset($_SESSION['success'])){
+        echo "swal('Success!', 'Đăng nhập thành công!', 'success');";
+        unset($_SESSION['success']);
+      }
+      ?>
     </script>
 
   </body>
