@@ -1,11 +1,9 @@
 <?php session_start();
 require '../configs/connect.php';
-include '../business/userBusiness.php';
 include '../business/manufactureBusiness.php';
 if(!isset($_SESSION['admin'])){
 	header('Location: login.php');
 } 
-load_admin();
 $sql = "select * from manufactures";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($query);
@@ -78,7 +76,7 @@ $row = mysqli_fetch_assoc($query);
 									{ 
 										?>
 										<tr>
-											<td><a href="#"><img src="<?php echo $row['image']?>" alt="<?php echo $row['name']?>" height="50" width="50"></a></td>
+											<td><a href="#"><img src="img/manufactures/<?php echo $row['image']?>" alt="<?php echo $row['name']?>" height="50" width="50"></a></td>
 											<td class='hidden-phone'><?php echo $row['name']?></td>
 											<td><?php echo $row['description']?></td>
 											<td> 
@@ -168,22 +166,22 @@ $row = mysqli_fetch_assoc($query);
 										<div class="form-group ">
 											<label for="image" class="control-label col-lg-3">Hình ảnh</label>
 											<div class="col-sm-9">
-												<input type="file" id="man_add_img"  accept="image/*" onchange="readURL(this); getname();"/><br>
+												<input type="file" id="man_add_img" accept=".jpg, .jpeg, .png" multiple onchange="readURL(this);"/><br>
 												<img id="preview_img" src="#"/>
 											</div>
 										</div>
-										<input id="man_upd_man_id" name="man_upd_man_id" type="hidden" />
-										<input id="man_upd_img_cm" name="man_upd_img_cm" type="hidden" />
+										<input id="man_insr_man_id" name="man_insr_man_id" type="hidden" />
+										<input id="man_inser_img_cm" name="man_inser_img_cm" type="hidden" />
 										<div class="form-group ">
 											<label for="name" class="control-label col-lg-3">Tên</label>
 											<div class="col-lg-9">
-												<input class=" form-control" placeholder="Tên hãng " id="man_insr_name" name="man_upd_name" type="text" />
+												<input class=" form-control" placeholder="Tên hãng " id="man_insr_name" name="man_insr_name" type="text" />
 											</div>
 										</div>
 										<div class="form-group ">
 											<label for="description" class="control-label col-lg-3">Mô tả</label>
 											<div class="col-lg-9">
-												<textarea class="form-control " placeholder="Mô tả" id="man_insr_des" name="man_upd_des" row="3"></textarea> 
+												<textarea class="form-control " placeholder="Mô tả" id="man_insr_des" name="man_insr_des" row="3"></textarea> 
 											</div>
 										</div>
 										<div class="form-group">
@@ -241,7 +239,7 @@ $row = mysqli_fetch_assoc($query);
 
 
 					<div class="col-md-4"> 
-						<img src="#" alt="teste" class="img-responsive" id="man_img">  
+						<img src="#" alt="" class="img-responsive" id="man_img">  
 					</div>
 
 					<div class="clearfix"></div>
@@ -285,11 +283,12 @@ $row = mysqli_fetch_assoc($query);
 											<div class="form-group ">
 												<label for="image" class="control-label col-lg-3">Hình ảnh</label>
 												<div class="col-sm-9">
-													<input type="file" id="man_upd_img"  accept="image/*" onchange="readUpdURL(this);"/> <br>
+													<input type="file" id="man_upd_img"  accept=".jpg, .jpeg, .png" multiple onchange="readUpdURL(this);"/> <br>
 													<img id="preview_img_upd" src="#"/>
 												</div>
 											</div>
 											<input id="man_upd_man_id" name="man_upd_man_id" type="hidden" />
+											<input id="man_upd_crimg" name="man_upd_crimg" type="hidden" />
 											<div class="form-group ">
 												<label for="name" class="control-label col-lg-3">Tên</label>
 												<div class="col-lg-9">
@@ -335,7 +334,7 @@ $row = mysqli_fetch_assoc($query);
 			$("#row_manufacture_id").html($manufacture_id);
 			$("#row_manufacture_name").html($name);
 			$("#row_manufacture_description").html($description);
-			img.src = $image;
+			img.src = "img/manufactures/"+$image;
 			
 			$("#details_modal").modal("show");
 		})
@@ -348,17 +347,17 @@ $row = mysqli_fetch_assoc($query);
 	$(function () {
 		$(".open_update_modal").click(function () {
 			var $manufacture_id = $(this).data('id');
-			var $image =$(this).data('image');
 			var $name = $(this).data('name');
 			var $description = $(this).data('description');
-			
 			$("#man_upd_man_id").val($manufacture_id);
 			$("#man_upd_name").val($name);
 			$("#man_upd_des").val($description);
+			
 			$("#updateModal").modal("show");
 		})
 	});
 </script>
+
 <!-- Preview Image at Adding Modal -->
 <script type="text/javascript">
 	function readURL(input) {
@@ -378,6 +377,7 @@ $row = mysqli_fetch_assoc($query);
 		readURL(this);
 	});
 </script>
+
 <!-- Preview Image at Updating Modal -->
 <script type="text/javascript">
 	function readUpdURL(input) {
@@ -398,6 +398,7 @@ $row = mysqli_fetch_assoc($query);
 
 	});
 </script>
+
 <!-- Hide priviewed image after close modal -->
 <script type="text/javascript">
 	$('#myModal').on('hidden.bs.modal', function () {
@@ -413,11 +414,22 @@ $row = mysqli_fetch_assoc($query);
 		$(this).find('form')[0].reset();
 	})
 </script>
+
 <!-- Passing Image name before submit form -->
+<script type="text/javascript">
+	$(document).ready(function(){
+        $('#man_add_img').change(function(e){
+            var imageName = e.target.files[0].name;
+            $('#man_inser_img_cm').val(imageName);
+        });
+    });
+</script>
 
 <script type="text/javascript">
-	function getname() {
-		var name = document.getElementById('man_add_img');
-		alert(name.files.item(0).name);
-	}
+	$(document).ready(function(){
+        $('#man_upd_img').change(function(e){
+            var imageName = e.target.files[0].name;
+            $('#man_upd_crimg').val(imageName);
+        });
+    });
 </script>

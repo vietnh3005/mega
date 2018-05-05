@@ -1,13 +1,10 @@
 <?php session_start();
 require '../configs/connect.php';
-include '../business/userBusiness.php';
+include '../business/categoryBusiness.php';
 if(!isset($_SESSION['admin'])){
   header('Location: login.php');
 }   
-load_admin();
-$sql = "select * from users as a, memberships as b, user_statuses as c 
-where a.membership_id = b.membership_id
-and a.status_id = c.status_id";
+$sql = "select * from categories";
 $query = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($query);
 ?>  
@@ -21,7 +18,7 @@ $row = mysqli_fetch_assoc($query);
   <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Quản lí người dùng</title>
+  <title>Quản lí danh mục</title>
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -57,21 +54,15 @@ $row = mysqli_fetch_assoc($query);
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                Quản lí người dùng <div class="pull-right"> 
+                Quản lí danh mục <div class="pull-right"> 
                   <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" ><i class="icon-plus"></i> Thêm mới</a> 
                 </div>
               </header>
               <table class="table table-striped table-advance table-hover">
                 <thead>
                   <tr>
-                    <th><i class=""></i> Tên đăng nhập</th>
-                    <th class="hidden-phone"><i class=""></i> Tên</th>
-                    <th><i class=""></i> Email</th>
-                    <th><i class=""></i> Số điện thoại</th>
-                    <th><i class=""></i> Địa chỉ</th>
-                    <th><i class=""></i> Điểm</th>
-                    <th><i class=""></i> Loại thành viên</th>
-                    <th><i class=""></i> Trạng thái</th>
+                    <th><i class=""></i> Tên</th>
+                    <th><i class=""></i> Mô tả</th>
                     <th><?php $nbsp ?></th>
                   </tr>
                 </thead>
@@ -81,13 +72,7 @@ $row = mysqli_fetch_assoc($query);
                   { 
                     ?>
                     <tr>
-                      <td><a href="#"><?php echo $row['username']?></a></td>
-                      <td class='hidden-phone'><?php echo $row['name']?></td>
-                      <td><?php echo $row['email']?></td>
-                      <td><?php echo $row['phone']?></td>
-                      <td><?php echo $row['address']?></td>
-                      <td><?php echo $row['point']?></td>
-                      <td><?php echo $row['membership_title']?></td>
+                      <td><a href="#"><?php echo $row['category_name']?></a></td>
                       <td><span class='label label-info label-mini'><?php echo $row['status']?></span></td>
                       <td> 
                         <button class='btn btn-success btn-xs open_detail_modal' 

@@ -221,16 +221,16 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="<?php echo $_SESSION['admin_avatar']; ?>">
+                            <img alt="" src="<?php echo $_SESSION['admin_avatar']; ?>" width="40" height="40">
                             <span class="username"><?php echo $_SESSION['admin_name']; ?></span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
-                            <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                            <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
-                            <li><a href="../business/userBusiness.php?key=admin_logout"><i class="icon-key"></i> Log Out</a></li>
+                            <li><a href="#"><i class=" icon-suitcase"></i>Hồ sơ</a></li>
+                            <li><a href="#"><i class="icon-cog"></i> Tùy chỉnh</a></li>
+                            <li><a href="#"><i class="icon-bell-alt"></i> Thông báo</a></li>
+                            <li><a href="../business/userBusiness.php?key=admin_logout"><i class="icon-key"></i> Đăng xuất</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
