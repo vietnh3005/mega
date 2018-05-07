@@ -4637,3 +4637,23 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .hide-preview-image{
     display: none;
 }
+
+.shorten-des{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.show-more-info{
+    height: 62px; overflow: hidden;
+}
+
+.show-more {
+   position:relative;
+   height: 20px;
+   cursor: pointer; 
+}
+
+.show-more:hover { 
+    color: #1779dd;
+}
