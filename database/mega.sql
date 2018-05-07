@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3360
--- Generation Time: Apr 03, 2018 at 05:58 AM
+-- Generation Time: May 07, 2018 at 06:06 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `megastore`
+-- Database: `mega`
 --
 
 -- --------------------------------------------------------
@@ -28,35 +28,26 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
-  `category_parent_id` int(11) DEFAULT NULL,
   `category_name` varchar(100) NOT NULL,
-  `description` varchar(500) DEFAULT NULL
+  `description` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `category_parent_id`, `category_name`, `description`) VALUES
-(1, 0, 'Science fiction', 'Science fiction'),
-(6, 0, 'Drama', 'Drama'),
-(7, 0, 'Romance', 'Romance'),
-(8, 0, 'Mystery', 'Mystery'),
-(9, 0, 'Horror', 'Horror'),
-(10, 0, 'Travel', 'Travel'),
-(11, 0, 'Children\'s', 'Children\'s'),
-(12, 0, 'Science', 'Science'),
-(13, 0, 'History', 'History'),
-(14, 0, 'Math', 'Math'),
-(15, 0, 'Encyclopedias', 'Encyclopedias'),
-(18, 0, 'Dictionaries', 'Dictionaries'),
-(19, 0, 'Comics', 'Comics'),
-(20, 0, 'Art', 'Art'),
-(21, 0, 'Cookbooks', 'Cookbooks'),
-(22, 0, 'Diaries', 'Diaries'),
-(23, 0, 'Journals', 'Journals'),
-(24, 0, 'Biographies', 'Biographies'),
-(25, 0, 'Fantasy', 'Fantasy');
+INSERT INTO `categories` (`category_id`, `category_name`, `description`) VALUES
+(1, 'Laptop', 'Laptop thường'),
+(6, 'PC', 'Personal computer'),
+(7, 'Phụ kiện laptop', 'Phụ kiện laptop'),
+(8, 'Linh kiện PC', 'PC Accessory'),
+(9, 'Điện thoại', 'Phone'),
+(10, 'Phụ kiện điện thoại', 'Phụ kiện điện thoại'),
+(11, 'Linh kiện laptop', 'Linh kiện laptop'),
+(12, 'Video graphics card', 'Video graphics card'),
+(13, 'RAM', 'RAM'),
+(14, 'CPU', 'CPU'),
+(15, 'HDD', 'HDD');
 
 -- --------------------------------------------------------
 
@@ -114,6 +105,13 @@ CREATE TABLE `discounts` (
   `date_end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `discounts`
+--
+
+INSERT INTO `discounts` (`discount_id`, `description`, `discount_rating`, `date_start`, `date_end`) VALUES
+(1, 'test', '0.50', '2017-12-14', '2017-12-14');
+
 -- --------------------------------------------------------
 
 --
@@ -123,7 +121,7 @@ CREATE TABLE `discounts` (
 CREATE TABLE `manufactures` (
   `manufacture_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `description` varchar(200) NOT NULL,
+  `description` varchar(2000) NOT NULL,
   `image` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -132,7 +130,17 @@ CREATE TABLE `manufactures` (
 --
 
 INSERT INTO `manufactures` (`manufacture_id`, `name`, `description`, `image`) VALUES
-(14, 'Amazon', 'Amazon', 'http://localhost/megastore/assests/image/publisher/amazon.png');
+(1, 'Acer', 'Sennheiser has created the world’s first intuitive, compact and mobile binaural recording headset.', 'http://www.hi-techitaly.com/images/stories/news/telefonia/Acer_logo.jpg'),
+(2, 'Samsung ', 'Samsung helps you discover a wide range of home electronics with cutting-edge technology including smartphones, tablets, TVs, home appliances and more.', 'samsung.jpg'),
+(5, 'Dell', 'Dell provides technology solutions, services &amp; support. Buy Laptops, Touch Screen PCs, Desktops, Servers, Storage, Monitors, Gaming &amp; Accessories.', 'dell_logo_md.gif'),
+(6, 'HP', 'Tầm nhìn của chúng tôi là sáng tạo công nghệ mang lại cuộc sống tốt đẹp hơn cho mọi người ở khắp mọi nơi—mọi cá nhân, tổ chức và mọi cộng đồng trên toàn thế giới.', 'hpi-hp-logo-pr.gif'),
+(7, 'Apple', 'Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that designs, develops, and sells consumer electronics, computer software, and online services.', 'apple.png'),
+(8, 'Sony', 'Sony Corporation is a Japanese multinational conglomerate corporation headquartered in Kōnan, Minato, Tokyo. Its diversified business includes consumer and professional electronics, gaming...', 'images.png'),
+(9, 'Asus', 'AsusTek Computer Inc. is a Taiwanese multinational computer and phone hardware and electronics company headquartered in Beitou District, Taipei, Taiwan.', 'asus_logo2-60x60.jpg'),
+(10, 'LG', 'LG Electronics Inc. is a South Korean multinational electronics company headquartered in Yeouido-dong, Seoul, South Korea, and is part of the LG Group', 'LG_logo-60x60.jpg'),
+(11, 'Intel', 'Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California, in the Silicon Valley.', 'apple-touch-icon-60x60.png'),
+(13, 'Microsoft', 'Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington. It develops, manufactures, licenses, supports and sells computer software, consumer ...', 'microsoft_logo.jpg'),
+(14, 'The happy goat', 'The happy goat provide all kind of toys. The chairman is Mr. Kuma.', 'thg.jpg');
 
 -- --------------------------------------------------------
 
@@ -144,7 +152,7 @@ CREATE TABLE `memberships` (
   `membership_id` int(11) NOT NULL,
   `membership_title` varchar(50) NOT NULL,
   `discount_rating` decimal(2,2) NOT NULL,
-  `description` varchar(200) DEFAULT NULL
+  `description` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -182,20 +190,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `status_id`, `user_id`, `total_price`, `receiver_name`, `receiver_phone`, `receiver_address`, `description`, `open_date`, `close_date`) VALUES
-(27, 1, 1, '52800000.00', 'vietbkpro', '098888888', 'test', '', '1999-11-09 00:19:18', '2009-11-09 00:19:18'),
-(29, 1, 1, '184800000.00', 'vietbkpro', '098888888', 'test', 'rẻ quá', '2017-05-26 02:11:24', NULL),
-(30, 1, 1, '52800000.00', 'vietbkpro', '098888888', 'test', '', '2017-05-31 19:44:13', '0000-00-00 00:00:00'),
-(31, 5, 1, '36300000.00', 'vietbkpro', '098888888', 'test', '', '2017-06-03 20:14:06', '0000-00-00 00:00:00'),
-(35, 1, 0, '16500000.00', 'Unregistered  Unregistered ', 'Unregistered ', 'Unregistered  --- Unregistered  ---  ---  ---  --- Hà Nội', 'Unregistered ', '2017-06-04 01:10:10', '0000-00-00 00:00:00'),
-(36, 1, 0, '36300000.00', 'Aero Aero', '01675899424', ' --- 139/35 Tam Trnh Hai Ba Trung Ha Noi ---  --- Ha Noi --- 10000 --- Hà Nội', '', '2017-06-04 01:25:25', '0000-00-00 00:00:00'),
-(37, 1, 0, '99000.00', 'Nguyen Huy Viet', '01675899424', ' --- 139/35 Tam Trnh Hai Ba Trung Ha Noi ---  --- Ha Noi --- 10000 --- Hà Nội', '', '2017-06-03 19:46:30', '0000-00-00 00:00:00'),
-(38, 1, 0, '52899000.00', 'vietbkpro', '098888888', 'test', 'Mua', '2017-06-03 22:31:02', '0000-00-00 00:00:00'),
-(39, 1, 0, '101200000.00', 'Nguyen  Huy Viet', '01675899424', ' --- 139/35 Tam Trinh --- Ha Noi --- Ha Noi --- undefined --- Đà Nẵng', 'Giao hang vao luc 10h', '2017-06-04 19:00:33', '0000-00-00 00:00:00'),
-(40, 2, 0, '16500000.00', 'vietbkpro', '098888888', 'test', '', '2017-06-04 19:01:51', '0000-00-00 00:00:00'),
-(41, 2, 0, '220000.00', 'Nguyen Huy Viet', '01675899424', '139/35 Tam Trnh Hai Ba Trung Ha Noi', '', '2017-11-09 01:58:25', '0000-00-00 00:00:00'),
-(42, 1, 3, '220000.00', 'Nguyen Huy Viet', '01675899424', '139/35 Tam Trnh Hai Ba Trung Ha Noi', '', '2017-11-09 02:02:18', NULL),
-(43, 1, 3, '440000.00', 'Nguyen Huy Viet', '01675899424', '139/35 Tam Trnh Hai Ba Trung Ha Noi', 'Majors', '2017-11-09 02:51:22', NULL),
-(44, 1, 3, '220000.00', 'Nguyen Huy Viet', '01675899424', '139/35 Tam Trnh Hai Ba Trung Ha Noi', '', '2017-11-09 04:06:22', NULL);
+(27, 1, 1, '52800000.00', 'vietbkpro', '098888888', 'test', '', '1999-11-08 17:19:18', '2009-11-08 17:19:18'),
+(29, 1, 1, '184800000.00', 'vietbkpro', '098888888', 'test', 'rẻ quá', '2017-05-25 19:11:24', NULL),
+(30, 1, 1, '52800000.00', 'vietbkpro', '098888888', 'test', '', '2017-05-31 12:44:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -217,33 +214,14 @@ CREATE TABLE `order_details` (
 
 INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `unit_price`, `unit_quantity`) VALUES
 (28, 29, 10, '33000000.00', 1),
+(29, 29, 9, '24000000.00', 1),
+(30, 29, 8, '24000000.00', 1),
 (31, 29, 5, '11000000.00', 1),
 (32, 29, 4, '35000000.00', 1),
 (33, 29, 3, '13000000.00', 2),
 (34, 29, 2, '15000000.00', 1),
 (35, 30, 2, '15000000.00', 1),
-(36, 30, 10, '33000000.00', 1),
-(37, 31, 10, '33000000.00', 1),
-(38, 31, 2, '15000000.00', 1),
-(39, 31, 10, '33000000.00', 1),
-(40, 31, 8, '24000000.00', 1),
-(41, 31, 2, '15000000.00', 1),
-(42, 31, 10, '33000000.00', 1),
-(43, 31, 10, '33000000.00', 1),
-(44, 35, 2, '15000000.00', 1),
-(45, 36, 10, '33000000.00', 1),
-(46, 37, 13, '90000.00', 1),
-(47, 38, 2, '15000000.00', 1),
-(48, 38, 10, '33000000.00', 1),
-(49, 38, 13, '90000.00', 1),
-(50, 39, 8, '24000000.00', 1),
-(51, 39, 12, '34000000.00', 2),
-(52, 40, 2, '15000000.00', 1),
-(53, 41, 8, '200000.00', 1),
-(54, 42, 2, '200000.00', 1),
-(55, 43, 10, '200000.00', 1),
-(56, 43, 8, '200000.00', 1),
-(57, 44, 10, '200000.00', 1);
+(36, 30, 10, '33000000.00', 1);
 
 -- --------------------------------------------------------
 
@@ -261,11 +239,11 @@ CREATE TABLE `order_statuses` (
 --
 
 INSERT INTO `order_statuses` (`status_id`, `status`) VALUES
-(1, 'Waiting'),
-(2, 'Approved'),
-(3, 'Delivering'),
-(4, 'Finished'),
-(5, 'Rejected');
+(1, 'Chờ xử lí'),
+(2, 'Đã chấp thuận'),
+(3, 'Đang chuyển hàng'),
+(4, 'Kết thúc'),
+(5, 'Từ chối');
 
 -- --------------------------------------------------------
 
@@ -294,31 +272,17 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `category_id`, `manufacture_id`, `product_name`, `buy_price`, `sell_price`, `quantity`, `rating`, `description`, `image1`, `image2`, `image3`, `image4`) VALUES
-(2, 1, 14, 'Example Book', '200000.00', '200000.00', 100, '0.99', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(3, 1, 14, 'Example Book', '200000.00', '200000.00', 50, '0.80', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(4, 1, 14, 'Example Book', '200000.00', '200000.00', 30, '0.70', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(5, 1, 14, 'Example Book', '200000.00', '200000.00', 80, '0.60', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(6, 6, 14, 'Example Book', '200000.00', '200000.00', 30, '0.70', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(7, 6, 14, 'Example Book', '200000.00', '200000.00', 50, '0.50', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(8, 1, 14, 'Example Book', '200000.00', '200000.00', 20, '0.90', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(9, 1, 14, 'Example Book', '200000.00', '200000.00', 20, '0.60', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(10, 6, 14, 'Example Book', '200000.00', '200000.00', 20, '0.90', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(11, 6, 14, 'Example Book', '200000.00', '200000.00', 20, '0.82', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(12, 6, 14, 'Example Book', '200000.00', '200000.00', 20, '0.87', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png'),
-(13, 7, 14, 'Example Book', '200000.00', '200000.00', 400, '0.90', 'Example Book', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png', 'http://localhost/megastore/assests/image/product/book.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `publishers`
---
-
-CREATE TABLE `publishers` (
-  `publisher_id` int(11) NOT NULL,
-  `name` varchar(200) NOT NULL,
-  `description` varchar(200) NOT NULL,
-  `image` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(2, 1, 6, 'HP Envy dv6', '12000000.00', '15000000.00', 100, '0.99', 'HP Envy dv6', 'http://localhost/megastore/assests/image/product/macbook_air_1-200x200.jpg', 'Test product', 'Test product', 'Test product'),
+(3, 1, 5, 'Dell Vostro 3560', '10000000.00', '13000000.00', 50, '0.80', 'Dell Vostro 3560', 'http://notebook.co.za/itempics/IS3543-I55200-4500-CAR.jpg', '', '', ''),
+(4, 1, 7, 'Macbook pro 2017', '30000000.00', '35000000.00', 30, '0.70', 'Macbook pro 2017', 'https://media2.vatgia.vn/pictures/thumb/200x200/2015/06/jgh1433235140.jpg', '', '', ''),
+(5, 1, 1, 'Acer eMachine e510', '9000000.00', '11000000.00', 80, '0.60', 'Acer eMachine e510', 'http://localhost/megastore/assests/image/product/macbook_air_1-200x200.jpg', '', '', ''),
+(6, 6, 7, 'iMac Retina 32\"', '30000000.00', '35000000.00', 30, '0.70', '<p><strong>Intel Core 2 Duo processor</strong></p>\n\n<p>Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.</p>\n\n<p><strong>1GB memory, larger hard drives</strong></p>\n\n<p>The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.</p>\n\n<p><strong>Sleek, 1.08-inch-thin design</strong></p>\n\n<p>MacBook makes it easy to ', 'https://www.adorama.com/images/product/acmk473la11.jpg', '', '', ''),
+(7, 6, 5, 'Dell Optiplex 780', '7000000.00', '9000000.00', 50, '0.50', 'Dell Optiplex 780', 'http://media.vatgia.vn/pictures_medium/small_krt1356433414.png', '', '', ''),
+(8, 1, 6, 'HP Spectre', '20000000.00', '24000000.00', 20, '0.90', 'HP Spectre', 'http://cdn.megabuy.com.au/images/products/medium/372/372221_med.jpg', '', '', ''),
+(9, 1, 2, 'Samsung Notebook 7', '20000000.00', '24000000.00', 20, '0.60', 'Samsung Notebook 7 Spin', 'https://images-na.ssl-images-amazon.com/images/I/51DQvs6L4BL._AA200_QL65_.jpg', '', '', ''),
+(10, 6, 6, 'HP Envy 34', '30000000.00', '33000000.00', 20, '0.90', '<p><strong>Intel Core 2 Duo processor</strong></p>  <p>Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.</p>  <p><strong>1GB memory, larger hard drives</strong></p>  <p>The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.</p>  <p><strong>Sleek, 1.08-inch-thin design</strong></p>  <p>MacBook makes it easy to ', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg'),
+(11, 6, 1, 'Dell XPS Tower ', '20000000.00', '24000000.00', 20, '0.82', 'Dell XPS Tower ', 'https://www.adorama.com/images/product/dexps89109bk.jpg', '', '', ''),
+(12, 6, 13, 'Surface Studio', '30000000.00', '34000000.00', 20, '0.87', 'Surface Studio', 'http://c773974.r74.cf2.rackcdn.com/476574_266619_03_front_thumbnail.jpg', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -347,7 +311,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `logo`, `banner1`, `banner2`, `banner3`, `facebook`, `twitter`, `youtube`, `customCms`, `slide1`, `slide2`, `slide3`, `footer`) VALUES
-(1, 'http://localhost/megastore/assests/image/logo.png', 'http://localhost/megastore/assests/image/banner/sample-banner-3-400x200.jpg', 'http://localhost/megastore/assests/image/banner/sample-banner-1-400x200.jpg', 'http://localhost/megastore/assests/image/banner/sample-banner-2-400x200.jpg', 'https://www.facebook.com/dhbkhanoi/', 'twitter', '1prhCWO_518', '<tr>             <td><h2>Nguyễn Huy Việt</h2></td>           </tr>           <tr>             <td><img alt=\"\" src=\"assests/image/banner/cms-block.jpg\"></td>           </tr>           <tr>             <td>Hanoi university of science and technology</td>           </tr>           <tr>             <td><strong><a href=\"#\">Read More</a></strong></td>           </tr>', 'http://localhost/megastore/assests/image/slider/banner-1.jpg', 'http://localhost/megastore/assests/image/slider/banner-2.jpg', 'http://localhost/megastore/assests/image/slider/banner-3.jpg', 'Nguyễn Huy Việt');
+(1, 'http://localhost/megastore/assests/image/logo.png', 'http://localhost/megastore/assests/image/banner/sample-banner-3-400x200.jpg', 'http://localhost/megastore/assests/image/banner/sample-banner-1-400x200.jpg', 'http://localhost/megastore/assests/image/banner/sample-banner-2-400x200.jpg', 'https://www.facebook.com/dhbkhanoi/', 'twitter', 'HFexVcCrN94', '<tr>             <td><h2>Nguyễn Huy Việt</h2></td>           </tr>           <tr>             <td><img alt=\"\" src=\"assests/image/banner/cms-block.jpg\"></td>           </tr>           <tr>             <td>Hanoi university of science and technology</td>           </tr>           <tr>             <td><strong><a href=\"#\">Read More</a></strong></td>           </tr>', 'http://localhost/megastore/assests/image/slider/banner-1.jpg', 'http://localhost/megastore/assests/image/slider/banner-2.jpg', 'http://localhost/megastore/assests/image/slider/banner-3.jpg', 'Nguyễn Huy Việt');
 
 -- --------------------------------------------------------
 
@@ -374,11 +338,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `avatar`, `username`, `password`, `name`, `email`, `phone`, `address`, `point`, `membership_id`, `status_id`) VALUES
-(0, 'Unregistered ', 'Unregistered customer', '0', 'Unregistered ', 'Unregistered ', '0', 'Unregistered ', 0, 1, 1),
 (1, 'user.jpg', 'vietnh', '123456', 'vietbkpro', 'vietbkpro@hust.edu.vn', '098888888', 'test', 0, 1, 1),
-(3, 'avatar.png', 'vietnh2', '36361532', 'Nguyen Huy Viet', 'nhv222222@gmail.com', '01675899424', '139/35 Tam Trnh Hai Ba Trung Ha Noi', 0, 1, 2),
-(6, 'avatar4.png', 'admin', 'admin', 'Admin ', 'admin@gmail.com', '01675899424', 'Neifheilm', 0, 1, 3),
-(7, 'Sketch001.jpg', 'nhv22222', '1', 'Nguyen Huy Viet', 'nhv222222@gmail.com', '01675899424', 'Somewhere i belong', 0, 1, 1);
+(4, 'img/chat-avatar2.jpg', 'admin', 'admin', 'Siegfried', 'siegfried@gmail.com', '01675899424', 'Ireland', 90, 1, 4),
+(5, '', 'vietnh3001', '1', 'Cu Chulain', 'cu@gmail.com', '01675899494', 'Ireland', 1, 5, 5),
+(6, '', 'rei', 'rei', 'Rei', 'rei@gmail.com', '01928755814', 'Rei', 0, 1, 5),
+(7, '', 'hei', 'hei', 'Hei', 'hei@gmail.com', '01928755814', 'Rei', 0, 1, 5),
+(8, '', 'lee', 'lee', 'Lee Shengshun', 'lee@gmail.com', '01928755814', 'DTB', 0, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -398,7 +363,9 @@ CREATE TABLE `user_statuses` (
 INSERT INTO `user_statuses` (`status_id`, `status`) VALUES
 (1, 'Admin'),
 (2, 'Active'),
-(3, 'Disabled');
+(3, 'Disabled'),
+(4, 'High Admin'),
+(5, 'New');
 
 --
 -- Indexes for dumped tables
@@ -478,13 +445,6 @@ ALTER TABLE `products`
   ADD KEY `manufacture_id` (`manufacture_id`);
 
 --
--- Indexes for table `publishers`
---
-ALTER TABLE `publishers`
-  ADD PRIMARY KEY (`publisher_id`),
-  ADD UNIQUE KEY `publisher_id` (`publisher_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -508,7 +468,7 @@ ALTER TABLE `user_statuses`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `comments`
 --
@@ -523,7 +483,7 @@ ALTER TABLE `comment_statuses`
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
-  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `manufactures`
 --
@@ -538,12 +498,12 @@ ALTER TABLE `memberships`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `order_statuses`
 --
@@ -553,22 +513,17 @@ ALTER TABLE `order_statuses`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `publishers`
---
-ALTER TABLE `publishers`
-  MODIFY `publisher_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user_statuses`
 --
 ALTER TABLE `user_statuses`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --

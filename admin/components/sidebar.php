@@ -24,7 +24,7 @@
             </li>
 
             <li>
-              <a href="index.php">
+              <a href="products_management.php">
                 <i class=" icon-desktop"></i>
                 <span>Quản lí sản phẩm</span>
               </a>
