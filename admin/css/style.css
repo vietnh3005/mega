@@ -4657,3 +4657,9 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 .show-more:hover { 
     color: #1779dd;
 }
+
+.scroll-modal{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:400px;
+}

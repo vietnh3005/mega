@@ -103,7 +103,7 @@ $row = mysqli_fetch_assoc($query);
 												data-manname="<?php echo $row['name']?>"
 												data-quantity="<?php echo $row['quantity']?>"
 												data-rating="<?php echo $row['rating']?>"
-												data-description="<?php echo $row['p.description']?>"
+												data-description="<?php echo $row['pdes']?>"
 												data-bprice="<?php echo $row['buy_price']?>"
 												data-sprice="<?php echo $row['sell_price']?>"
 												><i class='icon-eye-open '></i></button>
@@ -183,7 +183,7 @@ $row = mysqli_fetch_assoc($query);
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Thêm mới hãng sản xuất</h4>
+				<h4 class="modal-title">Thêm mới sản phẩm</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -191,32 +191,96 @@ $row = mysqli_fetch_assoc($query);
 						<section class="panel">
 							<div class="panel-body">
 								<div class="form">
-									<form class="cmxform form-horizontal tasi-form" method="post" action='../business/manufactureBusiness.php'>
-										<div class="form-group ">
-											<label for="image" class="control-label col-lg-3">Hình ảnh</label>
-											<div class="col-sm-9">
-												<input type="file" id="man_add_img" accept=".jpg, .jpeg, .png" multiple onchange="readURL(this);"/><br>
-												<img id="preview_img" src="#"/>
+									<form class="cmxform form-horizontal tasi-form" method="post" action='../business/productBusiness.php'>
+										<div class="scroll-modal">
+											<div class="form-group ">
+												<label for="image" class="control-label col-lg-3">Hình ảnh 1</label>
+												<div class="col-sm-9">
+													<input type="file" id="pro_add_img1" accept=".jpg, .jpeg, .png" multiple onchange="readURL1(this);"/><br>
+													<img id="preview_img1" src="#"/>
+												</div>
 											</div>
-										</div>
-										<input id="man_insr_man_id" name="man_insr_man_id" type="hidden" />
-										<input id="man_inser_img_cm" name="man_inser_img_cm" type="hidden" />
-										<div class="form-group ">
-											<label for="name" class="control-label col-lg-3">Tên</label>
-											<div class="col-lg-9">
-												<input class=" form-control" placeholder="Tên hãng " id="man_insr_name" name="man_insr_name" type="text" />
+											<div class="form-group ">
+												<label for="image" class="control-label col-lg-3">Hình ảnh 2</label>
+												<div class="col-sm-9">
+													<input type="file" id="pro_add_img2" accept=".jpg, .jpeg, .png" multiple onchange="readURL2(this);"/><br>
+													<img id="preview_img2" src="#"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group ">
-											<label for="description" class="control-label col-lg-3">Mô tả</label>
-											<div class="col-lg-9">
-												<textarea class="form-control " placeholder="Mô tả" id="man_insr_des" name="man_insr_des" row="3"></textarea> 
+											<div class="form-group ">
+												<label for="image" class="control-label col-lg-3">Hình ảnh 3</label>
+												<div class="col-sm-9">
+													<input type="file" id="pro_add_img3" accept=".jpg, .jpeg, .png" multiple onchange="readURL3(this);"/><br>
+													<img id="preview_img3" src="#"/>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<button class="btn btn-danger pull-right" type="submit" name="new_man" value="new_man" >Lưu</button>
-												<button class="btn btn-default pull-right" data-dismiss="modal" type="button">Hủy</button>
+											<div class="form-group ">
+												<label for="image" class="control-label col-lg-3">Hình ảnh 4</label>
+												<div class="col-sm-9">
+													<input type="file" id="pro_add_img4" accept=".jpg, .jpeg, .png" multiple onchange="readURL4(this);"/><br>
+													<img id="preview_img4" src="#"/>
+												</div>
+											</div>
+
+											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
+											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
+											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
+											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
+
+											<div class="form-group ">
+												<label for="name" class="control-label col-lg-3">Tên</label>
+												<div class="col-lg-9">
+													<input class=" form-control" placeholder="Tên sản phẩm " id="pro_insr_name" name="pro_insr_name" type="text" />
+												</div>
+											</div>
+
+											<div class="form-group ">
+												<label for="category" class="control-label col-lg-3">Danh mục</label>
+												<div class="col-lg-9">
+													<input class=" form-control" placeholder="Danh mục " id="pro_insr_cat" name="pro_insr_cat" type="text" />
+												</div>
+											</div>
+
+											<div class="form-group ">
+												<label for="manufactures" class="control-label col-lg-3">Hãng</label>
+												<div class="col-lg-9">
+													<input class=" form-control" placeholder="Hãng " id="pro_insr_man" name="pro_insr_man" type="text" /> 
+												</div>
+											</div>
+
+											<div class="form-group ">
+												<label for="quantity" class="control-label col-lg-3">Hãng</label>
+												<div class="col-lg-9">
+													<input class=" form-control" placeholder="Số lượng " id="pro_insr_quan" name="pro_insr_quan" type="text" /> 
+												</div>
+											</div>
+
+											<div class="form-group ">
+												<label for="description" class="control-label col-lg-3">Mô tả</label>
+												<div class="col-lg-9">
+													<input class=" form-control" placeholder="Mô tả " id="pro_insr_des" name="pro_insr_des" type="text" /> 
+												</div>
+											</div>
+
+											<div class="form-group ">
+												<label for="bprice" class="control-label col-lg-3">Giá mua</label>
+												<div class="col-lg-9">
+													<input class=" form-control" placeholder="Giá mua " id="pro_insr_bprice" name="pro_insr_bprice" type="text" /> 
+												</div>
+											</div>
+
+											<div class="form-group ">
+												<label for="sprice" class="control-label col-lg-3">Giá bán</label>
+												<div class="col-lg-9">
+													<input class=" form-control" placeholder="Giá bán " id="pro_insr_sprice" name="pro_insr_sprice" type="text" /> 
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-lg-offset-2 col-lg-10">
+													<button class="btn btn-danger pull-right" type="submit" name="new_man" value="new_man" >Lưu</button>
+													<button class="btn btn-default pull-right" data-dismiss="modal" type="button">Hủy</button>
+												</div>
 											</div>
 										</div>
 									</form>
@@ -249,26 +313,99 @@ $row = mysqli_fetch_assoc($query);
 							<tr>
 								<td class="h6 col-md-3" ><strong>ID</strong></td>
 								<td> </td>
-								<td class="h5" id="row_manufacture_id"></td>
+								<td class="h5" id="row_pro_id"></td>
 							</tr>
 
 							<tr>
 								<td class="h6 col-md-3"><strong>Tên</strong></td>
 								<td> </td>
-								<td class="h5" id="row_manufacture_name"></td>
+								<td class="h5" id="row_pro_name"></td>
+							</tr>
+
+							<tr>
+								<td class="h6 col-md-3"><strong>Danh mục</strong></td>
+								<td> </td>
+								<td class="h5" id="row_pro_cat"></td>
+							</tr>
+
+							<tr>
+								<td class="h6 col-md-3"><strong>Hãng</strong></td>
+								<td> </td>
+								<td class="h5" id="row_pro_man"></td>
+							</tr>
+
+							<tr>
+								<td class="h6 col-md-3"><strong>Số lượng</strong></td>
+								<td> </td>
+								<td class="h5" id="row_pro_quan"></td>
+							</tr>
+							
+							<tr>
+								<td class="h6 col-md-3"><strong>Đánh giá</strong></td>
+								<td> </td>
+								<td class="h5" id="row_pro_rating"></td>
 							</tr>
 
 							<tr>
 								<td class="h6 col-md-3"><strong>Mô tả</strong></td>
 								<td> </td>
-								<td class="h5" id="row_manufacture_description"></td>
+								<td class="h5" id="row_pro_des"></td>
+							</tr>
+
+							<tr>
+								<td class="h6 col-md-3"><strong>Giá mua</strong></td>
+								<td> </td>
+								<td class="h5" id="row_pro_bprice"></td>
+							</tr>
+
+							<tr>
+								<td class="h6 col-md-3"><strong>Giá bán</strong></td>
+								<td> </td>
+								<td class="h5" id="row_pro_sprice"></td>
 							</tr>
 						</tbody>
 					</table>
 
 
 					<div class="col-md-4"> 
-						<img src="#" alt="" class="img-responsive" id="man_img">  
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+								<li data-target="#myCarousel" data-slide-to="3"></li>
+							</ol>
+
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="#" id="slider1">
+								</div>
+
+								<div class="item">
+									<img src="#" id="slider2">
+								</div>
+
+								<div class="item">
+									<img src="#" id="slider3">
+								</div>
+
+								<div class="item">
+									<img src="#" id="slider4">
+								</div>
+							</div>
+
+							<!-- Left and right controls -->
+							<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="right carousel-control" href="#myCarousel" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div> 
 					</div>
 
 					<div class="clearfix"></div>
@@ -350,20 +487,43 @@ $row = mysqli_fetch_assoc($query);
 <!-- modal --> 
 
 
-<!-- Passing Data to User Details Modal -->
+<!-- Passing Data to Products Details Modal -->
 <script type="text/javascript">
 	$(function () {
 		$(".open_detail_modal").click(function () {
-			var $manufacture_id = $(this).data('id');
-			var $image =$(this).data('image');
+			var $product_id = $(this).data('id');
 			var $name = $(this).data('name');
+			var $image1 =$(this).data('image1');
+			var $image2 =$(this).data('image2');
+			var $image3 =$(this).data('image3');
+			var $image4 =$(this).data('image4');
+			var $catname =$(this).data('catname');
+			var $manname =$(this).data('manname');
+			var $quantity = $(this).data('quantity');
+			var $rating =$(this).data('rating');
 			var $description = $(this).data('description');
-			var img = document.getElementById('man_img');
+			var $bprice = $(this).data('bprice');
+			var $sprice = $(this).data('sprice');
+
+			var img1 = document.getElementById('slider1');
+			var img2 = document.getElementById('slider2');
+			var img3 = document.getElementById('slider3');
+			var img4 = document.getElementById('slider4');
 			
-			$("#row_manufacture_id").html($manufacture_id);
-			$("#row_manufacture_name").html($name);
-			$("#row_manufacture_description").html($description);
-			img.src = "img/manufactures/"+$image;
+			$("#row_pro_id").html($product_id);
+			$("#row_pro_name").html($name);
+			$("#row_pro_cat").html($catname);
+			$("#row_pro_man").html($manname);
+			$("#row_pro_quan").html($quantity);
+			$("#row_pro_rating").html($rating);
+			$("#row_pro_des").html($description);
+			$("#row_pro_bprice").html($bprice);
+			$("#row_pro_sprice").html($sprice);
+
+			img1.src = "img/manufactures/"+$image1;
+			img2.src = "img/manufactures/"+$image2;
+			img3.src = "img/manufactures/"+$image3;
+			img4.src = "img/manufactures/"+$image4;
 			
 			$("#details_modal").modal("show");
 		})
@@ -389,23 +549,84 @@ $row = mysqli_fetch_assoc($query);
 
 <!-- Preview Image at Adding Modal -->
 <script type="text/javascript">
-	function readURL(input) {
+	function readURL1(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 
 			reader.onload = function (e) {
-				$('#preview_img').show();
-				$('#preview_img').attr('src', e.target.result).width(100).height(100);	
+				$('#preview_img1').show();
+				$('#preview_img1').attr('src', e.target.result).width(90).height(90);	
 			}
 
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
 
-	$("#man_add_img").change(function(){
-		readURL(this);
+	$("#pro_add_img1").change(function(){
+		readURL1(this);
 	});
 </script>
+
+
+<script type="text/javascript">
+	function readURL2(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#preview_img2').show();
+				$('#preview_img2').attr('src', e.target.result).width(90).height(90);	
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$("#pro_add_img2").change(function(){
+		readURL2(this);
+	});
+</script>
+
+
+<script type="text/javascript">
+	function readURL3(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#preview_img3').show();
+				$('#preview_img3').attr('src', e.target.result).width(90).height(90);	
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$("#pro_add_img3").change(function(){
+		readURL3(this);
+	});
+</script>
+
+
+<script type="text/javascript">
+	function readURL4(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#preview_img4').show();
+				$('#preview_img4').attr('src', e.target.result).width(90).height(90);	
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$("#pro_add_img4").change(function(){
+		readURL4(this);
+	});
+</script>
+
 
 <!-- Preview Image at Updating Modal -->
 <script type="text/javascript">
@@ -415,7 +636,7 @@ $row = mysqli_fetch_assoc($query);
 
 			reader.onload = function (e) {
 				$('#preview_img_upd').show();
-				$('#preview_img_upd').attr('src', e.target.result).width(100).height(100);	
+				$('#preview_img_upd').attr('src', e.target.result).width(90).height(90);	
 			}
 
 			reader.readAsDataURL(input.files[0]);
