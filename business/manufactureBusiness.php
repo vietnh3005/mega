@@ -26,6 +26,16 @@ if($_GET)
 	}
 }
 
+function load_manufactures(){
+	require_once '../configs/connect.php';
+	global $conn;
+	$sql = "select * from manufactures";
+	$query = mysqli_query($conn,$sql);
+	while($row = mysqli_fetch_assoc($query)){
+		echo "<option value=" .$row['manufacture_id']. ">" .$row['name']. "</option>";
+	}
+}
+
 function create_manufacture($man_name, $man_image, $man_des){
 	global $conn;
 	session_start();

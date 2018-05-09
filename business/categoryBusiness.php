@@ -17,10 +17,21 @@ if($_POST)
 
 if($_GET)
 {	
+	require_once '../configs/connect.php';
 	if(isset($_GET['del'])){
 		require_once '../configs/connect.php';
 		$category_id = $_GET['del'];
 		del_category($category_id);
+	}
+}
+
+function load_categories(){
+	require_once '../configs/connect.php';
+	global $conn;
+	$sql = "select * from categories";
+	$query = mysqli_query($conn,$sql);
+	while($row = mysqli_fetch_assoc($query)){
+		echo "<option value=" .$row['category_id']. ">" .$row['category_name']. "</option>";
 	}
 }
 
