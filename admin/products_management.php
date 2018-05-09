@@ -1,6 +1,8 @@
 <?php session_start();
 require '../configs/connect.php';
 include '../business/manufactureBusiness.php';
+include '../business/categoryBusiness.php';
+include '../business/productBusiness.php';
 if(!isset($_SESSION['admin'])){
 	header('Location: login.php');
 } 
@@ -30,7 +32,7 @@ $row = mysqli_fetch_assoc($query);
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/style-responsive.css" rel="stylesheet" />
 	<link href="css/sweet-alert.css" rel="stylesheet">
-	<script src="js/jquery.js"></script>
+	<script src="js/jquery-1.8.3.min.js"></script>
 	<script src="js/sweet-alert.js"></script>
 
 
@@ -95,6 +97,7 @@ $row = mysqli_fetch_assoc($query);
 											<td> 
 												<button class='btn btn-success btn-xs open_detail_modal' 
 												data-id="<?php echo $row['product_id']?>"
+												data-proname="<?php echo $row['product_name']?>"
 												data-image1="<?php echo $row['image1']?>"
 												data-image2="<?php echo $row['image2']?>"
 												data-image3="<?php echo $row['image3']?>"
@@ -108,8 +111,9 @@ $row = mysqli_fetch_assoc($query);
 												data-sprice="<?php echo $row['sell_price']?>"
 												><i class='icon-eye-open '></i></button>
 
-												<button class='btn btn-primary btn-xs open_update_modal' 
+												<button id='btnABC' class='btn btn-primary btn-xs open_update_modal' 
 												data-id="<?php echo $row['product_id']?>"
+												data-proname="<?php echo $row['product_name']?>"
 												data-image1="<?php echo $row['image1']?>"
 												data-image2="<?php echo $row['image2']?>"
 												data-image3="<?php echo $row['image3']?>"
@@ -222,10 +226,10 @@ $row = mysqli_fetch_assoc($query);
 												</div>
 											</div>
 
-											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
-											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
-											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
-											<input id="pro_inser_img_cm" name="pro_inser_img_cm" type="hidden" />
+											<input id="pro_insr_img1_cm" name="pro_insr1_img_cm" type="hidden" />
+											<input id="pro_insr_img2_cm" name="pro_insr2_img_cm" type="hidden" />
+											<input id="pro_insr_img3_cm" name="pro_insr3_img_cm" type="hidden" />
+											<input id="pro_insr_img4_cm" name="pro_insr4_img_cm" type="hidden" />
 
 											<div class="form-group ">
 												<label for="name" class="control-label col-lg-3">Tên</label>
@@ -237,19 +241,23 @@ $row = mysqli_fetch_assoc($query);
 											<div class="form-group ">
 												<label for="category" class="control-label col-lg-3">Danh mục</label>
 												<div class="col-lg-9">
-													<input class=" form-control" placeholder="Danh mục " id="pro_insr_cat" name="pro_insr_cat" type="text" />
+													<select class="dropdown" id="pro_insr_cat" name="pro_insr_cat">
+														<?php load_categories() ?>
+													</select>
 												</div>
 											</div>
 
-											<div class="form-group ">
+											<div class="form-group dropdown">
 												<label for="manufactures" class="control-label col-lg-3">Hãng</label>
 												<div class="col-lg-9">
-													<input class=" form-control" placeholder="Hãng " id="pro_insr_man" name="pro_insr_man" type="text" /> 
+													<select id="pro_insr_man" name="pro_insr_man">
+														<?php load_manufactures() ?>
+													</select> 
 												</div>
 											</div>
 
 											<div class="form-group ">
-												<label for="quantity" class="control-label col-lg-3">Hãng</label>
+												<label for="quantity" class="control-label col-lg-3">Số lượng</label>
 												<div class="col-lg-9">
 													<input class=" form-control" placeholder="Số lượng " id="pro_insr_quan" name="pro_insr_quan" type="text" /> 
 												</div>
@@ -445,32 +453,101 @@ $row = mysqli_fetch_assoc($query);
 							<section class="panel">
 								<div class="panel-body">
 									<div class="form">
-										<form class="cmxform form-horizontal tasi-form" method="post" action='../business/manufactureBusiness.php'>
-											<div class="form-group ">
-												<label for="image" class="control-label col-lg-3">Hình ảnh</label>
-												<div class="col-sm-9">
-													<input type="file" id="man_upd_img"  accept=".jpg, .jpeg, .png" multiple onchange="readUpdURL(this);"/> <br>
-													<img id="preview_img_upd" src="#"/>
+										<form class="cmxform form-horizontal tasi-form" method="post" action='../business/productBusiness.php'>
+											<div class="scroll-modal">
+												<div class="form-group ">
+													<label for="image" class="control-label col-lg-3">Hình ảnh 1</label>
+													<div class="col-sm-9">
+														<input type="file" id="pro_upd_img1" accept=".jpg, .jpeg, .png" multiple onchange="readURL1(this);"/><br>
+														<img id="upd_preview_img1" src="#"/>
+													</div>
 												</div>
-											</div>
-											<input id="man_upd_man_id" name="man_upd_man_id" type="hidden" />
-											<input id="man_upd_crimg" name="man_upd_crimg" type="hidden" />
-											<div class="form-group ">
-												<label for="name" class="control-label col-lg-3">Tên</label>
-												<div class="col-lg-9">
-													<input class=" form-control" id="man_upd_name" name="man_upd_name" type="text" />
+												<div class="form-group ">
+													<label for="image" class="control-label col-lg-3">Hình ảnh 2</label>
+													<div class="col-sm-9">
+														<input type="file" id="pro_upd_img2" accept=".jpg, .jpeg, .png" multiple onchange="readURL2(this);"/><br>
+														<img id="upd_preview_img2" src="#"/>
+													</div>
 												</div>
-											</div>
-											<div class="form-group ">
-												<label for="description" class="control-label col-lg-3">Mô tả</label>
-												<div class="col-lg-9">
-													<textarea class="form-control " id="man_upd_des" name="man_upd_des" row="3"></textarea> 
+												<div class="form-group ">
+													<label for="image" class="control-label col-lg-3">Hình ảnh 3</label>
+													<div class="col-sm-9">
+														<input type="file" id="pro_upd_img3" accept=".jpg, .jpeg, .png" multiple onchange="readURL3(this);"/><br>
+														<img id="upd_preview_img3" src="#"/>
+													</div>
 												</div>
-											</div>
-											<div class="form-group">
-												<div class="col-lg-offset-2 col-lg-10">
-													<button class="btn btn-danger pull-right" type="submit" name="update_man" value="update_man" >Lưu</button>
-													<button class="btn btn-default pull-right" data-dismiss="modal" type="button">Hủy</button>
+												<div class="form-group ">
+													<label for="image" class="control-label col-lg-3">Hình ảnh 4</label>
+													<div class="col-sm-9">
+														<input type="file" id="pro_upd_img4" accept=".jpg, .jpeg, .png" multiple onchange="readURL4(this);"/><br>
+														<img id="upd_preview_img4" src="#"/>
+													</div>
+												</div>
+
+												<input id="pro_upd_pro_id" name="pro_upd_pro_id" type="hidden" />
+												<input id="pro_upd_img1_cm" name="pro_upd_img1_cm" type="hidden" />
+												<input id="pro_upd_img2_cm" name="pro_upd_img2_cm" type="hidden" />
+												<input id="pro_upd_img3_cm" name="pro_upd_img3_cm" type="hidden" />
+												<input id="pro_upd_img4_cm" name="pro_upd_img4_cm" type="hidden" />
+
+												<div class="form-group ">
+													<label for="name" class="control-label col-lg-3">Tên</label>
+													<div class="col-lg-9">
+														<input class=" form-control" placeholder="Tên sản phẩm " id="pro_upd_name" name="pro_upd_name" type="text" />
+													</div>
+												</div>
+
+												<div class="form-group ">
+													<label for="category" class="control-label col-lg-3">Danh mục</label>
+													<div class="col-lg-9">
+														<select id="pro_upd_cat" name="pro_upd_cat">
+															<?php load_categories() ?>
+														</select> 
+													</div>
+												</div>
+
+												<div class="form-group ">
+													<label for="manufactures" class="control-label col-lg-3">Hãng</label>
+													<div class="col-lg-9">
+														<select id="pro_upd_man" name="pro_upd_man">
+															<?php load_manufactures() ?>
+														</select> 
+													</div>
+												</div>
+
+												<div class="form-group ">
+													<label for="quantity" class="control-label col-lg-3">Hãng</label>
+													<div class="col-lg-9">
+														<input class=" form-control" placeholder="Số lượng " id="pro_upd_quan" name="pro_upd_quan" type="text" /> 
+													</div>
+												</div>
+
+												<div class="form-group ">
+													<label for="description" class="control-label col-lg-3">Mô tả</label>
+													<div class="col-lg-9">
+														<input class=" form-control" placeholder="Mô tả " id="pro_upd_des" name="pro_upd_des" type="text" /> 
+													</div>
+												</div>
+
+												<div class="form-group ">
+													<label for="bprice" class="control-label col-lg-3">Giá mua</label>
+													<div class="col-lg-9">
+														<input class=" form-control" placeholder="Giá mua " id="pro_upd_bprice" name="pro_upd_bprice" type="text" /> 
+													</div>
+												</div>
+
+												<div class="form-group ">
+													<label for="sprice" class="control-label col-lg-3">Giá bán</label>
+													<div class="col-lg-9">
+														<input class=" form-control" placeholder="Giá bán " id="pro_upd_sprice" name="pro_upd_sprice" type="text" /> 
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-lg-offset-2 col-lg-10">
+														<button class="btn btn-danger pull-right" type="submit" name="update_man" value="update_man" >Lưu</button>
+														<button class="btn btn-default pull-right" data-dismiss="modal" type="button">Hủy</button>
+													</div>
 												</div>
 											</div>
 										</form>
@@ -492,7 +569,7 @@ $row = mysqli_fetch_assoc($query);
 	$(function () {
 		$(".open_detail_modal").click(function () {
 			var $product_id = $(this).data('id');
-			var $name = $(this).data('name');
+			var $name = $(this).data('proname');
 			var $image1 =$(this).data('image1');
 			var $image2 =$(this).data('image2');
 			var $image3 =$(this).data('image3');
@@ -520,10 +597,10 @@ $row = mysqli_fetch_assoc($query);
 			$("#row_pro_bprice").html($bprice);
 			$("#row_pro_sprice").html($sprice);
 
-			img1.src = "img/manufactures/"+$image1;
-			img2.src = "img/manufactures/"+$image2;
-			img3.src = "img/manufactures/"+$image3;
-			img4.src = "img/manufactures/"+$image4;
+			img1.src = "img/products/"+$image1;
+			img2.src = "img/products/"+$image2;
+			img3.src = "img/products/"+$image3;
+			img4.src = "img/products/"+$image4;
 			
 			$("#details_modal").modal("show");
 		})
@@ -535,12 +612,40 @@ $row = mysqli_fetch_assoc($query);
 <script type="text/javascript">
 	$(function () {
 		$(".open_update_modal").click(function () {
-			var $manufacture_id = $(this).data('id');
-			var $name = $(this).data('name');
+			var $product_id = $(this).data('id');
+			var $name = $(this).data('proname');
+			var $image1 =$(this).data('image1');
+			var $image2 =$(this).data('image2');
+			var $image3 =$(this).data('image3');
+			var $image4 =$(this).data('image4');
+			var $catname =$(this).data('catname');
+			var $manname =$(this).data('manname');
+			var $quantity = $(this).data('quantity');
+			var $rating =$(this).data('rating');
 			var $description = $(this).data('description');
-			$("#man_upd_man_id").val($manufacture_id);
-			$("#man_upd_name").val($name);
-			$("#man_upd_des").val($description);
+			var $bprice = $(this).data('bprice');
+			var $sprice = $(this).data('sprice');
+
+			var img1 = document.getElementById('slider1');
+			var img2 = document.getElementById('slider2');
+			var img3 = document.getElementById('slider3');
+			var img4 = document.getElementById('slider4');
+
+
+			$("#pro_upd_id").val($product_id);
+			$("#pro_upd_name").val($name);
+			$('#pro_upd_cat').val($catname);
+			$("#pro_upd_man").val($manname);
+			$("#pro_upd_quan").val($quantity);
+			$("#pro_upd_rating").val($rating);
+			$("#pro_upd_des").val($description);
+			$("#pro_upd_bprice").val($bprice);
+			$("#pro_upd_sprice").val($sprice);
+
+			img1.src = "img/products/"+$image1;
+			img2.src = "img/products/"+$image2;
+			img3.src = "img/products/"+$image3;
+			img4.src = "img/products/"+$image4;
 			
 			$("#updateModal").modal("show");
 		})
@@ -627,6 +732,8 @@ $row = mysqli_fetch_assoc($query);
 	});
 </script>
 
+<!-- End Adding Preview --->
+
 
 <!-- Preview Image at Updating Modal -->
 <script type="text/javascript">
@@ -643,7 +750,7 @@ $row = mysqli_fetch_assoc($query);
 		}
 	}
 
-	$("#man_upd_img").change(function(){
+	$("#pro_upd_img").change(function(){
 		readUpdURL(this);
 
 	});
