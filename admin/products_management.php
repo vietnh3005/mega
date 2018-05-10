@@ -85,7 +85,7 @@ $row = mysqli_fetch_assoc($query);
 									{ 
 										?>
 										<tr>
-											<td><a href="#"><img src="img/products/<?php echo $row['image1']?>" height="50" width="50"></a></td>
+											<td><a href="#"><img src="img/products/<?php echo $row['image1']?>" height="50" width="70"></a></td>
 											<td class=''><?php echo $row['product_name']?></td>
 											<td class=''><a><?php echo $row['category_name']?></a></td>
 											<td class=''><a><?php echo $row['name']?></a></td>
@@ -111,17 +111,17 @@ $row = mysqli_fetch_assoc($query);
 												data-sprice="<?php echo $row['sell_price']?>"
 												><i class='icon-eye-open '></i></button>
 
-												<button id='btnABC' class='btn btn-primary btn-xs open_update_modal' 
+												<button class='btn btn-primary btn-xs open_update_modal' 
 												data-id="<?php echo $row['product_id']?>"
 												data-proname="<?php echo $row['product_name']?>"
 												data-image1="<?php echo $row['image1']?>"
 												data-image2="<?php echo $row['image2']?>"
 												data-image3="<?php echo $row['image3']?>"
 												data-image4="<?php echo $row['image4']?>"
-												data-catname="<?php echo $row['category_name']?>"
-												data-manname="<?php echo $row['name']?>"
+												data-catid="<?php echo $row['category_id']?>"
+												data-manid="<?php echo $row['manufacture_id']?>"
 												data-quantity="<?php echo $row['quantity']?>"
-												data-description="<?php echo $row['description']?>"
+												data-description="<?php echo $row['pdes']?>"
 												data-bprice="<?php echo $row['buy_price']?>"
 												data-sprice="<?php echo $row['sell_price']?>"><i class='icon-pencil '></i></button>
 
@@ -200,36 +200,36 @@ $row = mysqli_fetch_assoc($query);
 											<div class="form-group ">
 												<label for="image" class="control-label col-lg-3">Hình ảnh 1</label>
 												<div class="col-sm-9">
-													<input type="file" id="pro_add_img1" accept=".jpg, .jpeg, .png" multiple onchange="readURL1(this);"/><br>
+													<input type="file" id="pro_add_img1" accept=".jpg, .jpeg, .png" multiple onchange="readURL(this);"/><br>
 													<img id="preview_img1" src="#"/>
 												</div>
 											</div>
 											<div class="form-group ">
 												<label for="image" class="control-label col-lg-3">Hình ảnh 2</label>
 												<div class="col-sm-9">
-													<input type="file" id="pro_add_img2" accept=".jpg, .jpeg, .png" multiple onchange="readURL2(this);"/><br>
+													<input type="file" id="pro_add_img2" accept=".jpg, .jpeg, .png" multiple onchange="readURL(this);"/><br>
 													<img id="preview_img2" src="#"/>
 												</div>
 											</div>
 											<div class="form-group ">
 												<label for="image" class="control-label col-lg-3">Hình ảnh 3</label>
 												<div class="col-sm-9">
-													<input type="file" id="pro_add_img3" accept=".jpg, .jpeg, .png" multiple onchange="readURL3(this);"/><br>
+													<input type="file" id="pro_add_img3" accept=".jpg, .jpeg, .png" multiple onchange="readURL(this);"/><br>
 													<img id="preview_img3" src="#"/>
 												</div>
 											</div>
 											<div class="form-group ">
 												<label for="image" class="control-label col-lg-3">Hình ảnh 4</label>
 												<div class="col-sm-9">
-													<input type="file" id="pro_add_img4" accept=".jpg, .jpeg, .png" multiple onchange="readURL4(this);"/><br>
+													<input type="file" id="pro_add_img4" accept=".jpg, .jpeg, .png" multiple onchange="readURL(this);"/><br>
 													<img id="preview_img4" src="#"/>
 												</div>
 											</div>
 
-											<input id="pro_insr_img1_cm" name="pro_insr1_img_cm" type="hidden" />
-											<input id="pro_insr_img2_cm" name="pro_insr2_img_cm" type="hidden" />
-											<input id="pro_insr_img3_cm" name="pro_insr3_img_cm" type="hidden" />
-											<input id="pro_insr_img4_cm" name="pro_insr4_img_cm" type="hidden" />
+											<input id="pro_insr_img1_cm" name="pro_insr_img1_cm" type="hidden" />
+											<input id="pro_insr_img2_cm" name="pro_insr_img2_cm" type="hidden" />
+											<input id="pro_insr_img3_cm" name="pro_insr_img3_cm" type="hidden" />
+											<input id="pro_insr_img4_cm" name="pro_insr_img4_cm" type="hidden" />
 
 											<div class="form-group ">
 												<label for="name" class="control-label col-lg-3">Tên</label>
@@ -286,7 +286,7 @@ $row = mysqli_fetch_assoc($query);
 
 											<div class="form-group">
 												<div class="col-lg-offset-2 col-lg-10">
-													<button class="btn btn-danger pull-right" type="submit" name="new_man" value="new_man" >Lưu</button>
+													<button class="btn btn-danger pull-right" type="submit" name="new_pro" value="new_pro" >Lưu</button>
 													<button class="btn btn-default pull-right" data-dismiss="modal" type="button">Hủy</button>
 												</div>
 											</div>
@@ -458,29 +458,29 @@ $row = mysqli_fetch_assoc($query);
 												<div class="form-group ">
 													<label for="image" class="control-label col-lg-3">Hình ảnh 1</label>
 													<div class="col-sm-9">
-														<input type="file" id="pro_upd_img1" accept=".jpg, .jpeg, .png" multiple onchange="readURL1(this);"/><br>
-														<img id="upd_preview_img1" src="#"/>
+														<input type="file" id="pro_upd_img1" accept=".jpg, .jpeg, .png" multiple onchange="readUpdURL(this);"/><br>
+														<img id="upd_preview_img1" src="#" />
 													</div>
 												</div>
 												<div class="form-group ">
 													<label for="image" class="control-label col-lg-3">Hình ảnh 2</label>
 													<div class="col-sm-9">
-														<input type="file" id="pro_upd_img2" accept=".jpg, .jpeg, .png" multiple onchange="readURL2(this);"/><br>
+														<input type="file" id="pro_upd_img2" accept=".jpg, .jpeg, .png" multiple onchange="readUpdURL(this);"/><br>
 														<img id="upd_preview_img2" src="#"/>
 													</div>
 												</div>
 												<div class="form-group ">
 													<label for="image" class="control-label col-lg-3">Hình ảnh 3</label>
 													<div class="col-sm-9">
-														<input type="file" id="pro_upd_img3" accept=".jpg, .jpeg, .png" multiple onchange="readURL3(this);"/><br>
-														<img id="upd_preview_img3" src="#"/>
+														<input type="file" id="pro_upd_img3" accept=".jpg, .jpeg, .png" multiple onchange="readUpdURL(this);"/><br>
+														<img id="upd_preview_img3" src="#" />
 													</div>
 												</div>
 												<div class="form-group ">
 													<label for="image" class="control-label col-lg-3">Hình ảnh 4</label>
 													<div class="col-sm-9">
-														<input type="file" id="pro_upd_img4" accept=".jpg, .jpeg, .png" multiple onchange="readURL4(this);"/><br>
-														<img id="upd_preview_img4" src="#"/>
+														<input type="file" id="pro_upd_img4" accept=".jpg, .jpeg, .png" multiple onchange="readUpdURL(this);"/><br>
+														<img id="upd_preview_img4" src="#" />
 													</div>
 												</div>
 
@@ -516,7 +516,7 @@ $row = mysqli_fetch_assoc($query);
 												</div>
 
 												<div class="form-group ">
-													<label for="quantity" class="control-label col-lg-3">Hãng</label>
+													<label for="quantity" class="control-label col-lg-3">Số lượng</label>
 													<div class="col-lg-9">
 														<input class=" form-control" placeholder="Số lượng " id="pro_upd_quan" name="pro_upd_quan" type="text" /> 
 													</div>
@@ -545,7 +545,7 @@ $row = mysqli_fetch_assoc($query);
 
 												<div class="form-group">
 													<div class="col-lg-offset-2 col-lg-10">
-														<button class="btn btn-danger pull-right" type="submit" name="update_man" value="update_man" >Lưu</button>
+														<button class="btn btn-danger pull-right" type="submit" name="update_pro" value="update_pro" >Lưu</button>
 														<button class="btn btn-default pull-right" data-dismiss="modal" type="button">Hủy</button>
 													</div>
 												</div>
@@ -618,8 +618,8 @@ $row = mysqli_fetch_assoc($query);
 			var $image2 =$(this).data('image2');
 			var $image3 =$(this).data('image3');
 			var $image4 =$(this).data('image4');
-			var $catname =$(this).data('catname');
-			var $manname =$(this).data('manname');
+			var $catid =$(this).data('catid');
+			var $manid =$(this).data('manid');
 			var $quantity = $(this).data('quantity');
 			var $rating =$(this).data('rating');
 			var $description = $(this).data('description');
@@ -632,10 +632,10 @@ $row = mysqli_fetch_assoc($query);
 			var img4 = document.getElementById('slider4');
 
 
-			$("#pro_upd_id").val($product_id);
+			$("#pro_upd_pro_id").val($product_id);
 			$("#pro_upd_name").val($name);
-			$('#pro_upd_cat').val($catname);
-			$("#pro_upd_man").val($manname);
+			$('#pro_upd_cat').val($catid);
+			$("#pro_upd_man").val($manid);
 			$("#pro_upd_quan").val($quantity);
 			$("#pro_upd_rating").val($rating);
 			$("#pro_upd_des").val($description);
@@ -654,81 +654,21 @@ $row = mysqli_fetch_assoc($query);
 
 <!-- Preview Image at Adding Modal -->
 <script type="text/javascript">
-	function readURL1(input) {
+	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 
 			reader.onload = function (e) {
-				$('#preview_img1').show();
-				$('#preview_img1').attr('src', e.target.result).width(90).height(90);	
+				$('#preview_img1, #preview_img2, #preview_img3, #preview_img4').show();
+				$('#preview_img1, #preview_img2, #preview_img3, #preview_img4').attr('src', e.target.result).width(70).height(50);	
 			}
 
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
 
-	$("#pro_add_img1").change(function(){
-		readURL1(this);
-	});
-</script>
-
-
-<script type="text/javascript">
-	function readURL2(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function (e) {
-				$('#preview_img2').show();
-				$('#preview_img2').attr('src', e.target.result).width(90).height(90);	
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	$("#pro_add_img2").change(function(){
-		readURL2(this);
-	});
-</script>
-
-
-<script type="text/javascript">
-	function readURL3(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function (e) {
-				$('#preview_img3').show();
-				$('#preview_img3').attr('src', e.target.result).width(90).height(90);	
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	$("#pro_add_img3").change(function(){
-		readURL3(this);
-	});
-</script>
-
-
-<script type="text/javascript">
-	function readURL4(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function (e) {
-				$('#preview_img4').show();
-				$('#preview_img4').attr('src', e.target.result).width(90).height(90);	
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	$("#pro_add_img4").change(function(){
-		readURL4(this);
+	$("#preview_img1, #preview_img2, #preview_img3, #preview_img4").change(function(){
+		readURL(this);
 	});
 </script>
 
@@ -742,15 +682,15 @@ $row = mysqli_fetch_assoc($query);
 			var reader = new FileReader();
 
 			reader.onload = function (e) {
-				$('#preview_img_upd').show();
-				$('#preview_img_upd').attr('src', e.target.result).width(90).height(90);	
+				$('#upd_preview_img1, #upd_preview_img2, #upd_preview_img3, #upd_preview_img4 ').show();
+				$('#upd_preview_img1, #upd_preview_img2, #upd_preview_img3, #upd_preview_img4').attr('src', e.target.result).width(70).height(50);	
 			}
 
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
 
-	$("#pro_upd_img").change(function(){
+	$("#upd_preview_img1, #upd_preview_img2, #upd_preview_img3, #upd_preview_img4").change(function(){
 		readUpdURL(this);
 
 	});
@@ -758,39 +698,90 @@ $row = mysqli_fetch_assoc($query);
 
 <!-- Hide priviewed image after close modal -->
 <script type="text/javascript">
-	$('#myModal').on('hidden.bs.modal', function () {
-		$('#preview_img').hide();
+	$('#myModal, #updateModal').on('hidden.bs.modal', function () {
+		$('#preview_img1, #preview_img2, #preview_img3, #preview_img4, #upd_preview_img1, #upd_preview_img2, #upd_preview_img3, #upd_preview_img4').hide();
 		$(this).find('form')[0].reset();
 	})
 </script>
 
 
-<script type="text/javascript">
-	$('#updateModal').on('hidden.bs.modal', function () {
-		$('#preview_img_upd').hide();
-		$(this).find('form')[0].reset();
-	})
-</script>
-
-<!-- Passing Image name before submit form -->
+<!-- Passing Image name before submit form - Adding modal -->
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#man_add_img').change(function(e){
+		$('#pro_add_img1').change(function(e){
 			var imageName = e.target.files[0].name;
-			$('#man_inser_img_cm').val(imageName);
+			$('#pro_insr_img1_cm').val(imageName);
 		});
 	});
 </script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#man_upd_img').change(function(e){
+		$('#pro_add_img2').change(function(e){
 			var imageName = e.target.files[0].name;
-			$('#man_upd_crimg').val(imageName);
+			$('#pro_insr_img2_cm').val(imageName);
 		});
 	});
 </script>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pro_add_img3').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#pro_insr_img3_cm').val(imageName);
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pro_add_img4').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#pro_insr_img4_cm').val(imageName);
+		});
+	});
+</script>
+<!-- End -->
+
+<!-- Passing Image name before submit form - Updating modal -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pro_upd_img1').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#pro_upd_img1_cm').val(imageName);
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pro_upd_img2').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#pro_upd_img2_cm').val(imageName);
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pro_upd_img3').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#pro_upd_img3_cm').val(imageName);
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#pro_upd_img4').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#pro_upd_img4_cm').val(imageName);
+		});
+	});
+</script>
+<!-- End -->
+
+<!-- Hide long description text -->
 <script type="text/javascript">
 	$(".show-more").click(function () {
 		if($(".text").hasClass("show-more-info")) {
