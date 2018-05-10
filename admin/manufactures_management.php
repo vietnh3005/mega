@@ -19,20 +19,8 @@ $row = mysqli_fetch_assoc($query);
 	<link rel="shortcut icon" href="img/favicon.png">
 
 	<title>Quản lí nhãn hàng</title>
-
-	<!-- Bootstrap core CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-reset.css" rel="stylesheet">
-	<!--external css-->
-	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<!-- Custom styles for this template -->
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/style-responsive.css" rel="stylesheet" />
-	<link href="css/sweet-alert.css" rel="stylesheet">
-	<script src="js/jquery.js"></script>
-	<script src="js/sweet-alert.js"></script>
-
-
+	<?php  include 'components/style.php';
+	include 'components/scripts.php'; ?>
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -61,13 +49,13 @@ $row = mysqli_fetch_assoc($query);
 									<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" ><i class="icon-plus"></i> Thêm mới</a> 
 								</div>
 							</header>
-							<table class="table table-striped table-advance table-hover">
+							<table class="table table-striped table-advance table-hover" id="man_man_tbl">
 								<thead>
 									<tr>
 										<th class="col-md-2"><i class=""></i> Hình ảnh</th>
 										<th class="col-md-2"><i class=""></i> Tên hãng</th>
 										<th class="col-md-6"><i class=""></i> Mô tả</th>
-										<th class="col-md-2 pull-right"><?php $nbsp ?></th>
+										<th class="col-md-2"><?php $nbsp ?></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -116,16 +104,6 @@ $row = mysqli_fetch_assoc($query);
 			</footer>
 			<!--footer end-->
 		</section>
-
-		<!-- js placed at the end of the document so the pages load faster -->
-		<script src="js/jquery.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
-		<script src="js/jquery.scrollTo.min.js"></script>
-		<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-		<script src="js/respond.min.js" ></script>
-		<!--common script for all pages-->
-		<script src="js/common-scripts.js"></script>
 	</body>
 	</html>
 
@@ -143,8 +121,6 @@ $row = mysqli_fetch_assoc($query);
 		?>
 	</script>
 
-	<!--common script for all pages-->
-	<script src="js/common-scripts.js"></script>
 </body>
 </html>
 
@@ -418,18 +394,24 @@ $row = mysqli_fetch_assoc($query);
 <!-- Passing Image name before submit form -->
 <script type="text/javascript">
 	$(document).ready(function(){
-        $('#man_add_img').change(function(e){
-            var imageName = e.target.files[0].name;
-            $('#man_inser_img_cm').val(imageName);
-        });
-    });
+		$('#man_add_img').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#man_inser_img_cm').val(imageName);
+		});
+	});
 </script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
-        $('#man_upd_img').change(function(e){
-            var imageName = e.target.files[0].name;
-            $('#man_upd_crimg').val(imageName);
-        });
-    });
+		$('#man_upd_img').change(function(e){
+			var imageName = e.target.files[0].name;
+			$('#man_upd_crimg').val(imageName);
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready( function () {
+		$('#man_man_tbl').DataTable();
+	} );
 </script>
