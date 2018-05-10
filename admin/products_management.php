@@ -23,18 +23,6 @@ $row = mysqli_fetch_assoc($query);
 
 	<title>Quản lí sản phẩm</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/bootstrap-reset.css" rel="stylesheet">
-	<!--external css-->
-	<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-	<!-- Custom styles for this template -->
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/style-responsive.css" rel="stylesheet" />
-	<link href="css/sweet-alert.css" rel="stylesheet">
-	<script src="js/jquery-1.8.3.min.js"></script>
-	<script src="js/sweet-alert.js"></script>
-
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -42,7 +30,8 @@ $row = mysqli_fetch_assoc($query);
       <script src="js/respond.min.js"></script>
   <![endif]-->
 </head>
-
+<?php  include 'components/style.php';
+include 'components/scripts.php'; ?>
 <body>
 
 	<section id="container" class="">
@@ -64,7 +53,7 @@ $row = mysqli_fetch_assoc($query);
 									<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" ><i class="icon-plus"></i> Thêm mới</a> 
 								</div>
 							</header>
-							<table class="table table-striped table-advance table-hover">
+							<table class="table table-striped table-advance table-hover" id='pro_man_tbl'>
 								<thead>
 									<tr>
 										<th class="col-md-1"><i class=""></i> Hình ảnh</th>
@@ -76,7 +65,7 @@ $row = mysqli_fetch_assoc($query);
 										<th class="col-md-2"><i class=""></i> Mô tả</th>
 										<th class="col-md-1"><i class=""></i> Giá mua</th>
 										<th class="col-md-1"><i class=""></i> Giá bán</th>
-										<th class="col-md-3 pull-right"><?php $nbsp ?></th>
+										<th class="col-md-3"><?php $nbsp ?></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -149,16 +138,6 @@ $row = mysqli_fetch_assoc($query);
 			</footer>
 			<!--footer end-->
 		</section>
-
-		<!-- js placed at the end of the document so the pages load faster -->
-		<script src="js/jquery.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
-		<script src="js/jquery.scrollTo.min.js"></script>
-		<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-		<script src="js/respond.min.js" ></script>
-		<!--common script for all pages-->
-		<script src="js/common-scripts.js"></script>
 	</body>
 	</html>
 
@@ -175,9 +154,6 @@ $row = mysqli_fetch_assoc($query);
 		}
 		?>
 	</script>
-
-	<!--common script for all pages-->
-	<script src="js/common-scripts.js"></script>
 </body>
 </html>
 
@@ -792,4 +768,10 @@ $row = mysqli_fetch_assoc($query);
 
 		$(".text").toggleClass("show-more-info");
 	});
+</script>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#pro_man_tbl').DataTable();
+  } );
 </script>

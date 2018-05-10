@@ -25,17 +25,8 @@ $row = mysqli_fetch_assoc($query);
       <script src="js/respond.min.js"></script>
   <![endif]-->
 </head>
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-reset.css" rel="stylesheet">
-<!--external css-->
-<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-<!-- Custom styles for this template -->
-<link href="css/style.css" rel="stylesheet">
-<link href="css/style-responsive.css" rel="stylesheet" />
-<link href="css/sweet-alert.css" rel="stylesheet">
-<script src="js/jquery.js"></script>
-<script src="js/sweet-alert.js"></script>
+  <?php  include 'components/style.php';
+  include 'components/scripts.php'; ?>
 
 <body>
 
@@ -58,7 +49,7 @@ $row = mysqli_fetch_assoc($query);
 									<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" ><i class="icon-plus"></i> Thêm mới</a> 
 								</div>
 							</header>
-							<table class="table table-striped table-advance table-hover">
+							<table class="table table-striped table-advance table-hover" id='cat_man_tbl'>
 								<thead>
 									<tr>
 										<th><i class=""></i> Tên</th>
@@ -105,14 +96,6 @@ $row = mysqli_fetch_assoc($query);
 			</footer>
 			<!--footer end-->
 		</section>
-		<!-- The scripts file will be put here -->
-		<!-- js placed at the end of the document so the pages load faster -->
-		<script src="js/bootstrap.min.js"></script>
-		<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
-		<script src="js/jquery.scrollTo.min.js"></script>
-		<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-		<script src="js/respond.min.js" ></script>
-
 
 		<!-- Hiển thị thông báo -->
 		<script>
@@ -126,9 +109,6 @@ $row = mysqli_fetch_assoc($query);
 			}
 			?>
 		</script>
-
-		<!--common script for all pages-->
-		<script src="js/common-scripts.js"></script>
 	</body>
 	</html>
 
@@ -240,4 +220,10 @@ $row = mysqli_fetch_assoc($query);
 			$("#updateModal").modal("show");
 		})
 	});
+</script>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#cat_man_tbl').DataTable();
+  } );
 </script>
