@@ -1,6 +1,6 @@
 <?php
   require_once 'configs/connect.php';
-  $sql = "select * from categories where category_parent_id = '0'";
+  $sql = "select * from categories";
   $result = mysqli_query($conn,$sql);
   
 ?>
@@ -24,7 +24,7 @@
                 ?>
               </select>
               <input type="text" placeholder="Tìm kiếm..." value="" maxlength="70" class="" name="search" id="search">
-              <button id="submit-button" class="search-btn-bg"><span>Search</span></button>
+              <button id="submit-button" class="search-btn-bg"><span>Tìm</span></button>
             </form>
           </div>
           <!-- End Search-col --> 
@@ -34,11 +34,11 @@
           <div class="top-cart-contain">
             <div class="mini-cart">
               <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="#"> <i class="glyphicon glyphicon-shopping-cart"></i>
-                <div class="cart-box"><span class="title">Cart</span><span id="cart-total">2 item </span></div>
+                <div class="cart-box"><span class="title">Giỏ</span><span id="cart-total">2 item </span></div>
                 </a></div>
               <div>
                 <div class="top-cart-content arrow_box">
-                  <div class="block-subtitle">Recently added item(s)</div>
+                  <div class="block-subtitle">Sản phẩm mới thêm vào</div>
                   <ul id="cart-sidebar" class="mini-products-list">
                     <li class="item even"> <a class="product-image" href="#" title="Downloadable Product "><img alt="Downloadable Product " src="products-images/product1.jpg" width="80"></a>
                       <div class="detail-item">
@@ -57,10 +57,10 @@
                       </div>
                     </li>
                   </ul>
-                  <div class="top-subtotal">Subtotal: <span class="price">$420.00</span></div>
+                  <div class="top-subtotal">Tổng cộng: <span class="price">$420.00</span></div>
                   <div class="actions">
-                    <button class="btn-checkout" type="button"><span>Checkout</span></button>
-                    <button class="view-cart" type="button"><span>View Cart</span></button>
+                    <button class="btn-checkout" type="button"><span>Thanh toán</span></button>
+                    <button class="view-cart" type="button"><span>Chi tiết</span></button>
                   </div>
                 </div>
               </div>
