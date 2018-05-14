@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3360
--- Generation Time: May 07, 2018 at 06:06 AM
+-- Generation Time: May 14, 2018 at 05:57 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -47,7 +47,19 @@ INSERT INTO `categories` (`category_id`, `category_name`, `description`) VALUES
 (12, 'Video graphics card', 'Video graphics card'),
 (13, 'RAM', 'RAM'),
 (14, 'CPU', 'CPU'),
-(15, 'HDD', 'HDD');
+(15, 'HDD', 'HDD'),
+(23, 'Pin sạc dự phòng', 'Pin sạc dự phòng'),
+(24, 'Cáp sạc', 'Cáp sạc cho máy điện thoại'),
+(25, 'Thẻ nhớ', 'Thẻ nhớ SD, micro SD'),
+(26, 'Tai nghe', 'Tai nghe android, ios, bluetooth....'),
+(27, 'USB', 'Thiết bị lưu trữ di động'),
+(28, 'Chuột', 'Chuột máy tính, chuột không dây'),
+(29, 'Bàn phím', 'Bàn phím máy tính, bàn phím không dây ...'),
+(30, 'Loa', 'Loa ngoài, loa di động, loa mini'),
+(31, 'Đồng hồ', 'Smartwatch và các loại đồng hồ điện tử khác...'),
+(32, 'Ốp lưng', 'Ốp lưng điện thoại, máy tính bảng'),
+(33, 'Các phụ kiện khác', 'Các loại phụ kiện khác không nằm trong các danh mục trên.\r\n'),
+(34, 'Pin', 'Pin thay thế cho điện thoại, laptop');
 
 -- --------------------------------------------------------
 
@@ -130,7 +142,7 @@ CREATE TABLE `manufactures` (
 --
 
 INSERT INTO `manufactures` (`manufacture_id`, `name`, `description`, `image`) VALUES
-(1, 'Acer', 'Sennheiser has created the world’s first intuitive, compact and mobile binaural recording headset.', 'http://www.hi-techitaly.com/images/stories/news/telefonia/Acer_logo.jpg'),
+(1, 'Acer', 'Sennheiser has created the world’s first intuitive, compact and mobile binaural recording headset.', 'acer_logo.jpg'),
 (2, 'Samsung ', 'Samsung helps you discover a wide range of home electronics with cutting-edge technology including smartphones, tablets, TVs, home appliances and more.', 'samsung.jpg'),
 (5, 'Dell', 'Dell provides technology solutions, services &amp; support. Buy Laptops, Touch Screen PCs, Desktops, Servers, Storage, Monitors, Gaming &amp; Accessories.', 'dell_logo_md.gif'),
 (6, 'HP', 'Tầm nhìn của chúng tôi là sáng tạo công nghệ mang lại cuộc sống tốt đẹp hơn cho mọi người ở khắp mọi nơi—mọi cá nhân, tổ chức và mọi cộng đồng trên toàn thế giới.', 'hpi-hp-logo-pr.gif'),
@@ -140,7 +152,8 @@ INSERT INTO `manufactures` (`manufacture_id`, `name`, `description`, `image`) VA
 (10, 'LG', 'LG Electronics Inc. is a South Korean multinational electronics company headquartered in Yeouido-dong, Seoul, South Korea, and is part of the LG Group', 'LG_logo-60x60.jpg'),
 (11, 'Intel', 'Intel Corporation is an American multinational corporation and technology company headquartered in Santa Clara, California, in the Silicon Valley.', 'apple-touch-icon-60x60.png'),
 (13, 'Microsoft', 'Microsoft Corporation is an American multinational technology company with headquarters in Redmond, Washington. It develops, manufactures, licenses, supports and sells computer software, consumer ...', 'microsoft_logo.jpg'),
-(14, 'The happy goat', 'The happy goat provide all kind of toys. The chairman is Mr. Kuma.', 'thg.jpg');
+(14, 'The happy goat', 'The happy goat provide all kind of toys. The chairman is Mr. Kuma.', 'thg.jpg'),
+(16, 'Various Brand', 'Các hãng phân phối khác', 'various.jpg');
 
 -- --------------------------------------------------------
 
@@ -264,7 +277,8 @@ CREATE TABLE `products` (
   `image1` varchar(200) NOT NULL,
   `image2` varchar(200) NOT NULL,
   `image3` varchar(200) NOT NULL,
-  `image4` varchar(200) NOT NULL
+  `image4` varchar(200) NOT NULL,
+  `status` varchar(200) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -273,16 +287,18 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `category_id`, `manufacture_id`, `product_name`, `buy_price`, `sell_price`, `quantity`, `rating`, `description`, `image1`, `image2`, `image3`, `image4`) VALUES
 (2, 1, 6, 'HP Envy dv6', '12000000.00', '15000000.00', 100, '0.99', 'HP Envy dv6', 'http://localhost/megastore/assests/image/product/macbook_air_1-200x200.jpg', 'Test product', 'Test product', 'Test product'),
-(3, 1, 5, 'Dell Vostro 3560', '10000000.00', '13000000.00', 50, '0.80', 'Dell Vostro 3560', 'http://notebook.co.za/itempics/IS3543-I55200-4500-CAR.jpg', '', '', ''),
-(4, 1, 7, 'Macbook pro 2017', '30000000.00', '35000000.00', 30, '0.70', 'Macbook pro 2017', 'https://media2.vatgia.vn/pictures/thumb/200x200/2015/06/jgh1433235140.jpg', '', '', ''),
-(5, 1, 1, 'Acer eMachine e510', '9000000.00', '11000000.00', 80, '0.60', 'Acer eMachine e510', 'http://localhost/megastore/assests/image/product/macbook_air_1-200x200.jpg', '', '', ''),
-(6, 6, 7, 'iMac Retina 32\"', '30000000.00', '35000000.00', 30, '0.70', '<p><strong>Intel Core 2 Duo processor</strong></p>\n\n<p>Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.</p>\n\n<p><strong>1GB memory, larger hard drives</strong></p>\n\n<p>The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.</p>\n\n<p><strong>Sleek, 1.08-inch-thin design</strong></p>\n\n<p>MacBook makes it easy to ', 'https://www.adorama.com/images/product/acmk473la11.jpg', '', '', ''),
-(7, 6, 5, 'Dell Optiplex 780', '7000000.00', '9000000.00', 50, '0.50', 'Dell Optiplex 780', 'http://media.vatgia.vn/pictures_medium/small_krt1356433414.png', '', '', ''),
-(8, 1, 6, 'HP Spectre', '20000000.00', '24000000.00', 20, '0.90', 'HP Spectre', 'http://cdn.megabuy.com.au/images/products/medium/372/372221_med.jpg', '', '', ''),
-(9, 1, 2, 'Samsung Notebook 7', '20000000.00', '24000000.00', 20, '0.60', 'Samsung Notebook 7 Spin', 'https://images-na.ssl-images-amazon.com/images/I/51DQvs6L4BL._AA200_QL65_.jpg', '', '', ''),
-(10, 6, 6, 'HP Envy 34', '30000000.00', '33000000.00', 20, '0.90', '<p><strong>Intel Core 2 Duo processor</strong></p>  <p>Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.</p>  <p><strong>1GB memory, larger hard drives</strong></p>  <p>The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.</p>  <p><strong>Sleek, 1.08-inch-thin design</strong></p>  <p>MacBook makes it easy to ', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg', 'https://images-na.ssl-images-amazon.com/images/I/4161+ECuRKL._AA200_QL65_.jpg'),
-(11, 6, 1, 'Dell XPS Tower ', '20000000.00', '24000000.00', 20, '0.82', 'Dell XPS Tower ', 'https://www.adorama.com/images/product/dexps89109bk.jpg', '', '', ''),
-(12, 6, 13, 'Surface Studio', '30000000.00', '34000000.00', 20, '0.87', 'Surface Studio', 'http://c773974.r74.cf2.rackcdn.com/476574_266619_03_front_thumbnail.jpg', '', '', '');
+(3, 1, 5, 'Dell Vostro 3560', '10000000.00', '13000000.00', 50, '0.80', 'Dell Vostro 3560', '3056.png', '3056-2.jpg', '3056_3.jpg', '3056_4.jpg'),
+(4, 1, 7, 'Macbook pro 2017', '30000000.00', '35000000.00', 30, '0.70', 'Macbook pro 2017', 'mac_20171.jpg', 'mac_20172.jpg', 'mac_20173.jpg', 'mac_20174.jpg'),
+(5, 1, 1, 'Acer eMachine e510', '9000000.00', '11000000.00', 80, '0.60', 'Acer eMachine e510', 'E510_1.jpg', 'E510_2.jpg', 'E510_3.jpg', 'E510_4.jpg'),
+(6, 6, 7, 'iMac Retina 32', '30000000.00', '35000000.00', 30, '0.70', '&lt;p&gt;&lt;strong&gt;Intel Core 2 Duo processor&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;1GB memory, larger hard drives&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;&lt;p&gt;&lt;stron', 'imac_1.jpg', 'imac_2.jpg', 'imac_3.jpg', 'imac_4.jpg'),
+(8, 1, 6, 'HP Spectre', '20000000.00', '24000000.00', 20, '0.90', 'HP Spectre', 'spectre_1.png', 'spectre_2.png', 'spectre_3.png', 'spectre_4.jpg'),
+(9, 1, 2, 'Samsung Notebook 7', '20000000.00', '24000000.00', 20, '0.60', 'Samsung Notebook 7 Spin', 'note7_1.jpg', 'note7_2.jpg', 'note7_3.jpg', 'note7_4.jpg'),
+(10, 6, 6, 'HP Envy 34', '30000000.00', '33000000.00', 20, '0.90', '&lt;p&gt;&lt;strong&gt;Intel Core 2 Duo processor&lt;/strong&gt;&lt;/p&gt;  &lt;p&gt;Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;  &lt;p&gt;&lt;strong&gt;1GB memory, larger hard drives&lt;/strong&gt;&lt;/p&gt;  &lt;p&gt;The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;  &lt;p&gt;&', 'envy34_1.jpg', 'envy34_2.jpg', 'envy34_3.png', 'envy34_4.jpg'),
+(12, 6, 13, 'Surface Studio', '30000000.00', '34000000.00', 20, '0.87', 'Surface Studio', 'sstudio_1.jpg', 'sstudio_2.jpg', 'sstudio_3.jpg', 'sstudio_4.jpg'),
+(15, 9, 7, 'iPhone X', '30000000.00', '34800000.00', 999, '0.00', 'Iphone', 'iphonex1.jpg', 'iphonex2.jpg', 'iphonex3.jpg', 'iphonex4.jpg'),
+(16, 9, 2, 'Samsung Galaxy S8 Plus', '15000000.00', '18000000.00', 999, '0.00', 'Samsung Galaxy S8 Plus ', 'sss81.jpg', 'sss82.jpg', 'sss83.jpg', 'sss84.jpg'),
+(17, 28, 1, 'Gaming Cliptec Meteor RGS502', '150000.00', '200000.00', 444, '0.00', 'Gaming Cliptec Meteor RGS502', 'mouse_gcm1.png', 'mouse_gcm2.png', 'mouse_gcm4.jpg', 'mouse_gmc3.jpg'),
+(18, 29, 16, 'Gaming Cliptec RGK817', '8000000.00', '1000000.00', 444, '0.00', 'Gaming Cliptec RGK817', 'gcr1.jpg', 'gcr2.jpg', 'gcr3.jpg', 'gcr4.jpg');
 
 -- --------------------------------------------------------
 
@@ -468,7 +484,7 @@ ALTER TABLE `user_statuses`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `comments`
 --
@@ -488,7 +504,7 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT for table `manufactures`
 --
 ALTER TABLE `manufactures`
-  MODIFY `manufacture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `manufacture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `memberships`
 --
@@ -513,7 +529,7 @@ ALTER TABLE `order_statuses`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `users`
 --

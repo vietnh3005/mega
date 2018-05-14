@@ -2,173 +2,8 @@
     <div class="container">
       <div class="nav-inner">
         <div class="logo-small"> <a class="logo" title="Magento Commerce" href="index.php"><img alt="Magento Commerce" src="images/logo.png"></a> </div>
-        <!-- mobile-menu -->
-        <div class="hidden-desktop" id="mobile-menu">
-          <ul class="navmenu">
-            <li>
-              <div class="menutop">
-                <div class="toggle"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div>
-                <h2>Menu</h2>
-              </div>
-              <ul class="submenu">
-                <li>
-                  <ul class="topnav">
-                    <li class="level0 nav-6 level-top first parent"> <a class="level-top" href="#"> <span>Pages</span> </a>
-                      <ul class="level0">
-                        <li class="level1 first"><a href="grid.php"><span>Grid</span></a></li>
-                        <li class="level1 nav-10-2"> <a href="list.php"> <span>List</span> </a> </li>
-                        <li class="level1 nav-10-3"> <a href="product_details.php"> <span>Product Detail</span> </a> </li>
-                        <li class="level1 nav-10-4"> <a href="cart.php"> <span>Shopping Cart</span> </a> </li>
-                        <li class="level1 first"><a href="checkout.php"><span>Checkout</span></a> </li>
-                        <li class="level1 nav-10-4"> <a href="wishlist.php"> <span>Wishlist</span> </a> </li>
-                        <li class="level1"> <a href="dashboard.php"> <span>Dashboard</span> </a> </li>
-                        <li class="level1"> <a href="order.php"> <span>Orders</span> </a> </li>
-                        <li class="level1"> <a href="about_us.php"> <span>ABOUT</span> </a> </li>
-                        <li class="level1"> <a href="compare.php"> <span>Compare</span> </a> </li>
-                        <li class="level1"> <a href="faq.php"> <span>FAQ</span> </a> </li>
-                        <li class="level1"> <a href="login.php"> <span>Login</span> </a> </li>
-                        <li class="level1"> <a href="product_modal.php"> <span>Modal</span> </a> </li>
-                        <li class="level1"><a href="blog.php"><span>Blog</span></a> </li>
-                        <li class="level1"><a href="contact_us.php"><span>Contact us</span></a> </li>
-                        <li class="level1"><a href="404error.php"><span>404 Error Page</span></a> </li>
-                      </ul>
-                    </li>
-                    <li class="level0 nav-7 level-top parent"> <a class="level-top" href="grid.php"> <span>Women</span> </a>
-                      <ul class="level0">
-                        <li class="level1 nav-1-1 first parent"> <a href="grid.php"> <span>Clothing</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-1-1-1 first"> <a href="grid.php"> <span>Western Wear</span> </a> </li>
-                            <li class="level2 nav-1-1-2"> <a href="grid.php"> <span>Night Wear</span> </a> </li>
-                            <li class="level2 nav-1-1-3"> <a href="grid.php"> <span>Ethnic Wear</span> </a> </li>
-                            <li class="level2 nav-1-1-4 last"> <a href="grid.php"> <span>Designer Wear</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-1-2 parent"> <a href="grid.php"> <span>Watches</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-1-2-5 first"> <a href="grid.php"> <span>Fashion</span> </a> </li>
-                            <li class="level2 nav-1-2-6"> <a href="grid.php"> <span>Dress</span> </a> </li>
-                            <li class="level2 nav-1-2-7"> <a href="grid.php"> <span>Sports</span> </a> </li>
-                            <li class="level2 nav-1-2-8 last"> <a href="grid.php"> <span>Casual</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-1-3 parent"> <a href="grid.php"> <span>Styliest Bag</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-1-3-9 first"> <a href="grid.php"> <span>Clutch Handbags</span> </a> </li>
-                            <li class="level2 nav-1-3-10"> <a href="grid.php"> <span>Diaper Bags</span> </a> </li>
-                            <li class="level2 nav-1-3-11"> <a href="grid.php"> <span>Bags</span> </a> </li>
-                            <li class="level2 nav-1-3-12 last"> <a href="grid.php"> <span>Hobo Handbags</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-1-4 last parent"> <a href="grid.php"> <span>Material Bag</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-1-4-13 first"> <a href="grid.php"> <span>Beaded Handbags</span> </a> </li>
-                            <li class="level2 nav-1-4-14"> <a href="grid.php"> <span>Fabric Handbags</span> </a> </li>
-                            <li class="level2 nav-1-4-15"> <a href="grid.php"> <span>Handbags</span> </a> </li>
-                            <li class="level2 nav-1-4-16 last"> <a href="grid.php"> <span>Leather Handbags</span> </a> </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="level0 nav-8 level-top parent"> <a class="level-top" href="grid.php"> <span>Men</span> </a>
-                      <ul class="level0">
-                        <li class="level1 nav-2-1 first parent"> <a href="grid.php"> <span>Clothing</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-2-1-1 first"> <a href="grid.php"> <span>Casual Wear</span> </a> </li>
-                            <li class="level2 nav-2-1-2"> <a href="grid.php"> <span>Formal Wear</span> </a> </li>
-                            <li class="level2 nav-2-1-3"> <a href="grid.php"> <span>Ethnic Wear</span> </a> </li>
-                            <li class="level2 nav-2-1-4 last"> <a href="grid.php"> <span>Denims</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-2-2 parent"> <a href="grid.php"> <span>Shoes</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-2-2-5 first"> <a href="grid.php"> <span>Formal Shoes</span> </a> </li>
-                            <li class="level2 nav-2-2-6"> <a href="grid.php"> <span>Sport Shoes</span> </a> </li>
-                            <li class="level2 nav-2-2-7"> <a href="grid.php"> <span>Canvas Shoes</span> </a> </li>
-                            <li class="level2 nav-2-2-8 last"> <a href="grid.php"> <span>Leather Shoes</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-2-3 parent"> <a href="grid.php"> <span>Watches</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-2-3-9 first"> <a href="grid.php"> <span>Digital</span> </a> </li>
-                            <li class="level2 nav-2-3-10"> <a href="grid.php"> <span>Chronograph</span> </a> </li>
-                            <li class="level2 nav-2-3-11"> <a href="grid.php"> <span>Sports</span> </a> </li>
-                            <li class="level2 nav-2-3-12 last"> <a href="grid.php"> <span>Casual</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-2-4 parent"> <a href="grid.php"> <span>Jackets</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-2-4-13 first"> <a href="grid.php"> <span>Coats</span> </a> </li>
-                            <li class="level2 nav-2-4-14"> <a href="grid.php"> <span>Formal Jackets</span> </a> </li>
-                            <li class="level2 nav-2-4-15"> <a href="grid.php"> <span>Leather Jackets</span> </a> </li>
-                            <li class="level2 nav-2-4-16 last"> <a href="grid.php"> <span>Blazers</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-2-5 last parent"> <a href="grid.php"> <span>Sunglasses</span> </a>
-                          <ul class="level1">
-                            <li class="level2 nav-2-5-17 first"> <a href="grid.php"> <span>Ray Ban</span> </a> </li>
-                            <li class="level2 nav-2-5-18"> <a href="grid.php"> <span>Fasttrack</span> </a> </li>
-                            <li class="level2 nav-2-5-19"> <a href="grid.php"> <span>Police</span> </a> </li>
-                            <li class="level2 nav-2-5-20 last"> <a href="grid.php"> <span>Oakley</span> </a> </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="level0 nav-3 level-top parent"> <a href="grid.php" class="level-top"> <span>Jewellery</span> </a><em>+</em>
-                      <ul class="level0">
-                        <li class="level1 nav-3-1 first parent"> <a href="grid.php"> <span>Precious Jewellery</span> </a><em>+</em>
-                          <ul class="level1">
-                            <li class="level2 nav-3-1-1 first"> <a href="grid.php"> <span>Gitanjali</span> </a> </li>
-                            <li class="level2 nav-3-1-2"> <a href="grid.php"> <span>Tara</span> </a> </li>
-                            <li class="level2 nav-3-1-3"> <a href="grid.php"> <span>Orra</span> </a> </li>
-                            <li class="level2 nav-3-1-4 last"> <a href="grid.php"> <span>Ahilya</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-3-2 parent"> <a href="grid.php"> <span>Fashion Jewellery</span> </a><em>+</em>
-                          <ul class="level1">
-                            <li class="level2 nav-3-2-5 first"> <a href="grid.php"> <span>Earrings</span> </a> </li>
-                            <li class="level2 nav-3-2-6"> <a href="grid.php"> <span>Rings</span> </a> </li>
-                            <li class="level2 nav-3-2-7"> <a href="grid.php"> <span>Bangles &amp; Bracelets</span> </a> </li>
-                            <li class="level2 nav-3-2-8 last"> <a href="grid.php"> <span>Pendants</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-3-3 parent"> <a href="grid.php"> <span>Mens Jewellery</span> </a><em>+</em>
-                          <ul class="level1">
-                            <li class="level2 nav-3-3-9 first"> <a href="grid.php"> <span>Neck Wear</span> </a> </li>
-                            <li class="level2 nav-3-3-10"> <a href="grid.php"> <span>Cufflinks</span> </a> </li>
-                            <li class="level2 nav-3-3-11"> <a href="grid.php"> <span>Wrist Wear</span> </a> </li>
-                            <li class="level2 nav-3-3-12 last"> <a href="grid.php"> <span>Rings</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-3-4 parent"> <a href="grid.php"> <span>Designer</span> </a><em>+</em>
-                          <ul class="level1">
-                            <li class="level2 nav-3-4-13 first"> <a href="grid.php"> <span>Bbling</span> </a> </li>
-                            <li class="level2 nav-3-4-14"> <a href="grid.php"> <span>Ciana</span> </a> </li>
-                            <li class="level2 nav-3-4-15"> <a href="grid.php"> <span>Bansri</span> </a> </li>
-                            <li class="level2 nav-3-4-16 last"> <a href="grid.php"> <span>Arsya</span> </a> </li>
-                          </ul>
-                        </li>
-                        <li class="level1 nav-3-5 last parent"> <a href="grid.php"> <span>Platinum</span> </a><em>+</em>
-                          <ul class="level1">
-                            <li class="level2 nav-3-5-17 first"> <a href="grid.php"> <span>Earrings</span> </a> </li>
-                            <li class="level2 nav-3-5-18"> <a href="grid.php"> <span>Rings</span> </a> </li>
-                            <li class="level2 nav-3-5-19"> <a href="grid.php"> <span>Bangles &amp; Bracelets</span> </a> </li>
-                            <li class="level2 nav-3-5-20 last"> <a href="grid.php"> <span>Pendants</span> </a> </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="level0 nav-10 level-top "> <a class="level-top" href="blog.html"> <span>Custom</span> </a> </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <!--navmenu--> 
-        </div>
-        
-        <!--End mobile-menu -->
         <ul id="nav" class="hidden-xs">
-          <li id="nav-home" class="level0 parent drop-menu"><a href="index.html" class="active"><span>Home</span> </a>
+          <li id="nav-home" class="level0 parent drop-menu"><a href="index.html" class="active"><span>Điện thoại</span> </a>
             <ul class="level1">
               <li class="level1 first parent"><a href="../../Variation1/blue/index.html"><span>Home Version 1</span></a> </li>
               <li class="level1 first parent"><a href="../../Variation2/blue/index.html"><span>Home Version 2</span></a> </li>
@@ -179,7 +14,7 @@
               <li class="level1 parent"><a href="../../Variation1/emerald/index.html"><span>Emerald</span></a> </li>
             </ul>
           </li>
-          <li class="level0 parent drop-menu"><a href="#"><span>Pages</span> </a>
+          <li class="level0 parent drop-menu"><a href="#"><span>Laptop</span> </a>
             <ul class="level1">
               <li class="level1 first"><a href="grid.php"><span>Grid</span></a></li>
               <li class="level1 nav-10-2"> <a href="list.php"> <span>List</span> </a> </li>
@@ -203,7 +38,7 @@
               <li class="level1"><a href="404error.php"><span>404 Error Page</span></a> </li>
             </ul>
           </li>
-          <li class="level0 nav-6 level-top parent"> <a href="grid.php" class="level-top"> <span>Women</span> </a>
+          <li class="level0 nav-6 level-top parent"> <a href="grid.php" class="level-top"> <span>Phụ kiện</span> </a>
             <div class="level0-wrapper dropdown-6col">
               <div class="level0-wrapper2">
                 <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col"> 
@@ -304,7 +139,7 @@
               </div>
             </div>
           </li>
-          <li class="level0 nav-5 level-top first"> <a class="level-top" href="grid.php"> <span>Men</span> </a>
+          <li class="level0 nav-5 level-top first"> <a class="level-top" href="grid.php"> <span>Khuyến mại</span> </a>
             <div class="level0-wrapper dropdown-6col">
               <div class="level0-wrapper2">
                 <div class="nav-block nav-block-center">
@@ -432,7 +267,7 @@
               </div>
             </div>
           </li>
-          <li class="level0"> <a class="level-top" href="grid.php"><span>Jewellery</span></a>
+          <li class="level0"> <a class="level-top" href="grid.php"><span>Công nghệ</span></a>
             <div class="level0-wrapper dropdown-6col">
               <div class="level0-wrapper2">
                 <div class="nav-block nav-block-center"> 
@@ -555,7 +390,7 @@
             <!--mega menu--> 
             
           </li>
-          <li class="level0 parent drop-menu"><a href="grid.php"><span>Sub menu </span> 
+          <li class="level0 parent drop-menu"><a href="grid.php"><span>Hỏi đáp</span> 
             <!--<span class="category-label-hot">Hot</span> --> 
             </a>
             <ul class="level1">
@@ -580,7 +415,7 @@
               <li class="level1 parent"><a href="#"><span>Submenu</span></a> </li>
             </ul>
           </li>
-          <li class="nav-custom-link level0 level-top parent"> <a class="level-top" href="#"><span>Custom</span></a>
+          <li class="nav-custom-link level0 level-top parent"> <a class="level-top" href="#"><span>Hàng cũ</span></a>
             <div class="level0-wrapper custom-menu">
               <div class="header-nav-dropdown-wrapper clearer">
                 <div class="grid12-5">

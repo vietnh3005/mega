@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Polo, premium HTML5 &amp; CSS3 template</title>
+<title>Trang chủ</title>
     <?php 
           include 'views/assets/styles.php';
     ?>
@@ -54,11 +54,6 @@
     ?>
   <!-- end offer banner section --> 
     
-  <!-- Featured Slider -->
-    <?php 
-      include 'views/assets/feature.php';
-    ?>
-  <!-- End Featured Slider --> 
   <!-- promo banner section -->
     <?php 
       include 'views/assets/feature.php';
