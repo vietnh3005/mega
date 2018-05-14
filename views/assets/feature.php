@@ -1,7 +1,7 @@
 <section class="featured-pro container wow bounceInUp animated">
     <div class="slider-items-products">
       <div class="new_title center">
-        <h2>Featured Products</h2>
+        <h2>Sản phẩm nổi bật</h2>
       </div>
       <div id="featured-slider" class="product-flexslider hidden-buttons">
         <div class="slider-items slider-width-col4"> 

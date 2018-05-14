@@ -54,11 +54,6 @@
     ?>
   <!-- end offer banner section --> 
     
-  <!-- Featured Slider -->
-    <?php 
-      include 'views/assets/feature.php';
-    ?>
-  <!-- End Featured Slider --> 
   <!-- promo banner section -->
     <?php 
       include 'views/assets/feature.php';

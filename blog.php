@@ -32,7 +32,7 @@
       <div class="row">
         <div class="col-main col-sm-9">
           <div class="page-title">
-            <h2>Tin tức công nghệ</h2>
+            <h2>Blog</h2>
           </div>
           <div class="blog-wrapper" id="main">
             <div class="site-content" id="primary">
