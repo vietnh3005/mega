@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/owl.theme.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="css/blogmate.css" type="text/css">
+<link href="css/sweet-alert.css" rel="stylesheet">
 
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,300,700,800,400,600' rel='stylesheet' type='text/css'>
