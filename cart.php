@@ -29,8 +29,10 @@ header("Location: cart.php");
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Giỏ hàng</title>
+<!-- CSS and JS -->
 <?php 
 include 'views/assets/styles.php';
+include 'views/assets/scripts.php';
 ?>
 </head>
 
@@ -68,113 +70,106 @@ include 'views/assets/styles.php';
                       <th colspan="1" class="a-center">Giá</th>
                       <th class="a-center" rowspan="1">&nbsp;</th>
                     </tr>
-                  </thead>
-                  <tfoot>
-                    <tr class="first last">
-                      <td class="a-right last" colspan="7"><a href="index.php"><button class="button btn-continue" title="Continue Shopping" type="button"><span><span>Tiếp tục mua hàng</span></span></button></a>
-                        <form action="cart.php" method="post">
-                          <button class="button btn-update" title="Cập nhật giỏ hàng" name="submit" type="submit"><span><span>Cập nhật giỏ hàng</span></span></button></form>
-                          <a href="removecart.php?productid=0"><button id="empty_cart_button" class="button btn-empty" title="Clear Cart" value="empty_cart"><span><span>Xóa giỏ hàng</span></span></button></td></a>
-                        </tr>
-
-                      </tfoot>
-                      <tbody> 
-
-                       <?php if(!empty($_SESSION['cart'])){
-                        foreach($_SESSION['cart'] as $key=>$value)
-                        { 
-                         $item[]=$key; $str=implode(",",$item);
-                         $sql1="select * from products where product_id in ($str)";
-                         $presult = mysqli_query($conn,$sql1);
-                       }
-                       while($prow = mysqli_fetch_assoc($presult)) 
-                       { 
-                        ?>
-                        <tr class="first odd">
-                          <td class="image"><a class="product-image" title="Sample Product" href="#"><img width="75" alt="Sample Product" src="admin/img/products/<?php echo $prow['image1']?>"></a></td>
-                          <td><h2 class="product-name"> <a href="#"><?php echo $prow['product_name'] ?></a> </h2></td>
-                          <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
-                          <td class="a-right"><span class="cart-price"> <span class="price"><?php echo number_format($prow['sell_price']) ?></span> </span></td>
-                          <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" name="<?php qty[$prow['product_id']]?>" size="4" value="" ></td>
-                          <td class="a-right movewishlist"><span class="cart-price"> <span class="price"><?php echo number_format($_SESSION['cart'][$prow['product_id']]*$prow['sell_price']); ?></span> </span></td>
-                          <td class="a-center last"><a class="button remove-item" title="Remove item" <a href="removecart.php?productid=<?php echo $prow['product_id']; ?>"><span><span>Bỏ sản phẩm</span></span></a></td>
-                        </tr>     
-                      <?php }} ?>
-
-                    </tbody>
-                  </table>
-                </fieldset>
-              </div>
-            </div>
-            <!-- BEGIN CART COLLATERALS -->
-            <div class="cart-collaterals row  wow bounceInUp animated">
-              <div class="col-sm-6">
-                <div class="discount">
-                  <h3>Mã giảm giá</h3>
-                  <form method="post" action="#couponPost/" id="discount-coupon-form">
-                    <label for="coupon_code">Thêm mã giảm giá nếu có.</label>
-                    <input type="hidden" value="0" id="remove-coupone" name="remove">
-                    <input type="text" value="" name="coupon_code" id="coupon_code" class="input-text fullwidth">
-                    <button value="Apply Coupon" onclick="discountForm.submit(false)" class="button coupon " title="Apply Coupon" type="button"><span>Áp dụng</span></button>
-                  </form>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="totals">
-                  <h3>Giá trị đơn hàng</h3>
-                  <div class="inner">
-                    <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">
-                      <colgroup>
-                        <col>
-                        <col width="1">
-                      </colgroup>
-                      <tfoot>
-                        <tr>
-                          <td class="a-left" colspan="1"><strong>Giá cuối</strong></td>
-                          <td class="a-right"><strong><span class="price"><?php if(isset($total)){ echo number_format($total);} else echo 0;?></span></strong></td>
-                        </tr>
-                      </tfoot>
-                      <tbody>
-                        <tr>
-                          <td class="a-left" colspan="1"> Giá trị giỏ hàng </td>
-                          <td class="a-right"><span class="price"><?php if(isset($total)){ echo number_format($total);} else echo 0;?></span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <ul class="checkout">
-                      <li>
-                        <button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout" onclick="#"><span>Thanh toán</span></button>
-                      </li>
-
-
-                      <li><a href="#" title="Checkout with Multiple Addresses">Thanh toán bằng nhiều địa chỉ</a> </li>
-                      <br>
-                    </ul>
-                  </div>
-                  <!--inner--> 
-                </div>
-                <!--totals--> 
-              </div>
-              <!--cart-collaterals--> 
-
-            </div>
-            <div class="crosssel wow bounceInUp animated">
-              <?php 
-              include 'views/assets/related_product.php';
-              ?>
+                  </thead>               
+                  <tbody>
+                    <form action="cart.php" method="post"> 
+                     <?php if(!empty($_SESSION['cart'])){
+                      foreach($_SESSION['cart'] as $key=>$value)
+                      { 
+                       $item[]=$key; $str=implode(",",$item);
+                       $sql1="select * from products where product_id in ($str)";
+                       $presult = mysqli_query($conn,$sql1);
+                     }
+                     while($prow = mysqli_fetch_assoc($presult)) 
+                     { 
+                      ?>
+                      <tr class="first odd">
+                        <td class="image"><a class="product-image" title="Sample Product" href="#"><img width="75" alt="Sample Product" src="admin/img/products/<?php echo $prow['image1']?>"></a></td>
+                        <td><h2 class="product-name"> <a href="#"><?php echo $prow['product_name'] ?></a> </h2></td>
+                        <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
+                        <td class="a-right"><span class="cart-price"> <span class="price"><?php echo number_format($prow['sell_price']) ?></span> </span></td>
+                        <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Số lượng" name="qty[<?php echo $prow['product_id']; ?>]" size="4" value="<?php echo $_SESSION['cart'][$prow['product_id']]; ?>" ></td>
+                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price"><?php echo number_format($_SESSION['cart'][$prow['product_id']]*$prow['sell_price']); ?></span> </span></td>
+                        <td class="a-center last"><a class="button remove-item" title="Remove item" <a href="removecart.php?productid=<?php echo $prow['product_id']; ?>"><span><span>Bỏ sản phẩm</span></span></a></td>
+                      </tr>     
+                    <?php }} ?>
+                    <tfoot>
+                      <tr class="first last">
+                        <td class="a-right last" colspan="7"><a href="index.php"><button class="button btn-continue" title="Continue Shopping" type="button"><span><span>Tiếp tục mua hàng</span></span></button></a>
+                          <button class="button btn-update" title="Cập nhật giỏ hàng" name="submit" type="submit"><span><span>Cập nhật giỏ hàng</span></span></button>
+                        </form>
+                        <a href="removecart.php?productid=0"><button id="empty_cart_button" class="button btn-empty" title="Clear Cart" ><span><span>Xóa giỏ hàng</span></span></button></td></a>
+                      </tr>
+                    </tfoot>
+                  </tbody>
+                </table>
+              </fieldset>
             </div>
           </div>
-        </div>
-      </section>
-      <?php 
-      include 'views/assets/brand.php';
-      ?>
-      <!-- End Footer --> 
+          <!-- BEGIN CART COLLATERALS -->
+          <div class="cart-collaterals row  wow bounceInUp animated">
+            <div class="col-sm-6">
+              <div class="discount">
+                <h3>Mã giảm giá</h3>
+                <form method="post" action="#couponPost/" id="discount-coupon-form">
+                  <label for="coupon_code">Thêm mã giảm giá nếu có.</label>
+                  <input type="hidden" value="0" id="remove-coupone" name="remove">
+                  <input type="text" value="" name="coupon_code" id="coupon_code" class="input-text fullwidth">
+                  <button value="Apply Coupon" onclick="discountForm.submit(false)" class="button coupon " title="Apply Coupon" type="button"><span>Áp dụng</span></button>
+                </form>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="totals">
+                <h3>Giá trị đơn hàng</h3>
+                <div class="inner">
+                  <table id="shopping-cart-totals-table" class="table shopping-cart-table-total">
+                    <colgroup>
+                      <col>
+                      <col width="1">
+                    </colgroup>
+                    <tfoot>
+                      <tr>
+                        <td class="a-left" colspan="1"><strong>Giá cuối</strong></td>
+                        <td class="a-right"><strong><span class="price"><?php if(isset($total)){ echo number_format($total);} else echo 0;?></span></strong></td>
+                      </tr>
+                    </tfoot>
+                    <tbody>
+                      <tr>
+                        <td class="a-left" colspan="1"> Giá trị giỏ hàng </td>
+                        <td class="a-right"><span class="price"><?php if(isset($total)){ echo number_format($total);} else echo 0;?></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <ul class="checkout">
+                    <li>
+                      <a href="checkout.php"><button type="button" title="Proceed to Checkout" class="button btn-proceed-checkout" onclick="#"><span>Thanh toán</span></button></a>
+                    </li>
 
-    </div>
-    <!-- JavaScript --> 
+                    <li><a href="#" title="Checkout with Multiple Addresses">Thanh toán bằng nhiều địa chỉ</a> </li>
+                    <br>
+                  </ul>
+                </div>
+                <!--inner--> 
+              </div>
+              <!--totals--> 
+            </div>
+            <!--cart-collaterals--> 
+
+          </div>
+          <div class="crosssel wow bounceInUp animated">
+            <?php 
+            include 'views/assets/related_product.php';
+            ?>
+          </div>
+        </div>
+      </div>
+    </section>
     <?php 
-    include 'views/assets/scripts.php';
+    include 'views/assets/brand.php';
     ?>
-  </body>
-  </html>
+    <!-- End Footer --> 
+
+  </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3360
--- Generation Time: May 14, 2018 at 05:57 AM
+-- Generation Time: May 16, 2018 at 11:32 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -191,8 +191,9 @@ CREATE TABLE `orders` (
   `user_id` int(11) DEFAULT NULL,
   `total_price` decimal(15,2) NOT NULL,
   `receiver_name` varchar(100) NOT NULL,
+  `receiver_email` varchar(100) NOT NULL,
   `receiver_phone` varchar(120) NOT NULL,
-  `receiver_address` varchar(200) NOT NULL,
+  `receiver_address` varchar(500) NOT NULL,
   `description` text,
   `open_date` timestamp NULL DEFAULT NULL,
   `close_date` timestamp NULL DEFAULT NULL
@@ -277,8 +278,7 @@ CREATE TABLE `products` (
   `image1` varchar(200) NOT NULL,
   `image2` varchar(200) NOT NULL,
   `image3` varchar(200) NOT NULL,
-  `image4` varchar(200) NOT NULL,
-  `status` varchar(200) NOT NULL,
+  `image4` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

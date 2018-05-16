@@ -86,6 +86,7 @@ function user_login($username, $password){
 		header('Location: ../login.php');
 	} else {
 		$_SESSION['user'] = $username;
+		$_SESSION['user_id'] = $row['user_id'];;
 		header('Location: ../index.php');
 	}
 }

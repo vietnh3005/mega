@@ -12,7 +12,6 @@ else
 	$_SESSION['s_added'] = 'Added';
 }
 $_SESSION['cart'][$id]=$qty;
-$GLOBALS['cart'][$id]=$qty;
 header("Location: index.php");
 exit();
 ?>

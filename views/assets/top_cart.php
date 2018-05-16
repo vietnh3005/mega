@@ -86,7 +86,7 @@ if(!empty($_SESSION['cart'])){
                     ?>
                     <li class="item even"> <a class="product-image" href="#" title="Downloadable Product "><img alt="<?php $prow['product_name'] ?>" src="admin/img/products/<?php echo $prow['image1']?>" width="80"></a>
                       <div class="detail-item">
-                        <div class="product-details"> <a href="removecart.php?productid=<?php echo $prow['product_id']; ?>" title="Bỏ sản phẩm này khỏi giỏ hàng" class="glyphicon glyphicon-remove">&nbsp;</a> <a class="glyphicon glyphicon-pencil" title="Edit item" href="#">&nbsp;</a>
+                        <div class="product-details"> <a href="removecart.php?productid=<?php echo $prow['product_id']; ?>" title="Bỏ sản phẩm này khỏi giỏ hàng" class="glyphicon glyphicon-remove">&nbsp;</a> 
                           <p class="product-name"> <a href="#" title="<?php $prow['product_name'] ?>"><?php echo $prow['product_name'] ?></a> </p>
                         </div>
                         <div class="product-details-bottom"> <span class="price"><?php echo number_format($prow['sell_price']); ?></span> <span class="title-desc">Số lượng:</span> <strong><?php echo $_SESSION['cart'][$prow['product_id']]; ?></strong> </div>
