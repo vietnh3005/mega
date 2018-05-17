@@ -81,12 +81,12 @@ function user_login($username, $password){
 	$sql = "select * from users where username= '$username' and password = '$password' and status_id <>'4'";
 	$query = mysqli_query($conn, $sql);
 	$num_rows = mysqli_num_rows($query);
+	$row = mysqli_fetch_assoc($query);
 	if($num_rows == 0){
 
 		header('Location: ../login.php');
 	} else {
 		$_SESSION['user'] = $username;
-		$_SESSION['user_id'] = $row['user_id'];;
 		header('Location: ../index.php');
 	}
 }
@@ -106,6 +106,7 @@ function load_user(){
 		$sql = "select * from users where username = '".$_SESSION['user']."' ";
 		$query = mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($query);
+		$_SESSION['user_id'] = $row['user_id'];
 		$_SESSION['name'] = $row['name'];
 		$_SESSION['email'] = $row['email'];
 	}

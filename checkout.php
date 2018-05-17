@@ -270,13 +270,10 @@ include 'views/assets/styles.php';
                                  <td class="text-right"><?php echo $_SESSION['cart'][$prow['product_id']]; ?></td>
                                  <td class="text-right price"><?php echo number_format($prow['sell_price']); ?></td>
                                  <td class="text-right price"><?php echo number_format($_SESSION['cart'][$prow['product_id']]*$prow['sell_price']);
-                                  ?>
-                                    <input type="hidden" name="product_id" value="<?php echo $prow['product_id']; ?>">
-                                    <input type="hidden" name="sell_price" value="<?php echo $prow['sell_price']; ?>">
-                                    <input type="hidden" name="quantity" value="<?php echo $_SESSION['cart'][$prow['product_id']]; ?>">
-                                  </td>
-                               </tr>
-
+                                 ?>
+                               </td>
+                               <input type="hidden" name="order_details[]" value="<?php $array = array($prow['product_id'],$prow['sell_price'],$_SESSION['cart'][$prow['product_id']]); $str1 = implode(',', $array); echo $str1 ?>">
+                             </tr>
                              <?php  @$total+=$_SESSION['cart'][$prow['product_id']]*$prow['sell_price']; }} ?>
                            </tfoot>
                          </table>
@@ -295,7 +292,7 @@ include 'views/assets/styles.php';
                       <input type="hidden" name="user_id" value="<?php if(isset($_SESSION['user_id'])){ echo $_SESSION['user_id'];} else { echo '0';} ?>">
                       <input type="hidden" name="total" value="<?php echo $total/2; ?>">
                       <label class="control-label" for="confirm_agree">
-                        <input type="checkbox" checked="checked" value="1" required="" class="validate required" id="confirm_agree" name="confirm_ agree">
+                        <input type="checkbox" checked="checked" value="1" required="" class="validate required" id="confirm_agree" name="confirm_agree">
                         <span>Tôi đồng ý với  <a class="agree" href="#"><b>điều khoản sử dụng</b></a></span> </label>
                         <div class="buttons">
                           <div class="pull-right">
@@ -312,11 +309,11 @@ include 'views/assets/styles.php';
         </div>
       </div>
     </div>
-    <?php 
-    include 'views/assets/brand.php';
-    ?>
-    <!-- End Footer --> 
   </form>
+  <?php 
+  include 'views/assets/brand.php';
+  ?>
+  <!-- End Footer --> 
 </div>
 <!-- JavaScript --> 
 <?php 
