@@ -90,8 +90,8 @@ include 'views/assets/scripts.php';
     unset($_SESSION['s_removed']);
   }
   if(isset($_SESSION['o_success'] )){
-    echo "swal('Success!', 'Đã đặt hàng thành công!', 'success');";
-    unset($_SESSION['s_removed']);
+    echo "swal('Đặt hàng thành công!', 'Đơn hàng của bạn đang chờ xử lí', 'success');";
+    unset($_SESSION['o_success']);
   }
   if(isset($_SESSION['s_added'])){
     echo "swal('Success!', 'Đã thêm vào giỏ hàng!', 'success');";
