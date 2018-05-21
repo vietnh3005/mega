@@ -15,8 +15,13 @@ if($_POST)
 		$user_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_id"]));
 		$confirm_agree = mysqli_real_escape_string($conn, htmlspecialchars($_POST["confirm_agree"]));
 		$total = mysqli_real_escape_string($conn, htmlspecialchars($_POST["total"]));
-		$open_date = date_default_timezone_get();		
+		$open_date = date("Y/m/d");		
 		create_order($user_id, $total, $name, $email, $phone, $address_1, $comments, $open_date);
+	}
+	if(isset($_POST['btn_upd'])){
+		$status_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["btn_upd"]));
+		$order_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["order_id"]));
+		process_order($status_id, $order_id);
 	}
 }
 
@@ -45,3 +50,30 @@ function create_order($user_id, $total, $name, $email, $phone, $address_1, $comm
 		$_SESSION['fails'] = "fail";
 	}
 }
+
+function load_statuses(){
+	require_once '../configs/connect.php';
+	global $conn;
+	$sql = "select * from order_statuses";
+	$query = mysqli_query($conn,$sql);
+	while($row = mysqli_fetch_assoc($query)){
+		echo "<option value=" .$row['status_id']. ">" .$row['status']. "</option>";
+	}
+}
+
+function process_order($status_id, $order_id){
+	global $conn;
+	session_start();
+	$sql = "update orders
+			set status_id ='$status_id'
+			where order_id='$order_id'";
+	if(mysqli_query($conn, $sql)){	
+		header('Location: ../admin/orders_management.php');
+		$_SESSION['success'] = "success";
+	}
+	else {
+		header('Location: ../admin/orders_management.php');
+		$_SESSION['fails'] = "fail";
+	}
+}
+?>

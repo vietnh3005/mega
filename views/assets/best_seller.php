@@ -21,7 +21,7 @@
                 <div class="item">
                   <div class="col-item">
                     <div class="sale-label sale-top-right">Bán</div>
-                    <div class="product-image-area"> <a class="product-image" title="Sample Product" href="http://ow.ly/XqzNo"> <img src="admin/img/products/<?php echo $row['image1']?>" class="img-responsive" alt="product-image" /> </a>
+                    <div class="product-image-area"> <a class="product-image" title="Sample Product" href="#"> <img src="admin/img/products/<?php echo $row['image1']?>" class="" width="270px" height ="180px"/> </a>
                       <div class="hover_fly"> <a class="exclusive ajax_add_to_cart_button" href="addcart.php?item=<?php echo $row['product_id']?>" title="Add to cart">
                         <div><i class="icon-shopping-cart"></i><span>Thêm vào giỏ hàng</span></div>
                       </a> <a class="quick-view" href="quick_view.html">

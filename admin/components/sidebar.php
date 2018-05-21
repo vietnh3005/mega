@@ -38,7 +38,7 @@
             </li>
 
             <li>
-              <a href="index.php">
+              <a href="orders_management.php">
                 <i class="icon-shopping-cart"></i>
                 <span>Quản lí đơn hàng</span>
               </a>

@@ -3,17 +3,17 @@
             <div class="block-title">Tài khoản</div>
             <div class="block-content">
               <ul>
-                <li class="current"><a>Thống kê</a></li>
+                <li class=""><a>Thống kê</a></li>
                 <li><a href="profile.php">Thông tin tài khoản</a></li>
-                <li><a href="http://demo.magentomagik.com/computerstore/customer/address/">Address Book</a></li>
-                <li><a href="http://demo.magentomagik.com/computerstore/sales/order/history/">My Orders</a></li>
-                <li><a href="http://demo.magentomagik.com/computerstore/sales/billing_agreement/">Billing Agreements</a></li>
-                <li><a href="http://demo.magentomagik.com/computerstore/sales/recurring_profile/">Recurring Profiles</a></li>
-                <li><a href="http://demo.magentomagik.com/computerstore/review/customer/">My Product Reviews</a></li>
-                <li><a href="http://demo.magentomagik.com/computerstore/tag/customer/">My Tags</a></li>
-                <li><a href="http://bit.do/bromq">My Wishlist</a></li>
-                <li><a href="http://demo.magentomagik.com/computerstore/downloadable/customer/products/">My Downloadable</a></li>
-                <li class="last"><a href="http://demo.magentomagik.com/computerstore/newsletter/manage/">Newsletter Subscriptions</a></li>
+                <li><a href="#">Address Book</a></li>
+                <li><a href="#">My Orders</a></li>
+                <li><a href="#">Billing Agreements</a></li>
+                <li><a href="#">Recurring Profiles</a></li>
+                <li><a href="#">My Product Reviews</a></li>
+                <li><a href="#">My Tags</a></li>
+                <li><a href="#">My Wishlist</a></li>
+                <li><a href="#">My Downloadable</a></li>
+                <li class="last"><a href="#">Newsletter Subscriptions</a></li>
               </ul>
             </div>
           </div>

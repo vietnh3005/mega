@@ -33,6 +33,19 @@ if($_POST)
 		$address = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_address"]));
 		admin_update_user($user_id, $name, $username, $email, $password, $phone, $address);
 	}
+
+	if(isset($_POST['btn_rgt'])){
+		$avatar = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_avatar"]));
+		$name = mysqli_real_escape_string($conn, htmlspecialchars($_POST["name"]));
+		$username = mysqli_real_escape_string($conn, htmlspecialchars($_POST["username"]));
+		$phone = mysqli_real_escape_string($conn, htmlspecialchars($_POST["phone"]));
+		$email = mysqli_real_escape_string($conn, htmlspecialchars($_POST["email"]));
+		$address = mysqli_real_escape_string($conn, htmlspecialchars($_POST["addr1"]));
+		$password = mysqli_real_escape_string($conn, htmlspecialchars($_POST["password"]));
+		$confirm = mysqli_real_escape_string($conn, htmlspecialchars($_POST["confirm"]));
+		$newsletter = mysqli_real_escape_string($conn, htmlspecialchars($_POST["newsletter"]));
+		register_user($avatar, $name, $username, $phone, $email, $address, $password, $confirm);
+	}
 }
 
 if($_GET)
@@ -95,7 +108,7 @@ function user_logout()
 {	
 	if(isset($_SESSION['user']))
 	{	
-		session_destroy();
+		unset($_SESSION['user']);
 		header('Location: ../index.php');
 	}
 }
@@ -109,6 +122,7 @@ function load_user(){
 		$_SESSION['user_id'] = $row['user_id'];
 		$_SESSION['name'] = $row['name'];
 		$_SESSION['email'] = $row['email'];
+		$_SESSION['address'] = $row['address'];
 	}
 }
 
@@ -172,4 +186,27 @@ function admin_update_user($user_id, $name, $username, $email, $password, $phone
 		$_SESSION['fails'] = "fail";
 	}
 }
+
+
+function register_user($avatar, $name, $username, $phone, $email, $address, $password, $confirm){
+	global $conn;
+	session_start();
+	if($password == $confirm) {
+		$sql = "insert into users ( avatar, username, password, name, email, phone, address, point, membership_id, status_id )
+		values ('$avatar', '$username', '$password', '$name', '$email', '$phone', '$address', '0', '1', '5')";
+		if(mysqli_query($conn, $sql))	{
+		user_login($username, $password);
+		header('Location: ../account.php');
+		$_SESSION['welcome'] = "welcome";
+	}
+	else {
+		header('Location: ../register.php');
+		$_SESSION['invalid'] = "invalid";
+	}
+}
+else {
+	header('Location: ../register.php');
+	$_SESSION['invalid'] = "invalid";
+}
+}	
 ?>

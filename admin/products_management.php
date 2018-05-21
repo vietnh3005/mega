@@ -81,8 +81,8 @@ include 'components/scripts.php'; ?>
 											<td class=''><?php echo $row['quantity']?></td>
 											<td class=''><?php echo $row['rating']?></td>
 											<td class=''><div class ="text show-more-info"><?php echo $row['pdes']?></div><a href="JavaScript:Void(0);" class='show-more'> Hiện </a></td>
-											<td class=''><?php echo $row['buy_price']?></td>
-											<td class=''><?php echo $row['sell_price']?></td>
+											<td class=''><?php echo number_format($row['buy_price'])?></td>
+											<td class=''><?php echo number_format($row['sell_price'])?></td>
 											<td> 
 												<button class='btn btn-success btn-xs open_detail_modal' 
 												data-id="<?php echo $row['product_id']?>"

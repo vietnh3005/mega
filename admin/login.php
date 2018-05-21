@@ -40,36 +40,18 @@ if(isset($_SESSION['admin'])){
   <div class="container">
 
     <form class="form-signin" action='../business/userBusiness.php' method="post">
-      <h2 class="form-signin-heading">sign in now</h2>
+      <h2 class="form-signin-heading">Đăng nhập</h2>
       <div class="login-wrap">
         <input type="text" class="form-control" placeholder="User ID" name="username" id="username" autofocus>
         <input type="password" class="form-control" placeholder="Password" name="password" id="password">
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
+          <input type="checkbox" value="remember-me"> Remember
           <span class="pull-right">
-            <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+            <a data-toggle="modal" href="#myModal"> Quên mật khẩu?</a>
 
           </span>
         </label>
-        <button class="btn btn-lg btn-login btn-block" type="submit" name="admin_login" value="admin_login">Sign in</button>
-        <p>or you can sign in via social network</p>
-        <div class="login-social-link">
-          <a href="index.html" class="facebook">
-            <i class="icon-facebook"></i>
-            Facebook
-          </a>
-          <a href="index.html" class="twitter">
-            <i class="icon-twitter"></i>
-            Twitter
-          </a>
-        </div>
-        <div class="registration">
-          Don't have an account yet?
-          <a class="" href="registration.html">
-            Create an account
-          </a>
-        </div>
-
+        <button class="btn btn-lg btn-login btn-block" type="submit" name="admin_login" value="admin_login">Đăng nhập</button>
       </div>
 
       <!-- Modal -->
@@ -78,16 +60,16 @@ if(isset($_SESSION['admin'])){
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Forgot Password ?</h4>
+              <h4 class="modal-title">Quên mật khẩu ?</h4>
             </div>
             <div class="modal-body">
-              <p>Enter your e-mail address below to reset your password.</p>
+              <p>Nhập email tại đây để lấy lại mật khẩu</p>
               <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
 
             </div>
             <div class="modal-footer">
-              <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-              <button class="btn btn-success" type="button">Submit</button>
+              <button data-dismiss="modal" class="btn btn-default" type="button">Hủy bỏ</button>
+              <button class="btn btn-success" type="button">Xác nhận</button>
             </div>
           </div>
         </div>
