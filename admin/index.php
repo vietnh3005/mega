@@ -17,8 +17,7 @@ load_admin();
   <link rel="shortcut icon" href="img/favicon.png">
 
   <title>Trang chủ</title>
-  <?php  include 'components/style.php';
-  include 'components/scripts.php'; ?>
+  <?php  include 'components/style.php'; ?>
 </head>
 
 <body>
@@ -724,6 +723,7 @@ load_admin();
 </section>
 
 <!-- js placed at the end of the document so the pages load faster -->
+<script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="js/jquery.scrollTo.min.js"></script>

@@ -76,7 +76,7 @@ include 'views/assets/styles.php';
                   <fieldset id="address" class="">
                     <div class="form-group">
                       <label for="input-payment-company" class="control-label">Số nhà</label>
-                      <input type="text" class="form-control" id="input-payment-company" placeholder="Company" value="" name="company">
+                      <input type="text" class="form-control" id="input-payment-company" placeholder="Company" value="" name="Số nhà">
                     </div>
                     <div class="form-group">
                       <label for="input-payment-address-1" class="control-label">Địa chỉ 1</label>
