@@ -84,7 +84,11 @@ if(!empty($_SESSION['cart'])){
                   <?php while($prow = mysqli_fetch_assoc($presult)) 
                   { 
                     ?>
-                    <li class="item even"> <a class="product-image" href="#" title="Downloadable Product "><img alt="<?php $prow['product_name'] ?>" src="admin/img/products/<?php echo $prow['image1']?>" width="80"></a>
+                    <li class="item even">
+                      <form id="<?php echo $prow['product_id']?>" method="post" action="business/productBusiness.php">
+                        <a class="product-image" href="javascript:{}" onclick="document.getElementById('<?php echo $prow['product_id']?>').submit();"><img alt="<?php $prow['product_name'] ?>" src="admin/img/products/<?php echo $prow['image1']?>" width="80"></a> 
+                        <input type="hidden" name="pro_id" value="<?php echo $prow['product_id']?>">
+                      </form>
                       <div class="detail-item">
                         <div class="product-details"> <a href="removecart.php?productid=<?php echo $prow['product_id']; ?>" title="Bỏ sản phẩm này khỏi giỏ hàng" class="glyphicon glyphicon-remove">&nbsp;</a> 
                           <p class="product-name"> <a href="#" title="<?php $prow['product_name'] ?>"><?php echo $prow['product_name'] ?></a> </p>

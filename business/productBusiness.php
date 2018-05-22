@@ -31,13 +31,16 @@ if($_POST)
 		$pro_sprice = mysqli_real_escape_string($conn, htmlspecialchars($_POST["pro_upd_sprice"]));
 		update_product($pro_id, $pro_cat, $pro_man, $pro_name, $pro_bprice, $pro_sprice, $pro_quan, $pro_des, $pro_img1, $pro_img2, $pro_img3, $pro_img4);
 	}
+	if(isset($_POST['pro_id'])){
+		$pro_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["pro_id"]));
+		get_product_info($pro_id);
+	}
 }
 
 if($_GET)
 {	
 	require_once '../configs/connect.php';
 	if(isset($_GET['del'])){
-		require_once '../configs/connect.php';
 		$product_id = $_GET['del'];
 		del_product($product_id);
 	}
@@ -97,5 +100,24 @@ function update_product($pro_id, $pro_cat, $pro_man, $pro_name, $pro_bprice, $pr
 		header('Location: ../admin/products_management.php');
 		$_SESSION['fails'] = "fail";
 	}
+}
+
+function get_product_info($pro_id){
+	global $conn;
+	session_start();
+	$sql = "select * from products p, categories c, manufactures m where p.product_id = '$pro_id' and p.category_id = c.category_id and p.manufacture_id = m.manufacture_id";
+	$query = mysqli_query($conn,$sql);
+	$row = mysqli_fetch_assoc($query);
+	header('Location: ../product_details.php');
+	$_SESSION['pro_id'] = $row['product_id'];
+	$_SESSION['pro_name'] = $row['product_name'];
+	$_SESSION['pro_sell_price'] = $row['sell_price'];
+	$_SESSION['pro_quantity'] = $row['quantity'];
+	$_SESSION['pro_rating'] = $row['rating'];
+	$_SESSION['pro_des'] = $row['description'];
+	$_SESSION['img1'] = $row['image1'];
+	$_SESSION['img2'] = $row['image2'];
+	$_SESSION['img3'] = $row['image3'];
+	$_SESSION['img4'] = $row['image4'];
 }
 ?>

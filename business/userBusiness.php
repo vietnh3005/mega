@@ -1,20 +1,22 @@
 <?php
 if($_POST)
 {	
-	require_once '../configs/connect.php';
 	if(isset($_POST['admin_login'])){
+		require_once '../configs/connect.php';
 		session_start();
 		$username = mysqli_real_escape_string($conn, htmlspecialchars($_POST["username"]));
 		$password = mysqli_real_escape_string($conn, htmlspecialchars($_POST["password"]));
 		admin_login($username, $password);
 	} 
 	if(isset($_POST['user_login'])){
+		require_once '../configs/connect.php';
 		session_start();
 		$username = mysqli_real_escape_string($conn, htmlspecialchars($_POST["username"]));
 		$password = mysqli_real_escape_string($conn, htmlspecialchars($_POST["password"]));
 		user_login($username, $password);
 	}
 	if(isset($_POST['admin_create_user'])){
+		require_once '../configs/connect.php';
 		$name = mysqli_real_escape_string($conn, htmlspecialchars($_POST["name"]));
 		$username = mysqli_real_escape_string($conn, htmlspecialchars($_POST["username"]));
 		$email = mysqli_real_escape_string($conn, htmlspecialchars($_POST["email"]));
@@ -24,6 +26,7 @@ if($_POST)
 		admin_create_user($name, $username, $email, $password, $phone, $address);
 	}
 	if(isset($_POST['admin_update_user'])){
+		require_once '../configs/connect.php';
 		$user_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_user_id"]));
 		$name = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_name"]));
 		$username = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_upd_username"]));
@@ -35,6 +38,7 @@ if($_POST)
 	}
 
 	if(isset($_POST['btn_rgt'])){
+		require_once '../configs/connect.php';
 		$avatar = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_avatar"]));
 		$name = mysqli_real_escape_string($conn, htmlspecialchars($_POST["name"]));
 		$username = mysqli_real_escape_string($conn, htmlspecialchars($_POST["username"]));
@@ -45,6 +49,10 @@ if($_POST)
 		$confirm = mysqli_real_escape_string($conn, htmlspecialchars($_POST["confirm"]));
 		$newsletter = mysqli_real_escape_string($conn, htmlspecialchars($_POST["newsletter"]));
 		register_user($avatar, $name, $username, $phone, $email, $address, $password, $confirm);
+	}
+
+	if(isset($_POST['pro_id'])){
+		require_once 'configs/connect.php';
 	}
 }
 
