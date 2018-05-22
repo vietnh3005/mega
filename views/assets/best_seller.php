@@ -21,7 +21,13 @@
                 <div class="item">
                   <div class="col-item">
                     <div class="sale-label sale-top-right">Bán</div>
-                    <div class="product-image-area"> <a class="product-image" title="Sample Product" href="#"> <img src="admin/img/products/<?php echo $row['image1']?>" class="" width="270px" height ="180px"/> </a>
+                    <div class="product-image-area"> 
+
+                      <form id="<?php echo $row['product_id']?>" method="post" action="business/productBusiness.php">
+                        <a class="product-image" title="Sample Product" href="javascript:{}" onclick="document.getElementById('<?php echo $row['product_id']?>').submit();"> <img src="admin/img/products/<?php echo $row['image1']?>" class="" width="270px" height ="180px"/> </a>
+                        <input type="hidden" name="pro_id" value="<?php echo $row['product_id']?>">
+                      </form>
+
                       <div class="hover_fly"> <a class="exclusive ajax_add_to_cart_button" href="addcart.php?item=<?php echo $row['product_id']?>" title="Add to cart">
                         <div><i class="icon-shopping-cart"></i><span>Thêm vào giỏ hàng</span></div>
                       </a> <a class="quick-view" href="quick_view.html">
@@ -50,7 +56,7 @@
                         <!--item-content--> 
                       </div>
                       <!--info-inner-->
-                      
+
                       <div class="clearfix"> </div>
                     </div>
                   </div>

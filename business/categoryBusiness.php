@@ -1,25 +1,28 @@
 <?php
 if($_POST)
 {	
-	require_once '../configs/connect.php';
 	if(isset($_POST['new_cat'])){
+		require_once '../configs/connect.php';
 		$cat_name = mysqli_real_escape_string($conn, htmlspecialchars($_POST["cat_insr_name"]));
 		$cat_des = mysqli_real_escape_string($conn, htmlspecialchars($_POST["cat_insr_des"]));
 		create_category($cat_name, $cat_des);
 	}
 	if(isset($_POST['update_cat'])){
+		require_once '../configs/connect.php';
 		$cat_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["cat_upd_id"]));
 		$cat_name = mysqli_real_escape_string($conn, htmlspecialchars($_POST["cat_upd_name"]));
 		$cat_des = mysqli_real_escape_string($conn, htmlspecialchars($_POST["cat_upd_des"]));
 		update_category($cat_id, $cat_name, $cat_des);
 	}
+	if(isset($_POST['pro_id'])){
+		require_once 'configs/connect.php';
+	}
 }
 
 if($_GET)
 {	
-	require_once '../configs/connect.php';
+	require '../configs/connect.php';
 	if(isset($_GET['del'])){
-		require_once '../configs/connect.php';
 		$category_id = $_GET['del'];
 		del_category($category_id);
 	}
