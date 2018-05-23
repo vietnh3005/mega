@@ -77,7 +77,7 @@ include 'components/scripts.php'; ?>
 												<td><?php echo $row['description']?></td>
 												<td><?php echo number_format($row['total_price'])?></td>
 												<td><?php echo $row['open_date']?></td>
-												<input name="order_id"  type="hidden" />
+												<input name="order_id" type="hidden" value="<?php echo $row['order_id']?>"/>
 												<td><select name="btn_upd" class="btn_upd"><?php load_statuses()?></select><td> 
 													<button type="submit" class='btn btn-success btn-xs open_update_modal'><i class='glyphicon glyphicon-refresh'></i></button>
 												</td>

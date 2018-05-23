@@ -135,7 +135,12 @@ $row = mysqli_fetch_assoc($query);
         unset($_SESSION['success']);
       }
       if(isset($_SESSION['fails'])){
+        echo "swal('Thất bại!', 'Thao tác thất bại!', 'warning');";
         unset($_SESSION['fails']);
+      }
+      if(isset($_SESSION['d_fails'])){
+        echo "swal('Thất bại!', 'Không thể xóa quản trị viên cấp cao!', 'warning');";
+        unset($_SESSION['d_fails']);
       }
       ?>
     </script>
