@@ -163,28 +163,36 @@ function admin_create_user($name, $username, $email, $password, $phone, $address
 function del_user($user_id){
 	global $conn;
 	session_start();
-	$sql = "delete from users where user_id = '$user_id' ";
-	if(mysqli_query($conn, $sql)){
-		header('Location: ../admin/users_management.php');
-		$_SESSION['success'] = "success";
+	if($user_id != 4){
+		$sql = "delete from users where user_id = '$user_id' ";
+		if(mysqli_query($conn, $sql)){
+			header('Location: ../admin/users_management.php');
+			$_SESSION['success'] = "success";
+		}
+		else {
+			header('Location: ../admin/users_management.php');
+			$_SESSION['fails'] = "fail";
+		}
 	}
 	else {
 		header('Location: ../admin/users_management.php');
-		$_SESSION['fails'] = "fail";
+		$_SESSION['d_fails'] = "fail";
 	}
+
+
 }
 
 function admin_update_user($user_id, $name, $username, $email, $password, $phone, $address){
 	global $conn;
 	session_start();
 	$sql = "update users
-			set username ='$username',
-				name = '$name',
-				password='$password',
-				email='$email',
-				phone= '$phone',
-				address ='$address'
-			where user_id='$user_id'";
+	set username ='$username',
+	name = '$name',
+	password='$password',
+	email='$email',
+	phone= '$phone',
+	address ='$address'
+	where user_id='$user_id'";
 	if(mysqli_query($conn, $sql)){	
 		header('Location: ../admin/users_management.php');
 		$_SESSION['success'] = "success";
@@ -203,18 +211,18 @@ function register_user($avatar, $name, $username, $phone, $email, $address, $pas
 		$sql = "insert into users ( avatar, username, password, name, email, phone, address, point, membership_id, status_id )
 		values ('$avatar', '$username', '$password', '$name', '$email', '$phone', '$address', '0', '1', '5')";
 		if(mysqli_query($conn, $sql))	{
-		user_login($username, $password);
-		header('Location: ../account.php');
-		$_SESSION['welcome'] = "welcome";
+			user_login($username, $password);
+			header('Location: ../account.php');
+			$_SESSION['welcome'] = "welcome";
+		}
+		else {
+			header('Location: ../register.php');
+			$_SESSION['invalid'] = "invalid";
+		}
 	}
 	else {
 		header('Location: ../register.php');
 		$_SESSION['invalid'] = "invalid";
 	}
-}
-else {
-	header('Location: ../register.php');
-	$_SESSION['invalid'] = "invalid";
-}
 }	
 ?>

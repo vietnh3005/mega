@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once 'configs/connect.php';
+$sql = "select * from comments where status_id ='1' and product_id='".$_SESSION['pro_id']."' ";
+$query = mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,7 +127,7 @@ include 'views/assets/scripts.php';
                       <div class="box-collateral box-reviews" id="customer-reviews">
                         <div class="box-reviews1">
                           <div class="form-add">
-                            <form id="review-form" method="post" action="#">
+                            <form id="review-form" method="post" action="business/commentBusiness.php">
                               <h3>Viết đánh giá của bạn</h3>
                               <fieldset>
                                 <h4>Bạn nhận xét sản phẩm này như thế nào? <em class="required">*</em></h4>
@@ -172,16 +174,29 @@ include 'views/assets/scripts.php';
                                 <input type="hidden" value="" class="validate-rating" name="validate_rating">
                                 <div class="review1">
                                   <ul class="form-list">
-                                    <li>
-                                      <label class="required" for="nickname_field">Nickname<em>*</em></label>
-                                      <div class="input-box">
-                                        <input type="text" class="input-text required-entry" id="nickname_field" name="nickname">
-                                      </div>
-                                    </li>
+                                    <?php if (isset($_SESSION['user'])) { ?>
+                                      <li>
+                                        <label class="required" for="nickname_field">Tên<em>*</em></label>
+                                        <div class="input-box">
+                                          <input type="text" class="input-text required-entry" id="name" name="cm_name" value="<?php echo $_SESSION['user'];?>" disabled>
+                                          <input type="hidden" name="cm_name" value="<?php echo $_SESSION['user'];?>">
+                                          <input type="hidden" name="cm_user_id" value="<?php echo $_SESSION['user_id'];?>">
+                                        </div>
+                                      </li>
+                                    <?php } else {?>
+                                      <li>
+                                        <label class="required" for="nickname_field">Tên<em>*</em></label>
+                                        <div class="input-box">
+                                          <input type="text" class="input-text required-entry" id="name" name="cm_name" required>
+                                          <input type="hidden" name="cm_user_id" value="0">
+                                        </div>
+                                      </li>
+                                    <?php } ?>
+                                    <input type="hidden" name="rev_pro_id" value="<?php echo $_SESSION['pro_id']?>">
                                     <li>
                                       <label class="required" for="summary_field">Tóm tắt<em>*</em></label>
                                       <div class="input-box">
-                                        <input type="text" class="input-text required-entry" id="summary_field" name="title">
+                                        <input type="text" class="input-text required-entry" id="summary_field" name="short_content" required>
                                       </div>
                                     </li>
                                   </ul>
@@ -191,79 +206,70 @@ include 'views/assets/scripts.php';
                                     <li>
                                       <label class="label-wide" for="review_field">Đánh giá<em>*</em></label>
                                       <div class="input-box">
-                                        <textarea class="required-entry" rows="3" cols="5" id="review_field" name="detail"></textarea>
+                                        <textarea class="required-entry" rows="3" cols="5" id="review_field" name="detail_content" required></textarea>
                                       </div>
                                     </li>
                                   </ul>
                                   <div class="buttons-set">
-                                    <button class="button submit" title="Submit Review" type="submit"><span>Gửi đánh giá</span></button>
+                                    <button class="button submit" type="submit" name="cmt_submit"><span>Gửi đánh giá</span></button>
                                   </div>
                                 </div>
                               </fieldset>
                             </form>
+
                           </div>
                         </div>
                         <div class="box-reviews2">
                           <h3>Đánh giá của khách hàng</h3>
                           <div class="box visible">
                             <ul>
-                              <li>
-                                <table class="ratings-table">
-
-                                  <tbody>
-                                    <tr>
-                                      <th>Value</th>
-                                      <td><div class="rating-box">
-                                        <div class="rating"></div>
-                                      </div></td>
-                                    </tr>
-                                    <tr>
-                                      <th>Quality</th>
-                                      <td><div class="rating-box">
-                                        <div class="rating"></div>
-                                      </div></td>
-                                    </tr>
-                                    <tr>
-                                      <th>Price</th>
-                                      <td><div class="rating-box">
-                                        <div class="rating"></div>
-                                      </div></td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                                <div class="review">
-                                  <h6><a href="#/catalog/product/view/id/59/">Nicely</a></h6>
-                                  <small>Review by <span>Anthony  Lewis</span>on 1/3/2014 </small>
-                                  <div class="review-txt"> Unbeatable service and selection. This store has the best business model I have seen on the net. They are true to their word, and go the extra mile for their customers. I felt like a purchasing partner more than a customer. You have a lifetime client in me. </div>
-                                </div>
-                              </li>
-                            </ul>
+                              <?php while($row = mysqli_fetch_assoc($query)) 
+                              { 
+                                ?>
+                                <li>
+                                  <div class="review">
+                                    <h6><a href="#"><?php echo $row['short_review']?></a></h6>
+                                    <small>Đánh giá bởi <span><?php echo $row['reviewer']?></span> vào <?php echo $row['create_at']?> </small>
+                                    <div class="review-txt"><?php echo $row['content']?></div>
+                                  </div>
+                                </li>
+                              <?php } ?>
+                              </ul>
+                            </div>
+                            <div class="actions"> <a class="button view-all" id="revies-button"><span><span>Xem thêm</span></span></a> </div>
                           </div>
-                          <div class="actions"> <a class="button view-all" id="revies-button"><span><span>View all</span></span></a> </div>
+                          <div class="clear"></div>
                         </div>
-                        <div class="clear"></div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-sm-12">
-                  <?php 
-                  include 'views/assets/related_product.php';
-                  include 'views/assets/upsell.php';
-                  ?>       
+                  <div class="col-sm-12">
+                    <?php 
+                    include 'views/assets/related_product.php';
+                    include 'views/assets/upsell.php';
+                    ?>       
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <?php 
-  include 'views/assets/brand.php';
-  ?>
-  <!-- End Footer --> 
-  
-</div>
+    </section>
+    <?php 
+    include 'views/assets/brand.php';
+    ?>
+    <!-- End Footer --> 
+
+  </div>
 </body>
 </html>
+
+<script>
+  <?php
+  if(isset($_SESSION['success'] )){
+    echo "swal('Thank you!', 'Cảm ơn về phản hồi của bạn', 'success');";
+    unset($_SESSION['success']);
+  }
+  ?>
+</script>

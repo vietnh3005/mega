@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3360
--- Generation Time: May 16, 2018 at 11:32 AM
+-- Generation Time: May 23, 2018 at 12:30 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -46,7 +46,7 @@ INSERT INTO `categories` (`category_id`, `category_name`, `description`) VALUES
 (11, 'Linh kiện laptop', 'Linh kiện laptop'),
 (12, 'Video graphics card', 'Video graphics card'),
 (13, 'RAM', 'RAM'),
-(14, 'CPU', 'CPU'),
+(14, 'CPU', 'CPU Máy tính'),
 (15, 'HDD', 'HDD'),
 (23, 'Pin sạc dự phòng', 'Pin sạc dự phòng'),
 (24, 'Cáp sạc', 'Cáp sạc cho máy điện thoại'),
@@ -70,7 +70,9 @@ INSERT INTO `categories` (`category_id`, `category_name`, `description`) VALUES
 CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `reviewer` varchar(200) NOT NULL,
   `product_id` int(11) NOT NULL,
+  `short_review` varchar(100) NOT NULL,
   `content` varchar(500) DEFAULT NULL,
   `status_id` int(11) NOT NULL,
   `create_at` datetime DEFAULT NULL
@@ -80,9 +82,13 @@ CREATE TABLE `comments` (
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`comment_id`, `user_id`, `product_id`, `content`, `status_id`, `create_at`) VALUES
-(1, 1, 1, 'test 1', 1, '2017-11-11 00:00:00'),
-(2, 1, 1, 'test 2', 1, '2017-11-12 00:00:00');
+INSERT INTO `comments` (`comment_id`, `user_id`, `reviewer`, `product_id`, `short_review`, `content`, `status_id`, `create_at`) VALUES
+(4, 0, 'Archer', 6, 'Good', '1', 2, '2018-05-23 00:00:00'),
+(5, 0, 'Archer', 10, 'Good', 'Good', 2, '2018-05-23 00:00:00'),
+(6, 0, 'Việt', 10, 'Tốt', 'Sản phẩm tương đối tốt, giá cả tương đối hợp lí, cần thêm sốt cà chua.', 1, '2018-05-23 00:00:00'),
+(7, 0, 'Kuma Bear', 10, 'Tạm được', 'Tạm được, cần thêm nhiều sốt cà chua.', 1, '2018-05-23 00:00:00'),
+(9, 1, 'vietnh', 8, 'Shiroguma', 'Một ngày bình luận cùn shiroguma. Sản phẩm không thực sự tốt.', 1, '2018-05-23 00:00:00'),
+(10, 1, 'vietnh', 3, 'Cũ quá', 'Măt hàng hơi cũ, hết hạn bảo hành', 1, '2018-05-23 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -100,8 +106,9 @@ CREATE TABLE `comment_statuses` (
 --
 
 INSERT INTO `comment_statuses` (`status_id`, `status`) VALUES
-(1, 'Actived'),
-(2, 'Disabled');
+(1, 'New'),
+(2, 'Disabled'),
+(3, 'Actived');
 
 -- --------------------------------------------------------
 
@@ -111,8 +118,12 @@ INSERT INTO `comment_statuses` (`status_id`, `status`) VALUES
 
 CREATE TABLE `discounts` (
   `discount_id` int(11) NOT NULL,
+  `discount_code` varchar(100) NOT NULL,
   `description` varchar(200) NOT NULL,
   `discount_rating` decimal(2,2) NOT NULL,
+  `discount_value` bigint(20) NOT NULL,
+  `discount_type` int(11) NOT NULL,
+  `on_product` int(11) NOT NULL,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -121,8 +132,19 @@ CREATE TABLE `discounts` (
 -- Dumping data for table `discounts`
 --
 
-INSERT INTO `discounts` (`discount_id`, `description`, `discount_rating`, `date_start`, `date_end`) VALUES
-(1, 'test', '0.50', '2017-12-14', '2017-12-14');
+INSERT INTO `discounts` (`discount_id`, `discount_code`, `description`, `discount_rating`, `discount_value`, `discount_type`, `on_product`, `date_start`, `date_end`) VALUES
+(1, '', 'test', '0.50', 0, 0, 0, '2017-12-14', '2017-12-14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount_types`
+--
+
+CREATE TABLE `discount_types` (
+  `type_id` int(11) NOT NULL,
+  `type` varchar(200) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32;
 
 -- --------------------------------------------------------
 
@@ -203,10 +225,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `status_id`, `user_id`, `total_price`, `receiver_name`, `receiver_phone`, `receiver_address`, `description`, `open_date`, `close_date`) VALUES
-(27, 1, 1, '52800000.00', 'vietbkpro', '098888888', 'test', '', '1999-11-08 17:19:18', '2009-11-08 17:19:18'),
-(29, 1, 1, '184800000.00', 'vietbkpro', '098888888', 'test', 'rẻ quá', '2017-05-25 19:11:24', NULL),
-(30, 1, 1, '52800000.00', 'vietbkpro', '098888888', 'test', '', '2017-05-31 12:44:13', NULL);
+INSERT INTO `orders` (`order_id`, `status_id`, `user_id`, `total_price`, `receiver_name`, `receiver_email`, `receiver_phone`, `receiver_address`, `description`, `open_date`, `close_date`) VALUES
+(135, 1, 1, '25400000.00', '', '', '', '', '', '0000-00-00 00:00:00', NULL),
+(136, 1, 1, '25400000.00', '', '', '', '', '', '0000-00-00 00:00:00', NULL),
+(137, 2, 0, '59000000.00', 'Seigfried', 'sieg@gmail.com', '0192837459', 'Midgard', 'Giao hàng trong ngày', '0000-00-00 00:00:00', NULL),
+(138, 1, 1, '15000000.00', '', '', '', '', '', '2018-05-20 17:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -227,15 +250,15 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `unit_price`, `unit_quantity`) VALUES
-(28, 29, 10, '33000000.00', 1),
-(29, 29, 9, '24000000.00', 1),
-(30, 29, 8, '24000000.00', 1),
-(31, 29, 5, '11000000.00', 1),
-(32, 29, 4, '35000000.00', 1),
-(33, 29, 3, '13000000.00', 2),
-(34, 29, 2, '15000000.00', 1),
-(35, 30, 2, '15000000.00', 1),
-(36, 30, 10, '33000000.00', 1);
+(62, 135, 8, '24000000.00', 1),
+(63, 135, 17, '200000.00', 2),
+(64, 135, 18, '1000000.00', 1),
+(65, 136, 8, '24000000.00', 1),
+(66, 136, 17, '200000.00', 2),
+(67, 136, 18, '1000000.00', 1),
+(68, 137, 4, '35000000.00', 1),
+(69, 137, 8, '24000000.00', 1),
+(70, 138, 2, '15000000.00', 1);
 
 -- --------------------------------------------------------
 
@@ -354,12 +377,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `avatar`, `username`, `password`, `name`, `email`, `phone`, `address`, `point`, `membership_id`, `status_id`) VALUES
+(0, '', '', '', '', '', '', '', NULL, NULL, 2),
 (1, 'user.jpg', 'vietnh', '123456', 'vietbkpro', 'vietbkpro@hust.edu.vn', '098888888', 'test', 0, 1, 1),
 (4, 'img/chat-avatar2.jpg', 'admin', 'admin', 'Siegfried', 'siegfried@gmail.com', '01675899424', 'Ireland', 90, 1, 4),
-(5, '', 'vietnh3001', '1', 'Cu Chulain', 'cu@gmail.com', '01675899494', 'Ireland', 1, 5, 5),
 (6, '', 'rei', 'rei', 'Rei', 'rei@gmail.com', '01928755814', 'Rei', 0, 1, 5),
 (7, '', 'hei', 'hei', 'Hei', 'hei@gmail.com', '01928755814', 'Rei', 0, 1, 5),
-(8, '', 'lee', 'lee', 'Lee Shengshun', 'lee@gmail.com', '01928755814', 'DTB', 0, 1, 5);
+(8, '', 'lee', 'lee', 'Lee Shengshun', 'lee@gmail.com', '01928755814', 'DTB', 0, 1, 5),
+(12, 'thg.jpg', 'goat', '12345', 'The most wanted goat', 'goat@gmail.com', '019384575834', '120 Goat Cage', 0, 1, 5),
+(14, '', 'miu', '1', 'Miu', 'miu@gmail.com', '01928475638', 'Just the other place', 0, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -399,7 +424,10 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
-  ADD UNIQUE KEY `comment_id` (`comment_id`);
+  ADD UNIQUE KEY `comment_id` (`comment_id`),
+  ADD KEY `comments_ibfk_1` (`user_id`),
+  ADD KEY `comments_ibfk_2` (`product_id`),
+  ADD KEY `comments_ibfk_3` (`status_id`);
 
 --
 -- Indexes for table `comment_statuses`
@@ -414,6 +442,12 @@ ALTER TABLE `comment_statuses`
 ALTER TABLE `discounts`
   ADD PRIMARY KEY (`discount_id`),
   ADD UNIQUE KEY `discount_id` (`discount_id`);
+
+--
+-- Indexes for table `discount_types`
+--
+ALTER TABLE `discount_types`
+  ADD PRIMARY KEY (`type_id`);
 
 --
 -- Indexes for table `manufactures`
@@ -489,17 +523,22 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `comment_statuses`
 --
 ALTER TABLE `comment_statuses`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
   MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `discount_types`
+--
+ALTER TABLE `discount_types`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `manufactures`
 --
@@ -514,12 +553,12 @@ ALTER TABLE `memberships`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `order_statuses`
 --
@@ -534,7 +573,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `user_statuses`
 --
@@ -543,6 +582,14 @@ ALTER TABLE `user_statuses`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  ADD CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `comment_statuses` (`status_id`);
 
 --
 -- Constraints for table `orders`

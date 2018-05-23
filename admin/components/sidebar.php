@@ -52,7 +52,7 @@
             </li>
 
             <li>
-              <a href="index.php">
+              <a href="comments_management.php">
                 <i class="icon-comments-alt"></i>
                 <span>Quản lí bình luận</span>
               </a>
