@@ -1,4 +1,5 @@
 <?php
+include '../business/sendmessageBusiness.php';
 if($_POST)
 {	
 	require_once '../configs/connect.php';
@@ -21,7 +22,8 @@ if($_POST)
 	if(isset($_POST['btn_upd'])){
 		$status_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["btn_upd"]));
 		$order_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["order_id"]));
-		process_order($status_id, $order_id);
+		$user_id = mysqli_real_escape_string($conn, htmlspecialchars($_POST["user_id"]));
+		process_order($status_id, $order_id, $user_id);
 	}
 }
 
@@ -42,6 +44,8 @@ function create_order($user_id, $total, $name, $email, $phone, $address_1, $comm
 			$query = mysqli_query($conn,$sql1);
 		}
 		header('Location: ../index.php');
+		$status_id = 1
+		send_message($user_id, $status_id);
 		$_SESSION['o_success'] = "success";
 		unset($_SESSION['cart']);
 	}
@@ -61,7 +65,7 @@ function load_statuses(){
 	}
 }
 
-function process_order($status_id, $order_id){
+function process_order($status_id, $order_id, $user_id){
 	global $conn;
 	session_start();
 	$sql = "update orders
@@ -69,6 +73,7 @@ function process_order($status_id, $order_id){
 			where order_id='$order_id'";
 	if(mysqli_query($conn, $sql)){	
 		header('Location: ../admin/orders_management.php');
+		send_message($user_id, $status_id);
 		$_SESSION['success'] = "success";
 	}
 	else {

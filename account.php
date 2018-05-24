@@ -75,7 +75,7 @@ include 'views/assets/styles.php';
                           <td><?php echo $row['receiver_address']?></td>
                           <td><span class="price"><?php echo number_format($row['total_price'])?></span></td>
                           <td><em><?php echo $row['status']?></em></td>
-                          <td class="a-center last"><span class="nobr"> <a href="#">View Order</a> <span class="separator">|</span> <a href="#">Reorder</a> </span></td>
+                          <td class="a-center last"><span class="nobr"> <a href="#">Xem</a> <span class="separator">|</span> <a href="#">Đặt lại</a> </span></td>
                         </tr>
                         <?php } ?>
                       </tbody>

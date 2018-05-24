@@ -13,6 +13,7 @@
               <a href="users_management.php">
                 <i class="icon-group"></i>
                 <span>Quản lí người dùng</span>
+                <span class="label label-danger pull-right mail-info">2</span>
               </a>
             </li>
 
@@ -41,6 +42,7 @@
               <a href="orders_management.php">
                 <i class="icon-shopping-cart"></i>
                 <span>Quản lí đơn hàng</span>
+                <span class="label label-danger pull-right mail-info">2</span>
               </a>
             </li>
 
@@ -55,6 +57,15 @@
               <a href="comments_management.php">
                 <i class="icon-comments-alt"></i>
                 <span>Quản lí bình luận</span>
+                <span class="label label-danger pull-right mail-info">2</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="messages_management.php">
+                <i class="icon-envelope"></i>
+                <span>Quản lí tin nhắn</span>
+                <span class="label label-danger pull-right mail-info">2</span>
               </a>
             </li>
 
