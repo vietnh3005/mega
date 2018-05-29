@@ -1,10 +1,14 @@
 <?php session_start();
 require '../configs/connect.php';
 include '../business/userBusiness.php';
+include '../business/commonBusiness.php';
 if(!isset($_SESSION['admin'])){
   header('Location: login.php');
 } 
 load_admin();
+count_new_user();
+count_new_order();
+count_new_comment();
 ?>  
 <!DOCTYPE html>
 <html lang="en">
