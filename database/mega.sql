@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3360
--- Generation Time: May 23, 2018 at 12:30 PM
+-- Generation Time: May 29, 2018 at 04:32 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -204,6 +204,49 @@ INSERT INTO `memberships` (`membership_id`, `membership_title`, `discount_rating
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `message_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `content` varchar(2000) CHARACTER SET utf8 NOT NULL,
+  `status_id` int(11) NOT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
+  `created_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`message_id`, `receiver_id`, `title`, `content`, `status_id`, `is_deleted`, `created_date`) VALUES
+(1, 1, 'Đang chờ xử lí', 'Đơn hàng của bạn hiện đang chờ xử lí', 1, 0, '2018-05-24'),
+(2, 0, 'Đang chuyển hàng', 'Đơn hàng của bạn sẽ được chuyển đến trong thời gian sớm nhất', 1, 0, '2018-05-24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message_status`
+--
+
+CREATE TABLE `message_status` (
+  `status_id` int(11) NOT NULL,
+  `status` varchar(200) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32;
+
+--
+-- Dumping data for table `message_status`
+--
+
+INSERT INTO `message_status` (`status_id`, `status`) VALUES
+(1, 'New'),
+(2, 'Read');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -228,7 +271,7 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_id`, `status_id`, `user_id`, `total_price`, `receiver_name`, `receiver_email`, `receiver_phone`, `receiver_address`, `description`, `open_date`, `close_date`) VALUES
 (135, 1, 1, '25400000.00', '', '', '', '', '', '0000-00-00 00:00:00', NULL),
 (136, 1, 1, '25400000.00', '', '', '', '', '', '0000-00-00 00:00:00', NULL),
-(137, 2, 0, '59000000.00', 'Seigfried', 'sieg@gmail.com', '0192837459', 'Midgard', 'Giao hàng trong ngày', '0000-00-00 00:00:00', NULL),
+(137, 3, 0, '59000000.00', 'Seigfried', 'sieg@gmail.com', '0192837459', 'Midgard', 'Giao hàng trong ngày', '0000-00-00 00:00:00', NULL),
 (138, 1, 1, '15000000.00', '', '', '', '', '', '2018-05-20 17:00:00', NULL);
 
 -- --------------------------------------------------------
@@ -464,6 +507,20 @@ ALTER TABLE `memberships`
   ADD UNIQUE KEY `membership_id` (`membership_id`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_id`),
+  ADD KEY `messages_ibfk_1` (`receiver_id`),
+  ADD KEY `messages_ibfk_2` (`status_id`);
+
+--
+-- Indexes for table `message_status`
+--
+ALTER TABLE `message_status`
+  ADD PRIMARY KEY (`status_id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -528,7 +585,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `comment_statuses`
 --
 ALTER TABLE `comment_statuses`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `discounts`
 --
@@ -549,6 +606,16 @@ ALTER TABLE `manufactures`
 --
 ALTER TABLE `memberships`
   MODIFY `membership_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `message_status`
+--
+ALTER TABLE `message_status`
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `orders`
 --
@@ -573,7 +640,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `user_statuses`
 --
@@ -590,6 +657,13 @@ ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
   ADD CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `comment_statuses` (`status_id`);
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `message_status` (`status_id`);
 
 --
 -- Constraints for table `orders`

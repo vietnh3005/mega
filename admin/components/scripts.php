@@ -14,7 +14,6 @@
 <script src="js/jquery.customSelect.min.js" ></script>
 <script src="js/sparkline-chart.js"></script>
 <script src="js/easy-pie-chart.js"></script>
-<script src="js/count.js"></script>
 <script>
       //owl carousel
       $(document).ready(function() {

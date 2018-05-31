@@ -75,66 +75,65 @@ include 'components/scripts.php'; ?>
 												<td><?php echo $row['create_at']?></td>
 												<input name="cmt_id" type="hidden" value="<?php echo $row['comment_id']?>"/>
 												<td><button type="submit" name='upd_cmt' class='btn btn-success btn-xs' title="Thay đổi trạng thái"><i class='glyphicon glyphicon-refresh'></i></button> </form>
-												<a href="../business/commentBusiness.php?del=<?php echo $row['comment_id'];?>"><button class='btn btn-danger btn-xs'><i class='icon-trash'></i></button></a>
+													<a href="../business/commentBusiness.php?del=<?php echo $row['comment_id'];?>"><button class='btn btn-danger btn-xs'><i class='icon-trash'></i></button></a>
 												</td>
-											
-										</tr>
-									<?php } ?>
-								</tbody>
-							</table>
-						</section>
+											</tr>
+										<?php } ?>
+									</tbody>
+								</table>
+							</section>
+						</div>
 					</div>
-				</div>
-				<!-- page end-->
+					<!-- page end-->
+				</section>
 			</section>
+			<!--main content end-->
+			<!--footer start-->
+			<footer class="site-footer">
+				<div class="text-center">
+					2013 &copy; FlatLab by VectorLab.
+					<a href="#" class="go-top">
+						<i class="icon-angle-up"></i>
+					</a>
+				</div>
+			</footer>
+			<!--footer end-->
 		</section>
-		<!--main content end-->
-		<!--footer start-->
-		<footer class="site-footer">
-			<div class="text-center">
-				2013 &copy; FlatLab by VectorLab.
-				<a href="#" class="go-top">
-					<i class="icon-angle-up"></i>
-				</a>
-			</div>
-		</footer>
-		<!--footer end-->
-	</section>
 
-</body>
-</html>
+	</body>
+	</html>
 
-<script type="text/javascript">
-	$(document).ready( function () {
-		$('#cmnt_tbl').DataTable();
-	} );
-</script>
+	<script type="text/javascript">
+		$(document).ready( function () {
+			$('#cmnt_tbl').DataTable();
+		} );
+	</script>
 
-<!-- Hiển thị thông báo -->
-<script>
-	<?php
-	if(isset($_SESSION['u_success'])){
-		echo "swal('Xử lí thành công!', 'Xử lí bình luận thành công!', 'success');";
-		unset($_SESSION['u_success']);
-	}
-	if(isset($_SESSION['d_success'])){
-		echo "swal('Xử lí thành công!', 'Đã xóa bình luận!', 'success');";
-		unset($_SESSION['d_success']);
-	}
-	if(isset($_SESSION['fails'])){
-		unset($_SESSION['fails']);
-	}
-	?>
-</script>
+	<!-- Hiển thị thông báo -->
+	<script>
+		<?php
+		if(isset($_SESSION['u_success'])){
+			echo "swal('Xử lí thành công!', 'Xử lí bình luận thành công!', 'success');";
+			unset($_SESSION['u_success']);
+		}
+		if(isset($_SESSION['d_success'])){
+			echo "swal('Xử lí thành công!', 'Đã xóa bình luận!', 'success');";
+			unset($_SESSION['d_success']);
+		}
+		if(isset($_SESSION['fails'])){
+			unset($_SESSION['fails']);
+		}
+		?>
+	</script>
 
-<!-- Load current status -->
-<script type="text/javascript">
-	$(document).ready( function (){
+	<!-- Load current status -->
+	<script type="text/javascript">
+		$(document).ready( function (){
 
-		$('.sts_row').each(function(){
-			var $id = $(this).data('id');
-			$(this).parent().find('.btn_upd').val($id);
+			$('.sts_row').each(function(){
+				var $id = $(this).data('id');
+				$(this).parent().find('.btn_upd').val($id);
     	//$('.btn_upd').val($id);
     });
-	});
-</script>
+		});
+	</script>

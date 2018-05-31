@@ -84,10 +84,8 @@ include 'views/assets/scripts.php';
                      { 
                       ?>
                       <tr class="first odd">
-                        <form id="<?php echo $prow['product_id']?>" method="post" action="business/productBusiness.php">
                           <td class="image"><a class="product-image" href="javascript:{}" onclick="document.getElementById('<?php echo $prow['product_id']?>').submit();"><img width="75" alt="Sample Product" src="admin/img/products/<?php echo $prow['image1']?>">
                             <input type="hidden" name="pro_id" value="<?php echo $prow['product_id']?>">
-                          </form>
                         </a></td>
                         <td><h2 class="product-name"> <a href="#"><?php echo $prow['product_name'] ?></a> </h2></td>
                         <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>

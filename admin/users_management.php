@@ -118,7 +118,7 @@ $row = mysqli_fetch_assoc($query);
       <!--footer start-->
       <footer class="site-footer">
         <div class="text-center">
-          2013 &copy; FlatLab by VectorLab.
+          2018 Admega Management Page
           <a href="#" class="go-top">
             <i class="icon-angle-up"></i>
           </a>

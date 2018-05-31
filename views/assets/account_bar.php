@@ -3,17 +3,13 @@
             <div class="block-title">Tài khoản</div>
             <div class="block-content">
               <ul>
-                <li class=""><a>Thống kê</a></li>
+                <li class=""><a href="account.php">Thống kê</a></li>
                 <li><a href="profile.php">Thông tin tài khoản</a></li>
-                <li><a href="#">Address Book</a></li>
-                <li><a href="#">My Orders</a></li>
-                <li><a href="#">Billing Agreements</a></li>
-                <li><a href="#">Recurring Profiles</a></li>
-                <li><a href="#">My Product Reviews</a></li>
-                <li><a href="#">My Tags</a></li>
-                <li><a href="#">My Wishlist</a></li>
-                <li><a href="#">My Downloadable</a></li>
-                <li class="last"><a href="#">Newsletter Subscriptions</a></li>
+                <li><a href="user_order.php">Chi tiết đơn hàng</a></li>
+                <li><a href="#">Danh sách bình luận</a></li>
+                <li><a href="messagebox.php">Tin nhắn</a></li>
+                <li><a href="#">Danh sách yêu thích</a></li>
+                <li class="last"><a href="#">Thông báo</a></li>
               </ul>
             </div>
           </div>
