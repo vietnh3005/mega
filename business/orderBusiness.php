@@ -43,9 +43,9 @@ function create_order($user_id, $total, $name, $email, $phone, $address_1, $comm
 			values('$order_id', '$product_id', '$sell_price', '$quantity')";
 			$query = mysqli_query($conn,$sql1);
 		}
-		header('Location: ../index.php');
-		$status_id = 1
+		$status_id = 1;
 		send_message($user_id, $status_id);
+		header('Location: ../index.php');
 		$_SESSION['o_success'] = "success";
 		unset($_SESSION['cart']);
 	}

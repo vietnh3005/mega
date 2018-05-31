@@ -36,7 +36,7 @@ function send_message($user_id, $status_id){
 	values ('$user_id', '$title', '$content','1', '$created_date')";
 	
 	if(mysqli_query($conn, $sql)){
-		header('Location: ../admin/orders_management.php');
+		$_SESSION['o_success'] = "success";
 		}
 	else {
 		header('Location: ../404.html');

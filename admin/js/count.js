@@ -1,14 +1,15 @@
-function countUp(count)
+function countUp()
 {
     var div_by = 100,
-        speed = Math.round(count / div_by),
-        $display = $('.count'),
-        run_count = 1,
-        int_speed = 24;
+    count = parseInt($('#number_of_user').val()),
+    speed = count / div_by,
+    $display = $('.count'),
+    run_count = 1,
+    int_speed = 24;
 
     var int = setInterval(function() {
         if(run_count < div_by){
-            $display.text(speed * run_count);
+            $display.text(Math.round(speed * run_count));
             run_count++;
         } else if(parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
@@ -19,19 +20,20 @@ function countUp(count)
     }, int_speed);
 }
 
-countUp(495);
+countUp();
 
-function countUp2(count)
+function countUp2()
 {
     var div_by = 100,
-        speed = Math.round(count / div_by),
-        $display = $('.count2'),
-        run_count = 1,
-        int_speed = 24;
+    count = parseInt($('#no_of_sell').val()),
+    speed = Math.round(count / div_by),
+    $display = $('.count2'),
+    run_count = 1,
+    int_speed = 24;
 
     var int = setInterval(function() {
         if(run_count < div_by){
-            $display.text(speed * run_count);
+            $display.text(Math.round(speed * run_count));
             run_count++;
         } else if(parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
@@ -42,19 +44,20 @@ function countUp2(count)
     }, int_speed);
 }
 
-countUp2(947);
+countUp2();
 
-function countUp3(count)
+function countUp3()
 {
     var div_by = 100,
-        speed = Math.round(count / div_by),
-        $display = $('.count3'),
-        run_count = 1,
-        int_speed = 24;
+    count = parseInt($('#number_of_order').val()),
+    speed = Math.round(count / div_by),
+    $display = $('.count3'),
+    run_count = 1,
+    int_speed = 24;
 
     var int = setInterval(function() {
         if(run_count < div_by){
-            $display.text(speed * run_count);
+            $display.text(Math.round(speed * run_count));
             run_count++;
         } else if(parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
@@ -65,19 +68,20 @@ function countUp3(count)
     }, int_speed);
 }
 
-countUp3(328);
+countUp3();
 
-function countUp4(count)
+function countUp4()
 {
     var div_by = 100,
-        speed = Math.round(count / div_by),
-        $display = $('.count4'),
-        run_count = 1,
-        int_speed = 24;
+    count = parseInt($('#income').val()),
+    speed = Math.round(count / div_by),
+    $display = $('.count4'),
+    run_count = 1,
+    int_speed = 24;
 
     var int = setInterval(function() {
         if(run_count < div_by){
-            $display.text(speed * run_count);
+            $display.text(Math.round(speed * run_count));
             run_count++;
         } else if(parseInt($display.text()) < count) {
             var curr_count = parseInt($display.text()) + 1;
@@ -88,4 +92,4 @@ function countUp4(count)
     }, int_speed);
 }
 
-countUp4(10328);
+countUp4();
