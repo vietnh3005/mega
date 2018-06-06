@@ -126,7 +126,7 @@ $row = mysqli_fetch_assoc($query);
               </ul>
               <div class="bar">
                 <div class="title">JAN</div>
-                <div class="value tooltips" data-original-title="80%" data-toggle="tooltip" data-placement="top">80%</div>
+                <div class="value tooltips" data-original-title="30%" data-toggle="tooltip" data-placement="top">30%</div>
               </div>
               <div class="bar ">
                 <div class="title">FEB</div>
@@ -297,7 +297,7 @@ $row = mysqli_fetch_assoc($query);
   <!--footer start-->
   <footer class="site-footer">
     <div class="text-center">
-      2013 &copy; FlatLab by VectorLab.
+      2018 Admega Management Page
       <a href="#" class="go-top">
         <i class="icon-angle-up"></i>
       </a>
